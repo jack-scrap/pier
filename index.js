@@ -172,12 +172,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Shader
 	const
-		shadVtxTxt = Util.rd('res/shad/obj.vs'),
-		shadFragTxt = Util.rd('res/shad/dir.fs');
+		shadVtxBuff = Util.rd('res/shad/obj.vs'),
+		shadFragBuff = Util.rd('res/shad/dir.fs');
 
 	// Vertex
 	var shadVtx = gl.createShader(gl.VERTEX_SHADER);
-	gl.shaderSource(shadVtx, shadVtxTxt);
+	gl.shaderSource(shadVtx, shadVtxBuff);
 
 	gl.compileShader(shadVtx);
 	if (!gl.getShaderParameter(shadVtx, gl.COMPILE_STATUS)) {
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Fragment
 	var shadFrag = gl.createShader(gl.FRAGMENT_SHADER);
-	gl.shaderSource(shadFrag, shadFragTxt);
+	gl.shaderSource(shadFrag, shadFragBuff);
 
 	gl.compileShader(shadFrag);
 	if (!gl.getShaderParameter(shadFrag, gl.COMPILE_STATUS)) {
