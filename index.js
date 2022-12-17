@@ -113,6 +113,47 @@ class Ld {
 	}
 };
 
+var
+	id = new Float32Array(16),
+	rot = new Float32Array(16);
+
+var
+	model = new Float32Array(16),
+	view = new Float32Array(16),
+	proj = new Float32Array(16);
+
+var
+	drag,
+
+	mouseStartX,
+	mouseCurrX,
+	mouseDeltaX,
+
+	theta = 0;
+
+document.addEventListener('mousedown', function(e) {
+	drag = true;
+
+	mouseStartX = e.clientX;
+});
+
+document.addEventListener('mouseup', function(e) {
+	drag = false;
+
+	theta += mouseDeltaX;
+});
+
+document.addEventListener('mousemove', function(e) {
+	if (drag) {
+		mouseCurrX = e.clientX;
+
+		mouseDeltaX = mouseCurrX - mouseStartX;
+
+		mat4.rotate(rot, id, (theta + mouseDeltaX) / 500, [0, 1, 0]);
+		mat4.mul(model, rot, id);
+	}
+});
+
 document.addEventListener('DOMContentLoaded', function() {
 	// Initialize
 	const canv = document.getElementById('disp');
@@ -212,11 +253,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	gl.enableVertexAttribArray(attrNorm);
 
 	// Matrix
-	var
-		model = new Float32Array(16),
-		view = new Float32Array(16),
-		proj = new Float32Array(16);
-
 	mat4.identity(model);
 	mat4.lookAt(
 		view,
@@ -229,10 +265,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		]
 	);
 	mat4.perspective(proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
-
-	var
-		id = new Float32Array(16),
-		rot = new Float32Array(16);
 
 	mat4.identity(id);
 
