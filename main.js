@@ -174,14 +174,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	var vbo = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
 
-	var vtc = Ld.vtc('cube');
+	var vtc = Ld.vtc('cabinet');
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vtc), gl.STATIC_DRAW);
 
 	// indices
 	var ibo = gl.createBuffer();
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
 
-	var idc = Ld.idc('cube', type.VTX);
+	var idc = Ld.idc('cabinet', type.VTX);
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint8Array(idc), gl.STATIC_DRAW);
 
 	// position
@@ -194,9 +194,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	gl.bindBuffer(gl.ARRAY_BUFFER, nbo);
 
 	var
-		idcNorm = Ld.idc('cube', type.NORM),
+		idcNorm = Ld.idc('cabinet', type.NORM),
 
-		norm = Ld.norm('cube'),
+		norm = Ld.norm('cabinet'),
 		idxedNorm = [];
 	for (let i = 0; i < idcNorm.length; i++) {
 		let v = idcNorm[i] * 3;
