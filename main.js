@@ -131,8 +131,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// shader
 	const
-		shadVtxTxt = Util.rd('res/shad/shad.vs'),
-		shadFragTxt = Util.rd('res/shad/shad.fs');
+		shadVtxTxt = Util.rd('res/shad/obj.vs'),
+		shadFragTxt = Util.rd('res/shad/dir.fs');
 
 	// vertex
 	var shadVtx = gl.createShader(gl.VERTEX_SHADER);
