@@ -246,18 +246,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	gl.uniformMatrix4fv(uniView, gl.FALSE, view);
 	gl.uniformMatrix4fv(uniProj, gl.FALSE, proj);
 
-	var i = 0;
 	function draw() {
 		gl.clearColor(0, 0, 0, 1.0);
 		gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
 
-		mat4.rotate(rot, id, i, [0, 1, 0]);
-		mat4.mul(model, rot, id);
 		gl.uniformMatrix4fv(uniModel, gl.FALSE, model);
 
 		gl.drawElements(gl.TRIANGLES, idc.length, gl.UNSIGNED_BYTE, 0);
-
-		i += 0.01;
 
 		requestAnimationFrame(draw);
 	};
