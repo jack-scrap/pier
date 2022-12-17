@@ -129,7 +129,7 @@ var
 	mouseCurrX,
 	mouseDeltaX,
 
-	theta = 0;
+	theta = -100;
 
 document.addEventListener('mousedown', function(e) {
 	drag = true;
@@ -149,7 +149,7 @@ document.addEventListener('mousemove', function(e) {
 
 		mouseDeltaX = mouseCurrX - mouseStartX;
 
-		mat4.rotate(rot, id, (theta + mouseDeltaX) / 500, [0, 1, 0]);
+		mat4.rotate(rot, id, theta / 500, [0, 1, 0]);
 		mat4.mul(model, rot, id);
 	}
 });
@@ -254,6 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Matrices
 	mat4.identity(model);
+
 	mat4.lookAt(
 		view,
 		[
@@ -267,6 +268,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	mat4.perspective(proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
 
 	mat4.identity(id);
+
+	mat4.rotate(rot, id, theta, [0, 1, 0]);
+	mat4.mul(model, rot, id);
 
 	// Uniforms
 	var
