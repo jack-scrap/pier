@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	mat4.lookAt(
 		view,
 		[
-			0, 10, -10
+			10, 10, 0
 		], [
 			0, 0, 0
 		], [
