@@ -137,7 +137,7 @@ document.addEventListener('mousedown', function(e) {
 	mouseStartX = e.clientX;
 });
 
-document.addEventListener('mouseup', function(e) {
+document.addEventListener('mouseup', function() {
 	drag = false;
 
 	theta += mouseDeltaX;
