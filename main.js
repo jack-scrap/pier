@@ -49,7 +49,7 @@ class Util {
 class Ld {
 	static vtc(name) {
 		let data = [];
-		for (let l of Util.rd(name + '.obj').split('\n')) {
+		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
 			let tok = [];
 			for (let _ of l.split(' ')) {
 				tok.push(_);
@@ -70,7 +70,7 @@ class Ld {
 
 	static idc(name, type) {
 		let data = [];
-		for (let l of Util.rd(name + '.obj').split('\n')) {
+		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
 			let tok = [];
 			for (let _ of l.split(' ')) {
 				tok.push(_);
@@ -93,7 +93,7 @@ class Ld {
 
 	static norm(name) {
 		let data = [];
-		for (let l of Util.rd(name + '.obj').split('\n')) {
+		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
 			let tok = [];
 			for (let _ of l.split(' ')) {
 				tok.push(_);
@@ -131,8 +131,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// shader
 	const
-		shadVtxTxt = Util.rd('shad.vs'),
-		shadFragTxt = Util.rd('shad.fs');
+		shadVtxTxt = Util.rd('res/shad/shad.vs'),
+		shadFragTxt = Util.rd('res/shad/shad.fs');
 
 	// vertex
 	var shadVtx = gl.createShader(gl.VERTEX_SHADER);
