@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	gl.useProgram(prog);
 
-	// Position
+	// Positions
 	var vbo = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
 
@@ -225,12 +225,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	var idc = Ld.idc('cabinet', type.VTX);
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint8Array(idc), gl.STATIC_DRAW);
 
-	// Position
+	// Positions
 	var attrPos = gl.getAttribLocation(prog, 'pos');
 	gl.vertexAttribPointer(attrPos, 3, gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
 	gl.enableVertexAttribArray(attrPos);
 
-	// Normal
+	// Normals
 	var nbo = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, nbo);
 
@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	gl.vertexAttribPointer(attrNorm, 3, gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
 	gl.enableVertexAttribArray(attrNorm);
 
-	// Matrix
+	// Matrices
 	mat4.identity(model);
 	mat4.lookAt(
 		view,
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	mat4.identity(id);
 
-	// Uniform
+	// Uniforms
 	var
 		uniModel = gl.getUniformLocation(prog, 'model'),
 		uniView = gl.getUniformLocation(prog, 'view'),
