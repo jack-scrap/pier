@@ -114,7 +114,7 @@ class Ld {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-	// initialize
+	// Initialize
 	const canv = document.getElementById('disp');
 	var gl = canv.getContext('webgl');
 
@@ -129,12 +129,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	gl.enable(gl.DEPTH_TEST);
 
-	// shader
+	// Shader
 	const
 		shadVtxTxt = Util.rd('res/shad/obj.vs'),
 		shadFragTxt = Util.rd('res/shad/dir.fs');
 
-	// vertex
+	// Vertex
 	var shadVtx = gl.createShader(gl.VERTEX_SHADER);
 	gl.shaderSource(shadVtx, shadVtxTxt);
 
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		console.error('Error compiling vertex shader', gl.getShaderInfoLog(shadVtx));
 	}
 
-	// fragment
+	// Fragment
 	var shadFrag = gl.createShader(gl.FRAGMENT_SHADER);
 	gl.shaderSource(shadFrag, shadFragTxt);
 
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		console.error('Error compiling fragment shader', gl.getShaderInfoLog(shadFrag));
 	}
 
-	// program
+	// Program
 	var prog = gl.createProgram();
 
 	gl.attachShader(prog, shadVtx);
@@ -170,26 +170,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	gl.useProgram(prog);
 
-	// position
+	// Position
 	var vbo = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
 
 	var vtc = Ld.vtc('cabinet');
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vtc), gl.STATIC_DRAW);
 
-	// indices
+	// Indices
 	var ibo = gl.createBuffer();
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
 
 	var idc = Ld.idc('cabinet', type.VTX);
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint8Array(idc), gl.STATIC_DRAW);
 
-	// position
+	// Position
 	var attrPos = gl.getAttribLocation(prog, 'pos');
 	gl.vertexAttribPointer(attrPos, 3, gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
 	gl.enableVertexAttribArray(attrPos);
 
-	// normal
+	// Normal
 	var nbo = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, nbo);
 
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	gl.vertexAttribPointer(attrNorm, 3, gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
 	gl.enableVertexAttribArray(attrNorm);
 
-	// matrix
+	// Matrix
 	var
 		model = new Float32Array(16),
 		view = new Float32Array(16),
@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	mat4.identity(id);
 
-	// uniform
+	// Uniform
 	var
 		uniModel = gl.getUniformLocation(prog, 'model'),
 		uniView = gl.getUniformLocation(prog, 'view'),
