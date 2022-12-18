@@ -149,7 +149,7 @@ document.addEventListener('mousemove', function(e) {
 
 		mouseDeltaX = mouseCurrX - mouseStartX;
 
-		mat4.rotate(rot, id, theta / 500, [0, 1, 0]);
+		mat4.rotate(rot, id, (theta + mouseDeltaX) / 500, [0, 1, 0]);
 		mat4.mul(model, rot, id);
 	}
 });
