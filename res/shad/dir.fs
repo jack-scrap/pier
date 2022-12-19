@@ -1,18 +1,17 @@
+#version 300 es
+
 precision mediump float;
 
-vec3
-	posLight = vec3(-1.0, 1.0, -1.0),
-	colLight = vec3(1.0, 1.0, 1.0),
-	colObj = vec3(0.8381, 0.8441, 0.5802);
+in vec3 _pos;
 
-varying vec3
-	_pos,
-	_norm;
+out vec4 frag;
+
+vec3 sun = vec3(1.0, 1.0, -1.0);
 
 void main() {
-	vec3 dirLight = normalize(posLight - _pos);
+	vec3 normFace = normalize(cross(dFdx(_pos), dFdy(_pos)));
 
-	float diff = max(dot(_norm, dirLight), 0.1);
+	float diff = max(dot(normFace, normalize(sun)), 0.0);
 
-	gl_FragColor = vec4(diff * colLight * colObj, 1.0);
+	frag = vec4((1.0 - diff) * vec3(0.8381, 0.8441, 0.5802), 1.0);
 }

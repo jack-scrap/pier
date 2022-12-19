@@ -230,28 +230,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	gl.vertexAttribPointer(attrPos, 3, gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
 	gl.enableVertexAttribArray(attrPos);
 
-	// Normals
-	var nbo = gl.createBuffer();
-	gl.bindBuffer(gl.ARRAY_BUFFER, nbo);
-
-	var
-		idcNorm = Ld.idc('cabinet', type.NORM),
-
-		norm = Ld.norm('cabinet'),
-		idxedNorm = [];
-	for (let i = 0; i < idcNorm.length; i++) {
-		let v = idcNorm[i] * 3;
-
-		for (let i = 0; i < 3; i++) {
-			idxedNorm.push(norm[v + i]);
-		}
-	}
-	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(idxedNorm), gl.STATIC_DRAW);
-
-	var attrNorm = gl.getAttribLocation(prog, 'norm');
-	gl.vertexAttribPointer(attrNorm, 3, gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-	gl.enableVertexAttribArray(attrNorm);
-
 	// Matrices
 	mat4.identity(model);
 
