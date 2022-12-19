@@ -157,7 +157,7 @@ document.addEventListener('mousemove', function(e) {
 document.addEventListener('DOMContentLoaded', function() {
 	// Initialize
 	const canv = document.getElementById('disp');
-	const gl = canv.getContext('webgl');
+	const gl = canv.getContext('webgl2');
 
 	if (!gl) {
 		console.log('WebGL not supported, falling back on experimental-webgl');
