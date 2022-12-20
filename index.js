@@ -1,12 +1,3 @@
-const
-	triVtc = 3,
-
-	type = {
-		VTX: 0,
-		TEX: 1,
-		NORM: 2
-	};
-
 var
 	id = new Float32Array(16),
 	rot = new Float32Array(16),
