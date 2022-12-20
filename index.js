@@ -10,7 +10,8 @@ const
 
 var
 	id = new Float32Array(16),
-	rot = new Float32Array(16);
+	rot = new Float32Array(16),
+	scale = new Float32Array(16);
 
 var
 	model = new Float32Array(16),
@@ -24,7 +25,9 @@ var
 	mouseCurrX,
 	mouseDeltaX,
 
-	theta = -100;
+	theta = -100,
+
+	camScale = 1;
 
 document.addEventListener('mousedown', function(e) {
 	drag = true;
@@ -47,6 +50,18 @@ document.addEventListener('mousemove', function(e) {
 		mat4.rotate(rot, id, (theta + mouseDeltaX) / 500, [0, 1, 0]);
 		mat4.mul(model, rot, id);
 	}
+});
+
+document.addEventListener('mousewheel', function(e) {
+	camScale += -e.deltaY / 100;
+
+	camScale = Math.min(camScale, 5.0);
+	camScale = Math.max(camScale, 1.0);
+
+	mat4.scale(scale, id, [
+		camScale, camScale, camScale
+	]);
+	mat4.mul(model, scale, id);
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -134,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	mat4.lookAt(
 		view,
 		[
-			15, 8, 0
+			15 * camScale, 8 * camScale, 0 * camScale
 		], [
 			0, 0, 0
 		], [
