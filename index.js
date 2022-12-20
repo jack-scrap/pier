@@ -164,7 +164,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		gl.uniformMatrix4fv(uniModel, gl.FALSE, model);
 
+		gl.bindVertexArray(vao);
+
 		gl.drawElements(gl.TRIANGLES, idc.length, gl.UNSIGNED_BYTE, 0);
+
+		gl.bindVertexArray(null);
 
 		requestAnimationFrame(draw);
 	};
