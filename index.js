@@ -1,5 +1,4 @@
 const
-	axes = 3,
 	triVtc = 3,
 
 	type = {
