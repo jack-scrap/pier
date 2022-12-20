@@ -1,22 +1,20 @@
-var gl;
-
-var prog;
-
 var
+	gl,
+
+	prog,
+
 	id = new Float32Array(16),
 	rot = new Float32Array(16),
-	scale = new Float32Array(16);
+	scale = new Float32Array(16),
 
-var
 	model = new Float32Array(16),
 	view = new Float32Array(16),
-	proj = new Float32Array(16);
+	proj = new Float32Array(16),
 
-var uniModel;
-var uniView;
-var uniProj;
+	uniModel,
+	uniView,
+	uniProj,
 
-var
 	drag,
 
 	mouseStartX,
