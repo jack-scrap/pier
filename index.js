@@ -57,6 +57,7 @@ document.addEventListener('mousewheel', function(e) {
 document.addEventListener('DOMContentLoaded', function() {
 	// Context
 	const canv = document.getElementById('disp');
+
 	const gl = canv.getContext('webgl2');
 
 	if (!gl) {
