@@ -164,16 +164,20 @@ document.addEventListener('DOMContentLoaded', function() {
 	gl.uniformMatrix4fv(uniView, gl.FALSE, view);
 	gl.uniformMatrix4fv(uniProj, gl.FALSE, proj);
 
+	gl.useProgram(null);
+
 	function draw() {
 		gl.clearColor(0.8381, 0.8441, 0.5802, 1);
 		gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
 
-		gl.uniformMatrix4fv(uniModel, gl.FALSE, model);
-
 		gl.bindVertexArray(vao);
+		gl.useProgram(prog);
+
+		gl.uniformMatrix4fv(uniModel, gl.FALSE, model);
 
 		gl.drawElements(gl.TRIANGLES, idc.length, gl.UNSIGNED_BYTE, 0);
 
+		gl.useProgram(null);
 		gl.bindVertexArray(null);
 
 		requestAnimationFrame(draw);
