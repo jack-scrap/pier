@@ -1,3 +1,7 @@
+var gl;
+
+var prog;
+
 var
 	id = new Float32Array(16),
 	rot = new Float32Array(16),
@@ -7,6 +11,10 @@ var
 	model = new Float32Array(16),
 	view = new Float32Array(16),
 	proj = new Float32Array(16);
+
+var uniModel;
+var uniView;
+var uniProj;
 
 var
 	drag,
@@ -39,6 +47,12 @@ document.addEventListener('mousemove', function(e) {
 
 		mat4.rotate(rot, id, (theta + mouseDeltaX) / 500, [0, 1, 0]);
 		mat4.mul(model, rot, id);
+
+		gl.useProgram(prog);
+
+		gl.uniformMatrix4fv(uniModel, gl.FALSE, model);
+
+		gl.useProgram(null);
 	}
 });
 
@@ -52,13 +66,19 @@ document.addEventListener('mousewheel', function(e) {
 		camScale, camScale, camScale
 	]);
 	mat4.mul(model, scale, id);
+
+	gl.useProgram(prog);
+
+	gl.uniformMatrix4fv(uniModel, gl.FALSE, model);
+
+	gl.useProgram(null);
 });
 
 document.addEventListener('DOMContentLoaded', function() {
 	// Context
 	const canv = document.getElementById('disp');
 
-	const gl = canv.getContext('webgl2');
+	gl = canv.getContext('webgl2');
 
 	if (!gl) {
 		console.log('WebGL not supported, falling back on experimental-webgl');
@@ -132,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	// Program
-	var prog = gl.createProgram();
+	prog = gl.createProgram();
 
 	gl.attachShader(prog, shadVtx);
 	gl.attachShader(prog, shadFrag);
@@ -155,10 +175,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	gl.enableVertexAttribArray(attrPos);
 
 	// Uniforms
-	var
-		uniModel = gl.getUniformLocation(prog, 'model'),
-		uniView = gl.getUniformLocation(prog, 'view'),
-		uniProj = gl.getUniformLocation(prog, 'proj');
+	uniModel = gl.getUniformLocation(prog, 'model');
+	uniView = gl.getUniformLocation(prog, 'view');
+	uniProj = gl.getUniformLocation(prog, 'proj');
 
 	gl.uniformMatrix4fv(uniModel, gl.FALSE, model);
 	gl.uniformMatrix4fv(uniView, gl.FALSE, view);
@@ -172,8 +191,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		gl.bindVertexArray(vao);
 		gl.useProgram(prog);
-
-		gl.uniformMatrix4fv(uniModel, gl.FALSE, model);
 
 		gl.drawElements(gl.TRIANGLES, idc.length, gl.UNSIGNED_BYTE, 0);
 
