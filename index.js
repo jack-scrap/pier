@@ -25,6 +25,8 @@ var
 
 	camScale = 1;
 
+const col = [213.72, 215.24, 147.96];
+
 document.addEventListener('mousedown', function(e) {
 	drag = true;
 
@@ -184,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	gl.useProgram(null);
 
 	function draw() {
-		gl.clearColor(0.8381, 0.8441, 0.5802, 1);
+		gl.clearColor(col[0] / 255, col[1] / 255, col[2] / 255, 1);
 		gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
 
 		gl.bindVertexArray(vao);
