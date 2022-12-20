@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	gl.useProgram(null);
 
 	function draw() {
-		gl.clearColor(col[0] / 255, col[1] / 255, col[2] / 255, 1);
+		gl.clearColor(1 - ((1 - (col[0] / 255)) / 2), 1 - ((1 - (col[1] / 255)) / 2), 1 - ((1 - (col[2] / 255)) / 2), 1);
 		gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
 
 		gl.bindVertexArray(vao);
