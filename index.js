@@ -65,7 +65,7 @@ document.addEventListener('mousewheel', function(e) {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-	// Initialize
+	// Context
 	const canv = document.getElementById('disp');
 	const gl = canv.getContext('webgl2');
 
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	mat4.lookAt(
 		view,
 		[
-			15 * camScale, 8 * camScale, 0 * camScale
+			15, 8, 0
 		], [
 			0, 0, 0
 		], [
