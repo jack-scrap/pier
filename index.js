@@ -1,4 +1,6 @@
 var
+	canv,
+
 	gl,
 
 	prog,
@@ -26,6 +28,137 @@ var
 	camScale = 1;
 
 const col = [213.72, 215.24, 147.96];
+
+const scrVtc = [
+	-1.0, -1.0, 0.0,
+	1.0, -1.0, 0.0,
+	-1.0, 1.0, 0.0,
+	1.0, 1.0, 0.0
+];
+
+const scrIdc = [
+	0, 1, 2,
+	2, 1, 3
+];
+
+class Mesh {
+	vao = null;
+	vbo = null;
+	ibo = null;
+
+	uniModel = null;
+	uniView = null;
+	uniProj = null;
+
+	noIdc = null;
+
+	prog = null;
+
+	constructor(vtc, idc, nameVtx, nameFrag) {
+		this.noIdc = idc.length;
+
+		this.vao = gl.createVertexArray();
+		gl.bindVertexArray(this.vao);
+
+		this.vbo = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, this.vbo);
+		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vtc), gl.STATIC_DRAW);
+
+		this.ibo = gl.createBuffer();
+		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.ibo);
+		gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint8Array(idc), gl.STATIC_DRAW);
+
+		/* Matrix */
+		model = new Float32Array(16);
+		view = new Float32Array(16);
+		proj = new Float32Array(16);
+
+		mat4.identity(model);
+
+		mat4.lookAt(
+			view,
+			[
+				15, 8, 0
+			], [
+				-0.5846, 2.7, 0
+			], [
+				0, 1, 0
+			]
+		);
+		mat4.perspective(proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
+
+		mat4.identity(id);
+
+		mat4.rotate(rot, id, theta, [0, 1, 0]);
+		mat4.mul(model, rot, id);
+
+		/* Shader */
+		this.prog = gl.createProgram();
+
+		const
+			shadVtxBuff = Util.rd('res/shad/' + nameVtx + '.vs'),
+			shadFragBuff = Util.rd('res/shad/' + nameFrag + '.fs');
+
+		// Vertex
+		let shadVtx = gl.createShader(gl.VERTEX_SHADER);
+		gl.shaderSource(shadVtx, shadVtxBuff);
+
+		gl.compileShader(shadVtx);
+		if (!gl.getShaderParameter(shadVtx, gl.COMPILE_STATUS)) {
+			console.error('Error compiling vertex shader', gl.getShaderInfoLog(shadVtx));
+		}
+
+		// Fragment
+		let shadFrag = gl.createShader(gl.FRAGMENT_SHADER);
+		gl.shaderSource(shadFrag, shadFragBuff);
+
+		gl.compileShader(shadFrag);
+		if (!gl.getShaderParameter(shadFrag, gl.COMPILE_STATUS)) {
+			console.error('Error compiling fragment shader', gl.getShaderInfoLog(shadFrag));
+		}
+
+		gl.attachShader(this.prog, shadVtx);
+		gl.attachShader(this.prog, shadFrag);
+
+		gl.linkProgram(this.prog);
+		if (!gl.getProgramParameter(this.prog, gl.LINK_STATUS)) {
+			console.error('Error linking program', gl.getProgramInfoLog(this.prog));
+		}
+
+		gl.validateProgram(this.prog);
+		if (!gl.getProgramParameter(this.prog, gl.VALIDATE_STATUS)) {
+			console.error('Error validating program', gl.getProgramInfoLog(this.prog));
+		}
+
+		gl.useProgram(this.prog);
+
+		// Attributes
+		let attrPos = gl.getAttribLocation(this.prog, 'pos');
+		gl.vertexAttribPointer(attrPos, 3, gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
+		gl.enableVertexAttribArray(attrPos);
+
+		// Uniforms
+		this.uniModel = gl.getUniformLocation(this.prog, 'model');
+		this.uniView = gl.getUniformLocation(this.prog, 'view');
+		this.uniProj = gl.getUniformLocation(this.prog, 'proj');
+
+		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, model);
+		gl.uniformMatrix4fv(this.uniView, gl.FALSE, view);
+		gl.uniformMatrix4fv(this.uniProj, gl.FALSE, proj);
+
+		gl.useProgram(null);
+	}
+
+	draw() {
+		gl.bindVertexArray(this.vao);
+		gl.useProgram(this.prog);
+
+		gl.drawElements(gl.TRIANGLES, this.noIdc, gl.UNSIGNED_BYTE, 0);
+
+		gl.useProgram(null);
+		gl.bindVertexArray(null);
+	}
+};
 
 document.addEventListener('mousedown', function(e) {
 	drag = true;
@@ -76,7 +209,7 @@ document.addEventListener('mousewheel', function(e) {
 
 document.addEventListener('DOMContentLoaded', function() {
 	// Context
-	const canv = document.getElementById('disp');
+	canv = document.getElementById('disp');
 
 	gl = canv.getContext('webgl2');
 
@@ -88,6 +221,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	if (!gl) {
 		alert('Your browser does not support WebGL');
 	}
+
+	let scr = new Mesh(scrVtc, scrIdc, "scr", "solid");
 
 	var vao = gl.createVertexArray();
 	gl.bindVertexArray(vao);
@@ -196,6 +331,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		gl.useProgram(null);
 		gl.bindVertexArray(null);
+
+		scr.draw();
 
 		requestAnimationFrame(draw);
 	};
