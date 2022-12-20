@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	gl.useProgram(prog);
 
-	// Positions
+	// Attributes
 	var attrPos = gl.getAttribLocation(prog, 'pos');
 	gl.vertexAttribPointer(attrPos, 3, gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
 	gl.enableVertexAttribArray(attrPos);
