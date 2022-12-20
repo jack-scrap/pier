@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		[
 			15, 8, 0
 		], [
-			0, 0, 0
+			-0.5846, 2.7, 0
 		], [
 			0, 1, 0
 		]
