@@ -106,6 +106,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	gl.useProgram(prog);
 
+	var vao = gl.createVertexArray();
+	gl.bindVertexArray(vao);
+
 	// Positions
 	var vbo = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
