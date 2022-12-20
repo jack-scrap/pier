@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	gl.uniformMatrix4fv(uniProj, gl.FALSE, proj);
 
 	function draw() {
-		gl.clearColor(1, 1, 1, 1.0);
+		gl.clearColor(1, 1, 1, 1);
 		gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
 
 		gl.uniformMatrix4fv(uniModel, gl.FALSE, model);
