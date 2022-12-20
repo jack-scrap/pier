@@ -68,6 +68,43 @@ document.addEventListener('DOMContentLoaded', function() {
 		alert('Your browser does not support WebGL');
 	}
 
+	var vao = gl.createVertexArray();
+	gl.bindVertexArray(vao);
+
+	// Positions
+	var vbo = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+
+	var vtc = Ld.vtc('cabinet');
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vtc), gl.STATIC_DRAW);
+
+	// Indices
+	var ibo = gl.createBuffer();
+	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
+
+	var idc = Ld.idc('cabinet', type.VTX);
+	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint8Array(idc), gl.STATIC_DRAW);
+
+	// Matrices
+	mat4.identity(model);
+
+	mat4.lookAt(
+		view,
+		[
+			15, 8, 0
+		], [
+			-0.5846, 2.7, 0
+		], [
+			0, 1, 0
+		]
+	);
+	mat4.perspective(proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
+
+	mat4.identity(id);
+
+	mat4.rotate(rot, id, theta, [0, 1, 0]);
+	mat4.mul(model, rot, id);
+
 	gl.enable(gl.DEPTH_TEST);
 
 	// Shader
@@ -111,47 +148,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	gl.useProgram(prog);
 
-	var vao = gl.createVertexArray();
-	gl.bindVertexArray(vao);
-
-	// Positions
-	var vbo = gl.createBuffer();
-	gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
-
-	var vtc = Ld.vtc('cabinet');
-	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vtc), gl.STATIC_DRAW);
-
-	// Indices
-	var ibo = gl.createBuffer();
-	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
-
-	var idc = Ld.idc('cabinet', type.VTX);
-	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint8Array(idc), gl.STATIC_DRAW);
-
 	// Positions
 	var attrPos = gl.getAttribLocation(prog, 'pos');
 	gl.vertexAttribPointer(attrPos, 3, gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
 	gl.enableVertexAttribArray(attrPos);
-
-	// Matrices
-	mat4.identity(model);
-
-	mat4.lookAt(
-		view,
-		[
-			15, 8, 0
-		], [
-			-0.5846, 2.7, 0
-		], [
-			0, 1, 0
-		]
-	);
-	mat4.perspective(proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
-
-	mat4.identity(id);
-
-	mat4.rotate(rot, id, theta, [0, 1, 0]);
-	mat4.mul(model, rot, id);
 
 	// Uniforms
 	var
