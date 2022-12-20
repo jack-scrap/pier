@@ -14,5 +14,5 @@ out vec3 _norm;
 void main() {
 	gl_Position = proj * view * model * vec4(pos, 1.0);
 
-	_pos = gl_Position.xyz;
+	_pos = vec3(model * vec4(pos, 1.0));
 }
