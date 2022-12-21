@@ -1,17 +1,6 @@
 var
-	prog,
-
-	id = new Float32Array(16),
-	rot = new Float32Array(16),
-	scale = new Float32Array(16),
-
-	model = new Float32Array(16),
-	view = new Float32Array(16),
-	proj = new Float32Array(16),
-
-	uniModel,
-	uniView,
-	uniProj,
+	cabinet,
+	scr,
 
 	drag,
 
@@ -55,12 +44,17 @@ document.addEventListener('mousemove', function(e) {
 
 		mouseDeltaX = mouseCurrX - mouseStartX;
 
-		mat4.rotate(rot, id, (theta + mouseDeltaX) / 500, [0, 1, 0]);
-		mat4.mul(model, rot, id);
+		mat4.rotate(
+			cabinet.rot,
+			cabinet.id,
+			(theta + mouseDeltaX) / 500,
+			[0, 1, 0]
+		);
+		mat4.mul(cabinet.model, cabinet.rot, cabinet.id);
 
-		gl.useProgram(prog);
+		gl.useProgram(cabinet.prog);
 
-		gl.uniformMatrix4fv(uniModel, gl.FALSE, model);
+		gl.uniformMatrix4fv(cabinet.uniModel, gl.FALSE, cabinet.model);
 
 		gl.useProgram(null);
 	}
@@ -72,14 +66,14 @@ document.addEventListener('mousewheel', function(e) {
 	camScale = Math.min(camScale, 5.0);
 	camScale = Math.max(camScale, 1.0);
 
-	mat4.scale(scale, id, [
+	mat4.scale(cabinet.scale, cabinet.id, [
 		camScale, camScale, camScale
 	]);
-	mat4.mul(model, scale, id);
+	mat4.mul(cabinet.model, cabinet.scale, cabinet.id);
 
-	gl.useProgram(prog);
+	gl.useProgram(cabinet.prog);
 
-	gl.uniformMatrix4fv(uniModel, gl.FALSE, model);
+	gl.uniformMatrix4fv(cabinet.uniModel, gl.FALSE, cabinet.model);
 
 	gl.useProgram(null);
 });
@@ -104,9 +98,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	window.gl.enable(window.gl.DEPTH_TEST);
 
-	let cabinet = new MeshLd('cabinet', 'obj', 'dir');
+	cabinet = new MeshLd('cabinet', 'obj', 'dir');
 
-	let scr = new Mesh(scrVtc, scrIdc, "scr", "solid");
+	scr = new Mesh(scrVtc, scrIdc, "scr", "solid");
 
 	function draw() {
 		window.gl.clearColor(1 - ((1 - (col[0] / 255)) / 2), 1 - ((1 - (col[1] / 255)) / 2), 1 - ((1 - (col[2] / 255)) / 2), 1);

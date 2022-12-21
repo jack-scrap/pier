@@ -1,4 +1,12 @@
 class Mesh {
+	id = new Float32Array(16);
+	rot = new Float32Array(16);
+	scale = new Float32Array(16);
+
+	model = new Float32Array(16);
+	view = new Float32Array(16);
+	proj = new Float32Array(16);
+
 	vao;
 	vbo;
 	ibo;
@@ -26,14 +34,14 @@ class Mesh {
 		window.gl.bufferData(window.gl.ELEMENT_ARRAY_BUFFER, new Uint8Array(idc), window.gl.STATIC_DRAW);
 
 		/* Matrix */
-		model = new Float32Array(16);
-		view = new Float32Array(16);
-		proj = new Float32Array(16);
+		this.model = new Float32Array(16);
+		this.view = new Float32Array(16);
+		this.proj = new Float32Array(16);
 
-		mat4.identity(model);
+		mat4.identity(this.model);
 
 		mat4.lookAt(
-			view,
+			this.view,
 			[
 				15, 8, 0
 			], [
@@ -42,12 +50,12 @@ class Mesh {
 				0, 1, 0
 			]
 		);
-		mat4.perspective(proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
+		mat4.perspective(this.proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
 
-		mat4.identity(id);
+		mat4.identity(this.id);
 
-		mat4.rotate(rot, id, theta, [0, 1, 0]);
-		mat4.mul(model, rot, id);
+		mat4.rotate(this.rot, this.id, theta, [0, 1, 0]);
+		mat4.mul(this.model, this.rot, this.id);
 
 		/* Shader */
 		this.prog = window.gl.createProgram();
@@ -99,9 +107,9 @@ class Mesh {
 		this.uniView = window.gl.getUniformLocation(this.prog, 'view');
 		this.uniProj = window.gl.getUniformLocation(this.prog, 'proj');
 
-		window.gl.uniformMatrix4fv(this.uniModel, window.gl.FALSE, model);
-		window.gl.uniformMatrix4fv(this.uniView, window.gl.FALSE, view);
-		window.gl.uniformMatrix4fv(this.uniProj, window.gl.FALSE, proj);
+		window.gl.uniformMatrix4fv(this.uniModel, window.gl.FALSE, this.model);
+		window.gl.uniformMatrix4fv(this.uniView, window.gl.FALSE, this.view);
+		window.gl.uniformMatrix4fv(this.uniProj, window.gl.FALSE, this.proj);
 
 		window.gl.useProgram(null);
 	}
@@ -118,6 +126,14 @@ class Mesh {
 };
 
 class MeshLd {
+	id = new Float32Array(16);
+	rot = new Float32Array(16);
+	scale = new Float32Array(16);
+
+	model = new Float32Array(16);
+	view = new Float32Array(16);
+	proj = new Float32Array(16);
+
 	vao;
 	vbo;
 	ibo;
@@ -149,14 +165,14 @@ class MeshLd {
 		window.gl.bufferData(window.gl.ELEMENT_ARRAY_BUFFER, new Uint8Array(idc), window.gl.STATIC_DRAW);
 
 		/* Matrix */
-		model = new Float32Array(16);
-		view = new Float32Array(16);
-		proj = new Float32Array(16);
+		this.model = new Float32Array(16);
+		this.view = new Float32Array(16);
+		this.proj = new Float32Array(16);
 
-		mat4.identity(model);
+		mat4.identity(this.model);
 
 		mat4.lookAt(
-			view,
+			this.view,
 			[
 				15, 8, 0
 			], [
@@ -165,12 +181,12 @@ class MeshLd {
 				0, 1, 0
 			]
 		);
-		mat4.perspective(proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
+		mat4.perspective(this.proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
 
-		mat4.identity(id);
+		mat4.identity(this.id);
 
-		mat4.rotate(rot, id, theta, [0, 1, 0]);
-		mat4.mul(model, rot, id);
+		mat4.rotate(this.rot, this.id, theta, [0, 1, 0]);
+		mat4.mul(this.model, this.rot, this.id);
 
 		/* Shader */
 		this.prog = window.gl.createProgram();
@@ -222,9 +238,9 @@ class MeshLd {
 		this.uniView = window.gl.getUniformLocation(this.prog, 'view');
 		this.uniProj = window.gl.getUniformLocation(this.prog, 'proj');
 
-		window.gl.uniformMatrix4fv(this.uniModel, window.gl.FALSE, model);
-		window.gl.uniformMatrix4fv(this.uniView, window.gl.FALSE, view);
-		window.gl.uniformMatrix4fv(this.uniProj, window.gl.FALSE, proj);
+		window.gl.uniformMatrix4fv(this.uniModel, window.gl.FALSE, this.model);
+		window.gl.uniformMatrix4fv(this.uniView, window.gl.FALSE, this.view);
+		window.gl.uniformMatrix4fv(this.uniProj, window.gl.FALSE, this.proj);
 
 		window.gl.useProgram(null);
 	}
