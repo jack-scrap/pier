@@ -88,6 +88,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Context
 	window.canv = document.getElementById('disp');
 
+	window.canv.width = window.innerWidth;
+	window.canv.height = window.innerHeight;
+
 	window.gl = window.canv.getContext('webgl2');
 
 	if (!window.gl) {
