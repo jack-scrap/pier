@@ -104,17 +104,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	window.gl.enable(window.gl.DEPTH_TEST);
 
-	cabinet = new MeshLd('cabinet', 'obj', 'dir');
-
 	scr = new Mesh(scrVtc, scrIdc, 'scr', 'solid');
+
+	cabinet = new MeshLd('cabinet', 'obj', 'dir', [
+		scr
+	]);
 
 	function draw() {
 		window.gl.clearColor(1 - ((1 - (col[0] / 255)) / 2), 1 - ((1 - (col[1] / 255)) / 2), 1 - ((1 - (col[2] / 255)) / 2), 1);
 		window.gl.clear(window.gl.DEPTH_BUFFER_BIT | window.gl.COLOR_BUFFER_BIT);
 
 		cabinet.draw();
-
-		scr.draw();
 
 		requestAnimationFrame(draw);
 	};

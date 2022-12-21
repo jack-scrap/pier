@@ -20,8 +20,14 @@ class Mesh {
 
 	prog;
 
-	constructor(vtc, idc, nameVtx, nameFrag) {
+	child = [];
+
+	constructor(vtc, idc, nameVtx, nameFrag, child = []) {
 		this.noIdc = idc.length;
+
+		for (let inst of child) {
+			this.child.push(inst);
+		}
 
 		this.vao = window.gl.createVertexArray();
 		window.gl.bindVertexArray(this.vao);
@@ -123,6 +129,10 @@ class Mesh {
 
 		window.gl.useProgram(null);
 		window.gl.bindVertexArray(null);
+
+		for (let inst of this.child) {
+			inst.draw();
+		}
 	}
 };
 
@@ -148,7 +158,9 @@ class MeshLd {
 
 	prog;
 
-	constructor(nameObj, nameVtx, nameFrag) {
+	child = [];
+
+	constructor(nameObj, nameVtx, nameFrag, child = []) {
 		this.vao = window.gl.createVertexArray();
 		window.gl.bindVertexArray(this.vao);
 
@@ -161,6 +173,10 @@ class MeshLd {
 		let idc = Ld.idc(nameObj, type.VTX);
 
 		this.noIdc = idc.length;
+
+		for (let inst of child) {
+			this.child.push(inst);
+		}
 
 		this.ibo = window.gl.createBuffer();
 		window.gl.bindBuffer(window.gl.ELEMENT_ARRAY_BUFFER, this.ibo);
@@ -255,6 +271,10 @@ class MeshLd {
 
 		window.gl.useProgram(null);
 		window.gl.bindVertexArray(null);
+
+		for (let inst of this.child) {
+			inst.draw();
+		}
 	}
 };
 
