@@ -13,5 +13,5 @@ void main() {
 
 	float diff = max(dot(normFace, normalize(sun)), 0.0) * 0.1;
 
-	frag = vec4((1.0 - diff) * (vec3(213.72, 215.24, 147.96) / vec3(255)), 1.0);
+	frag = vec4((1.0 - diff) * (vec3(214, 215, 148) / vec3(255)), 1.0);
 }

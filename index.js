@@ -23,7 +23,7 @@ var
 
 	camScale = 1;
 
-const col = [213.72, 215.24, 147.96];
+const col = [214, 215, 148];
 
 const scrVtc = [
 	-1.2, -0.6, 0.0,
