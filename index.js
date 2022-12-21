@@ -63,19 +63,36 @@ document.addEventListener('mousemove', function(e) {
 });
 
 document.addEventListener('mousewheel', function(e) {
-	camScale += -e.deltaY / 100;
+	camScale += e.deltaY / 100;
 
 	camScale = Math.min(camScale, 5.0);
 	camScale = Math.max(camScale, 1.0);
 
-	mat4.identity(id);
-	mat4.scale(cabinet.model, id, [camScale, camScale, camScale]);
-
 	gl.useProgram(cabinet.prog);
 
-	gl.uniformMatrix4fv(cabinet.uniModel, gl.FALSE, cabinet.model);
+	mat4.lookAt(
+		cabinet.view,
+		[
+			15 * camScale, 8 * camScale, 0 * camScale
+		], [
+			-0.5846, 2.7, 0
+		], [
+			0, 1, 0
+		]
+	);
+
+	window.gl.uniformMatrix4fv(cabinet.uniView, window.gl.FALSE, cabinet.view);
 
 	gl.useProgram(null);
+
+// 	mat4.identity(id);
+// 	mat4.scale(cabinet.model, id, [camScale, camScale, camScale]);
+
+// 	gl.useProgram(cabinet.prog);
+
+// 	gl.uniformMatrix4fv(cabinet.uniModel, gl.FALSE, cabinet.model);
+
+// 	gl.useProgram(null);
 });
 
 window.addEventListener('resize', fitCanv);
