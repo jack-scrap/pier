@@ -16,6 +16,8 @@ var
 
 const col = [214, 215, 148];
 
+const scrLoc = [-0.5846, 2.7, 0];
+
 const scrVtc = [
 	-1.2, -0.6, 0.0,
 	1.2, -0.6, 0.0,
@@ -72,9 +74,7 @@ document.addEventListener('mousewheel', function(e) {
 
 	mat4.lookAt(cabinet.view, [
 		15 * camScale, 8 * camScale, 0 * camScale
-	], [
-		-0.5846, 2.7, 0
-	], [
+	], scrLoc, [
 		0, 1, 0
 	]);
 
