@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		alert('Your browser does not support WebGL');
 	}
 
-	let scr = new Mesh(scrVtc, scrIdc, "scr", "solid");
+	var scr = new Mesh(scrVtc, scrIdc, "scr", "solid");
 
 	var vao = window.gl.createVertexArray();
 	window.gl.bindVertexArray(vao);
