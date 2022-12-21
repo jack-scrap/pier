@@ -70,29 +70,17 @@ document.addEventListener('mousewheel', function(e) {
 
 	gl.useProgram(cabinet.prog);
 
-	mat4.lookAt(
-		cabinet.view,
-		[
-			15 * camScale, 8 * camScale, 0 * camScale
-		], [
-			-0.5846, 2.7, 0
-		], [
-			0, 1, 0
-		]
-	);
+	mat4.lookAt(cabinet.view, [
+		15 * camScale, 8 * camScale, 0 * camScale
+	], [
+		-0.5846, 2.7, 0
+	], [
+		0, 1, 0
+	]);
 
 	window.gl.uniformMatrix4fv(cabinet.uniView, window.gl.FALSE, cabinet.view);
 
 	gl.useProgram(null);
-
-// 	mat4.identity(id);
-// 	mat4.scale(cabinet.model, id, [camScale, camScale, camScale]);
-
-// 	gl.useProgram(cabinet.prog);
-
-// 	gl.uniformMatrix4fv(cabinet.uniModel, gl.FALSE, cabinet.model);
-
-// 	gl.useProgram(null);
 });
 
 window.addEventListener('resize', fitCanv);
