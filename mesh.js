@@ -55,8 +55,6 @@ class Mesh {
 		);
 		mat4.perspective(this.proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
 
-		mat4.rotate(this.model, this.model, theta, [0, 1, 0]);
-
 		/* Shader */
 		this.prog = window.gl.createProgram();
 
@@ -189,8 +187,6 @@ class MeshLd {
 			]
 		);
 		mat4.perspective(this.proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
-
-		mat4.rotate(this.model, this.model, theta, [0, 1, 0]);
 
 		/* Shader */
 		this.prog = window.gl.createProgram();
