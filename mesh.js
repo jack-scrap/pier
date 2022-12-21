@@ -1,9 +1,12 @@
 class Mesh {
+	noIdc;
+
+	model = new Float32Array(16);
+
 	id = new Float32Array(16);
 	rot = new Float32Array(16);
 	scale = new Float32Array(16);
 
-	model = new Float32Array(16);
 	view = new Float32Array(16);
 	proj = new Float32Array(16);
 
@@ -14,8 +17,6 @@ class Mesh {
 	uniModel;
 	uniView;
 	uniProj;
-
-	noIdc;
 
 	prog;
 
@@ -126,11 +127,14 @@ class Mesh {
 };
 
 class MeshLd {
+	noIdc;
+
+	model = new Float32Array(16);
+
 	id = new Float32Array(16);
 	rot = new Float32Array(16);
 	scale = new Float32Array(16);
 
-	model = new Float32Array(16);
 	view = new Float32Array(16);
 	proj = new Float32Array(16);
 
@@ -141,8 +145,6 @@ class MeshLd {
 	uniModel;
 	uniView;
 	uniProj;
-
-	noIdc;
 
 	prog;
 
