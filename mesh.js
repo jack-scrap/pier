@@ -3,10 +3,6 @@ class Mesh {
 
 	model = new Float32Array(16);
 
-	id = new Float32Array(16);
-	rot = new Float32Array(16);
-	scale = new Float32Array(16);
-
 	view = new Float32Array(16);
 	proj = new Float32Array(16);
 
@@ -59,10 +55,7 @@ class Mesh {
 		);
 		mat4.perspective(this.proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
 
-		mat4.identity(this.id);
-
-		mat4.rotate(this.rot, this.id, theta, [0, 1, 0]);
-		mat4.mul(this.model, this.rot, this.id);
+		mat4.rotate(this.model, this.model, theta, [0, 1, 0]);
 
 		/* Shader */
 		this.prog = window.gl.createProgram();
@@ -141,10 +134,6 @@ class MeshLd {
 
 	model = new Float32Array(16);
 
-	id = new Float32Array(16);
-	rot = new Float32Array(16);
-	scale = new Float32Array(16);
-
 	view = new Float32Array(16);
 	proj = new Float32Array(16);
 
@@ -201,10 +190,7 @@ class MeshLd {
 		);
 		mat4.perspective(this.proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
 
-		mat4.identity(this.id);
-
-		mat4.rotate(this.rot, this.id, theta, [0, 1, 0]);
-		mat4.mul(this.model, this.rot, this.id);
+		mat4.rotate(this.model, this.model, theta, [0, 1, 0]);
 
 		/* Shader */
 		this.prog = window.gl.createProgram();

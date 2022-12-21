@@ -10,6 +10,8 @@ var
 
 	theta = -100,
 
+	id = new Float32Array(16),
+
 	camScale = 1;
 
 const col = [214, 215, 148];
@@ -49,13 +51,8 @@ document.addEventListener('mousemove', function(e) {
 
 		mouseDeltaX = mouseCurrX - mouseStartX;
 
-		mat4.rotate(
-			cabinet.rot,
-			cabinet.id,
-			(theta + mouseDeltaX) / 500,
-			[0, 1, 0]
-		);
-		mat4.mul(cabinet.model, cabinet.rot, cabinet.id);
+		mat4.identity(id);
+		mat4.rotate(cabinet.model, id, (theta + mouseDeltaX) / 500, [0, 1, 0]);
 
 		gl.useProgram(cabinet.prog);
 
@@ -71,10 +68,8 @@ document.addEventListener('mousewheel', function(e) {
 	camScale = Math.min(camScale, 5.0);
 	camScale = Math.max(camScale, 1.0);
 
-	mat4.scale(cabinet.scale, cabinet.id, [
-		camScale, camScale, camScale
-	]);
-	mat4.mul(cabinet.model, cabinet.scale, cabinet.id);
+	mat4.identity(id);
+	mat4.scale(cabinet.model, id, [camScale, camScale, camScale]);
 
 	gl.useProgram(cabinet.prog);
 
