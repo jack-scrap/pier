@@ -26,6 +26,11 @@ const scrIdc = [
 	2, 1, 3
 ];
 
+function fitCanv() {
+	window.canv.width = window.innerWidth;
+	window.canv.height = window.innerHeight;
+}
+
 document.addEventListener('mousedown', function(e) {
 	drag = true;
 
@@ -78,17 +83,13 @@ document.addEventListener('mousewheel', function(e) {
 	gl.useProgram(null);
 });
 
-window.addEventListener('resize', function() {
-	window.canv.width = window.innerWidth;
-	window.canv.height = window.innerHeight;
-});
+window.addEventListener('resize', fitCanv);
 
 document.addEventListener('DOMContentLoaded', function() {
 	// Context
 	window.canv = document.getElementById('disp');
 
-	window.canv.width = window.innerWidth;
-	window.canv.height = window.innerHeight;
+	fitCanv();
 
 	window.gl = window.canv.getContext('webgl2');
 
