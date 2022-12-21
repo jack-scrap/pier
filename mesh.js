@@ -53,7 +53,7 @@ class Mesh {
 		this.prog = window.gl.createProgram();
 
 		const
-		shadVtxBuff = Util.rd('res/shad/' + nameVtx + '.vs'),
+			shadVtxBuff = Util.rd('res/shad/' + nameVtx + '.vs'),
 			shadFragBuff = Util.rd('res/shad/' + nameFrag + '.fs');
 
 		// Vertex
