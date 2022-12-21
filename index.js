@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	scr = new Mesh(scrVtc, scrIdc, 'scr', 'solid');
 
-	cabinet = new MeshLd('cabinet', 'obj', 'dir', [
+	cabinet = new MeshLd('cabinet', 'obj', 'dir', [0, 0, 0], [0, theta, 0], [
 		scr
 	]);
 

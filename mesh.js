@@ -18,7 +18,7 @@ class Mesh {
 
 	child = [];
 
-	constructor(vtc, idc, nameVtx, nameFrag, child = []) {
+	constructor(vtc, idc, nameVtx, nameFrag, loc = [0, 0, 0], rot = [0, 0, 0], child = []) {
 		this.noIdc = idc.length;
 
 		for (let inst of child) {
@@ -42,6 +42,15 @@ class Mesh {
 		this.proj = new Float32Array(16);
 
 		mat4.identity(this.model);
+
+		mat4.translate(this.model, this.model, loc);
+
+		for (let i = 0; i < 3; i++) {
+			let vec = [0, 0, 0];
+			vec[i] = 1;
+
+			mat4.rotate(this.model, this.model, rot[i], vec);
+		}
 
 		mat4.lookAt(
 			this.view,
@@ -147,7 +156,7 @@ class MeshLd {
 
 	child = [];
 
-	constructor(nameObj, nameVtx, nameFrag, child = []) {
+	constructor(nameObj, nameVtx, nameFrag, loc = [0, 0, 0], rot = [0, 0, 0], child = []) {
 		this.vao = window.gl.createVertexArray();
 		window.gl.bindVertexArray(this.vao);
 
@@ -175,6 +184,15 @@ class MeshLd {
 		this.proj = new Float32Array(16);
 
 		mat4.identity(this.model);
+
+		mat4.translate(this.model, this.model, loc);
+
+		for (let i = 0; i < 3; i++) {
+			let vec = [0, 0, 0];
+			vec[i] = 1;
+
+			mat4.rotate(this.model, this.model, rot[i], vec);
+		}
 
 		mat4.lookAt(
 			this.view,
