@@ -78,6 +78,11 @@ document.addEventListener('mousewheel', function(e) {
 	gl.useProgram(null);
 });
 
+window.addEventListener('resize', function() {
+	window.canv.width = window.innerWidth;
+	window.canv.height = window.innerHeight;
+});
+
 document.addEventListener('DOMContentLoaded', function() {
 	// Context
 	window.canv = document.getElementById('disp');
