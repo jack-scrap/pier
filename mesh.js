@@ -1,15 +1,15 @@
 class Mesh {
-	vao = null;
-	vbo = null;
-	ibo = null;
+	vao;
+	vbo;
+	ibo;
 
-	uniModel = null;
-	uniView = null;
-	uniProj = null;
+	uniModel;
+	uniView;
+	uniProj;
 
-	noIdc = null;
+	noIdc;
 
-	prog = null;
+	prog;
 
 	constructor(vtc, idc, nameVtx, nameFrag) {
 		this.noIdc = idc.length;
@@ -118,17 +118,17 @@ class Mesh {
 };
 
 class MeshLd {
-	vao = null;
-	vbo = null;
-	ibo = null;
+	vao;
+	vbo;
+	ibo;
 
-	uniModel = null;
-	uniView = null;
-	uniProj = null;
+	uniModel;
+	uniView;
+	uniProj;
 
-	noIdc = null;
+	noIdc;
 
-	prog = null;
+	prog;
 
 	constructor(nameObj, nameVtx, nameFrag) {
 		this.vao = window.gl.createVertexArray();
