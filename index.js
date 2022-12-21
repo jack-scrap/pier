@@ -101,9 +101,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	window.gl.enable(window.gl.DEPTH_TEST);
 
-	var cabinet = new MeshLd('cabinet', 'obj', 'dir');
+	let cabinet = new MeshLd('cabinet', 'obj', 'dir');
 
-	var scr = new Mesh(scrVtc, scrIdc, "scr", "solid");
+	let scr = new Mesh(scrVtc, scrIdc, "scr", "solid");
 
 	function draw() {
 		window.gl.clearColor(1 - ((1 - (col[0] / 255)) / 2), 1 - ((1 - (col[1] / 255)) / 2), 1 - ((1 - (col[2] / 255)) / 2), 1);
