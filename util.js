@@ -97,25 +97,4 @@ class Ld {
 
 		return data;
 	}
-
-	static norm(name) {
-		let data = [];
-		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
-			let tok = [];
-			for (let inst of l.split(this.ws)) {
-				tok.push(inst);
-			}
-
-			if (tok[0] == 'vn') {
-				let norm = tok;
-				norm.shift();
-
-				for (let i = 0; i < 3; i++) {
-					data.push(norm[i] - 1);
-				}
-			}
-		}
-
-		return data;
-	}
 };
