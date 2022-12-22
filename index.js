@@ -52,7 +52,7 @@ document.addEventListener('mousemove', function(e) {
 });
 
 document.addEventListener('mousewheel', function(e) {
-	camScale += e.deltaY / 100;
+	camScale += e.deltaY / 300;
 
 	camScale = Math.min(camScale, 2.0);
 	camScale = Math.max(camScale, 0.2);
