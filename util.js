@@ -58,6 +58,27 @@ class Ld {
 		return data;
 	}
 
+	static st(name) {
+		let data = [];
+		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
+			let tok = [];
+			for (let inst of l.split(' ')) {
+				tok.push(inst);
+			}
+
+			if (tok[0] == 'vt') {
+				let st = tok;
+				st.shift();
+
+				for (let i = 0; i < 2; i++) {
+					data.push(st[i]);
+				}
+			}
+		}
+
+		return data;
+	}
+
 	static idc(name, type) {
 		let data = [];
 		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
