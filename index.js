@@ -10,7 +10,8 @@ var
 
 	theta = -100,
 
-	id = new Float32Array(16);
+	id = new Float32Array(16),
+	idWorld = new Float32Array(16);
 
 const camLoc = [15, 8, 0];
 var camScale = 1;
@@ -57,11 +58,9 @@ document.addEventListener('mousemove', function(e) {
 		mat4.identity(id);
 		mat4.rotate(cabinet.model, id, (theta + mouseDeltaX) / 500, [0, 1, 0]);
 
-		gl.useProgram(cabinet.prog);
-
-		gl.uniformMatrix4fv(cabinet.uniModel, gl.FALSE, cabinet.model);
-
-		gl.useProgram(null);
+		let idWorld = new Float32Array(16);
+		mat4.identity(idWorld);
+		cabinet.accModel(idWorld);
 	}
 });
 

@@ -19,6 +19,14 @@ class Mesh {
 
 	child = [];
 
+	accModel(prev) {
+		mat4.mul(this.acc, this.model, prev);
+
+		for (let inst of this.child) {
+			inst.accModel(this.acc);
+		}
+	}
+
 	constructor(vtc, idc, nameVtx, nameFrag, loc = [0, 0, 0], rot = [0, 0, 0], child = []) {
 		this.noIdc = idc.length;
 
@@ -123,6 +131,8 @@ class Mesh {
 		window.gl.uniformMatrix4fv(this.uniProj, window.gl.FALSE, this.proj);
 
 		window.gl.useProgram(null);
+
+		accModel(this.prev);
 	}
 
 	draw() {
@@ -166,6 +176,14 @@ class MeshLd {
 	prog;
 
 	child = [];
+
+	accModel(prev) {
+		mat4.mul(this.acc, this.model, prev);
+
+		for (let inst of this.child) {
+			inst.accModel(this.acc);
+		}
+	}
 
 	constructor(nameObj, nameVtx, nameFrag, loc = [0, 0, 0], rot = [0, 0, 0], child = []) {
 		this.vao = window.gl.createVertexArray();
@@ -275,6 +293,8 @@ class MeshLd {
 		window.gl.uniformMatrix4fv(this.uniProj, window.gl.FALSE, this.proj);
 
 		window.gl.useProgram(null);
+
+		this.accModel(this.acc);
 	}
 
 	draw() {
@@ -287,6 +307,7 @@ class MeshLd {
 		window.gl.bindVertexArray(this.vao);
 		window.gl.useProgram(this.prog);
 
+		window.gl.uniformMatrix4fv(this.uniModel, window.gl.FALSE, this.acc);
 		window.gl.uniformMatrix4fv(this.uniView, window.gl.FALSE, this.view);
 
 		window.gl.drawElements(window.gl.TRIANGLES, this.noIdc, window.gl.UNSIGNED_BYTE, 0);
