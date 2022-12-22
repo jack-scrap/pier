@@ -1,6 +1,6 @@
 class Util {
 	static rd(name) {
-		var req = new XMLHttpRequest();
+		let req = new XMLHttpRequest();
 		req.open('GET', name, false);
 		req.send(null);
 
