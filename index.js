@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.enable(ctx.CULL_FACE);
 	ctx.cullFace(ctx.BACK);
 
-	scr = new Mesh('scr', 'tex', 'tex', scrLoc);
+	scr = new Mesh('scr', 'tex', 'tex');
 
 	ctx.useProgram(scr.prog.id);
 
