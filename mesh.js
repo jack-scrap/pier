@@ -235,9 +235,9 @@ class MeshLd {
 			mat4.rotate(this.model, this.model, rot[i], vec);
 		}
 
-		mat4.identity(this.acc);
-
-		mat4.mul(this.acc, this.acc, this.model);
+		let id = new Float32Array(16);
+		mat4.identity(id);
+		this.accModel(id);
 
 		this.view = new Float32Array(16);
 
