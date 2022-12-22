@@ -4,10 +4,9 @@ class Prog {
 	constructor(nameVtx, nameFrag) {
 		this.id = window.gl.createProgram();
 
-		const shadVtxBuff = Util.rd('res/shad/' + nameVtx + '.vs');
-		const shadFragBuff = Util.rd('res/shad/' + nameFrag + '.fs');
-
 		// Vertex
+		const shadVtxBuff = Util.rd('res/shad/' + nameVtx + '.vs');
+
 		let shadVtx = window.gl.createShader(window.gl.VERTEX_SHADER);
 		window.gl.shaderSource(shadVtx, shadVtxBuff);
 
@@ -17,6 +16,8 @@ class Prog {
 		}
 
 		// Fragment
+		const shadFragBuff = Util.rd('res/shad/' + nameFrag + '.fs');
+
 		let shadFrag = window.gl.createShader(window.gl.FRAGMENT_SHADER);
 		window.gl.shaderSource(shadFrag, shadFragBuff);
 
