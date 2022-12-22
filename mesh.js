@@ -2,6 +2,7 @@ class Mesh {
 	noIdc;
 
 	model = new Float32Array(16);
+	acc = new Float32Array(16);
 
 	view = new Float32Array(16);
 	proj = new Float32Array(16);
@@ -38,8 +39,6 @@ class Mesh {
 
 		/* Matrix */
 		this.model = new Float32Array(16);
-		this.view = new Float32Array(16);
-		this.proj = new Float32Array(16);
 
 		mat4.identity(this.model);
 
@@ -52,12 +51,21 @@ class Mesh {
 			mat4.rotate(this.model, this.model, rot[i], vec);
 		}
 
+		mat4.identity(this.acc);
+
+		mat4.mul(this.acc, this.acc, this.model);
+
+		this.view = new Float32Array(16);
+
 		mat4.lookAt(
 			this.view,
 			camLoc, scrLoc, [
 				0, 1, 0
 			]
 		);
+
+		this.proj = new Float32Array(16);
+
 		mat4.perspective(this.proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
 
 		/* Shader */
@@ -136,6 +144,7 @@ class MeshLd {
 	noIdc;
 
 	model = new Float32Array(16);
+	acc = new Float32Array(16);
 
 	view = new Float32Array(16);
 	proj = new Float32Array(16);
@@ -176,8 +185,6 @@ class MeshLd {
 
 		/* Matrix */
 		this.model = new Float32Array(16);
-		this.view = new Float32Array(16);
-		this.proj = new Float32Array(16);
 
 		mat4.identity(this.model);
 
@@ -190,12 +197,21 @@ class MeshLd {
 			mat4.rotate(this.model, this.model, rot[i], vec);
 		}
 
+		mat4.identity(this.acc);
+
+		mat4.mul(this.acc, this.acc, this.model);
+
+		this.view = new Float32Array(16);
+
 		mat4.lookAt(
 			this.view,
 			camLoc, scrLoc, [
 				0, 1, 0
 			]
 		);
+
+		this.proj = new Float32Array(16);
+
 		mat4.perspective(this.proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
 
 		/* Shader */
