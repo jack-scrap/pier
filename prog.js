@@ -1,33 +1,46 @@
+class Shad {
+	id;
+
+	constructor(name, stage) {
+		let ext;
+		let type;
+		switch (stage) {
+			case 0:
+				type = gl.VERTEX_SHADER;
+				ext = "vs";
+
+				break;
+
+			case 1:
+				type = gl.FRAGMENT_SHADER;
+				ext = "fs";
+
+				break;
+		}
+
+		const buff = Util.rd('res/shad/' + name + "." + ext);
+
+		this.id = window.gl.createShader(type);
+		window.gl.shaderSource(this.id, buff);
+
+		window.gl.compileShader(this.id);
+		if (!window.gl.getShaderParameter(this.id, window.gl.COMPILE_STATUS)) {
+			console.error('Error compiling shader', window.gl.getShaderInfoLog(this.id));
+		}
+	}
+};
+
 class Prog {
 	id;
 
 	constructor(nameVtx, nameFrag) {
 		this.id = window.gl.createProgram();
 
-		// Vertex
-		const shadVtxBuff = Util.rd('res/shad/' + nameVtx + '.vs');
+		let shadVtx = new Shad(nameVtx, 0);
+		let shadFrag = new Shad(nameFrag, 1);
 
-		let shadVtx = window.gl.createShader(window.gl.VERTEX_SHADER);
-		window.gl.shaderSource(shadVtx, shadVtxBuff);
-
-		window.gl.compileShader(shadVtx);
-		if (!window.gl.getShaderParameter(shadVtx, window.gl.COMPILE_STATUS)) {
-			console.error('Error compiling vertex shader', window.gl.getShaderInfoLog(shadVtx));
-		}
-
-		// Fragment
-		const shadFragBuff = Util.rd('res/shad/' + nameFrag + '.fs');
-
-		let shadFrag = window.gl.createShader(window.gl.FRAGMENT_SHADER);
-		window.gl.shaderSource(shadFrag, shadFragBuff);
-
-		window.gl.compileShader(shadFrag);
-		if (!window.gl.getShaderParameter(shadFrag, window.gl.COMPILE_STATUS)) {
-			console.error('Error compiling fragment shader', window.gl.getShaderInfoLog(shadFrag));
-		}
-
-		window.gl.attachShader(this.id, shadVtx);
-		window.gl.attachShader(this.id, shadFrag);
+		window.gl.attachShader(this.id, shadVtx.id);
+		window.gl.attachShader(this.id, shadFrag.id);
 
 		window.gl.linkProgram(this.id);
 		if (!window.gl.getProgramParameter(this.id, window.gl.LINK_STATUS)) {
