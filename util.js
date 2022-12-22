@@ -6,6 +6,8 @@ class Util {
 
 		if (req.status == 200) {
 			return req.responseText;
+		} else {
+			console.error(`Couldn't load '${name}'; status ${req.status}`);
 		}
 	}
 
