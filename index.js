@@ -66,53 +66,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	fitCanv();
 
-	window.gl = window.canv.getContext('webgl2');
+	window.ctx = window.canv.getContext('webgl2');
 
-	if (!window.gl) {
+	if (!window.ctx) {
 		console.log('WebGL not supported, falling back on experimental-webgl');
-		window.gl = window.canv.getContext('experimental-webgl');
+		window.ctx = window.canv.getContext('experimental-webgl');
 	}
 
-	if (!window.gl) {
+	if (!window.ctx) {
 		alert('Your browser does not support WebGL');
 	}
 
-	window.gl.enable(window.gl.DEPTH_TEST);
+	window.ctx.enable(window.ctx.DEPTH_TEST);
 
-	window.gl.enable(window.gl.CULL_FACE);
-	gl.cullFace(gl.BACK);
+	window.ctx.enable(window.ctx.CULL_FACE);
+	ctx.cullFace(ctx.BACK);
 
 	scr = new Mesh('scr', 'tex', 'tex', scrLoc);
 
-	gl.useProgram(scr.prog.id);
+	ctx.useProgram(scr.prog.id);
 
-	var tex = gl.createTexture();
-	gl.bindTexture(gl.TEXTURE_2D, tex);
+	var tex = ctx.createTexture();
+	ctx.bindTexture(ctx.TEXTURE_2D, tex);
 
-	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_WRAP_S, ctx.CLAMP_TO_EDGE);
+	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_WRAP_T, ctx.CLAMP_TO_EDGE);
 
-	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_MIN_FILTER, ctx.LINEAR);
+	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_MAG_FILTER, ctx.LINEAR);
 
-	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, document.getElementById('texImg'));
+	ctx.texImage2D(ctx.TEXTURE_2D, 0, ctx.RGBA, ctx.RGBA, ctx.UNSIGNED_BYTE, document.getElementById('texImg'));
 
-	gl.bindTexture(gl.TEXTURE_2D, null);
+	ctx.bindTexture(ctx.TEXTURE_2D, null);
 
-	gl.useProgram(scr.prog.id);
+	ctx.useProgram(scr.prog.id);
 
-	gl.bindTexture(gl.TEXTURE_2D, tex);
-	gl.activeTexture(gl.TEXTURE0);
+	ctx.bindTexture(ctx.TEXTURE_2D, tex);
+	ctx.activeTexture(ctx.TEXTURE0);
 
-	gl.useProgram(null);
+	ctx.useProgram(null);
 
 	cabinet = new Mesh('cabinet', 'obj', 'dir', [0, 0, 0], [0, theta, 0], [
 		scr
 	]);
 
 	function draw() {
-		window.gl.clearColor(1 - ((1 - (col[0] / 255)) / 2), 1 - ((1 - (col[1] / 255)) / 2), 1 - ((1 - (col[2] / 255)) / 2), 1);
-		window.gl.clear(window.gl.COLOR_BUFFER_BIT | window.gl.DEPTH_BUFFER_BIT);
+		window.ctx.clearColor(1 - ((1 - (col[0] / 255)) / 2), 1 - ((1 - (col[1] / 255)) / 2), 1 - ((1 - (col[2] / 255)) / 2), 1);
+		window.ctx.clear(window.ctx.COLOR_BUFFER_BIT | window.ctx.DEPTH_BUFFER_BIT);
 
 		cabinet.draw();
 

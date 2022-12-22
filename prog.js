@@ -6,13 +6,13 @@ class Shad {
 		let type;
 		switch (stage) {
 			case 0:
-				type = gl.VERTEX_SHADER;
+				type = ctx.VERTEX_SHADER;
 				ext = "vs";
 
 				break;
 
 			case 1:
-				type = gl.FRAGMENT_SHADER;
+				type = ctx.FRAGMENT_SHADER;
 				ext = "fs";
 
 				break;
@@ -20,12 +20,12 @@ class Shad {
 
 		const buff = Util.rd('res/shad/' + name + "." + ext);
 
-		this.id = window.gl.createShader(type);
-		window.gl.shaderSource(this.id, buff);
+		this.id = window.ctx.createShader(type);
+		window.ctx.shaderSource(this.id, buff);
 
-		window.gl.compileShader(this.id);
-		if (!window.gl.getShaderParameter(this.id, window.gl.COMPILE_STATUS)) {
-			console.error('Error compiling shader', window.gl.getShaderInfoLog(this.id));
+		window.ctx.compileShader(this.id);
+		if (!window.ctx.getShaderParameter(this.id, window.ctx.COMPILE_STATUS)) {
+			console.error('Error compiling shader', window.ctx.getShaderInfoLog(this.id));
 		}
 	}
 };
@@ -34,22 +34,22 @@ class Prog {
 	id;
 
 	constructor(nameVtx, nameFrag) {
-		this.id = window.gl.createProgram();
+		this.id = window.ctx.createProgram();
 
 		let shadVtx = new Shad(nameVtx, 0);
 		let shadFrag = new Shad(nameFrag, 1);
 
-		window.gl.attachShader(this.id, shadVtx.id);
-		window.gl.attachShader(this.id, shadFrag.id);
+		window.ctx.attachShader(this.id, shadVtx.id);
+		window.ctx.attachShader(this.id, shadFrag.id);
 
-		window.gl.linkProgram(this.id);
-		if (!window.gl.getProgramParameter(this.id, window.gl.LINK_STATUS)) {
-			console.error('Error linking program', window.gl.getProgramInfoLog(this.id));
+		window.ctx.linkProgram(this.id);
+		if (!window.ctx.getProgramParameter(this.id, window.ctx.LINK_STATUS)) {
+			console.error('Error linking program', window.ctx.getProgramInfoLog(this.id));
 		}
 
-		window.gl.validateProgram(this.id);
-		if (!window.gl.getProgramParameter(this.id, window.gl.VALIDATE_STATUS)) {
-			console.error('Error validating program', window.gl.getProgramInfoLog(this.id));
+		window.ctx.validateProgram(this.id);
+		if (!window.ctx.getProgramParameter(this.id, window.ctx.VALIDATE_STATUS)) {
+			console.error('Error validating program', window.ctx.getProgramInfoLog(this.id));
 		}
 	}
 };
