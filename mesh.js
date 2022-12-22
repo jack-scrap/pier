@@ -54,9 +54,7 @@ class Mesh {
 
 		mat4.lookAt(
 			this.view,
-			[
-				15, 8, 0
-			], scrLoc, [
+			camLoc, scrLoc, [
 				0, 1, 0
 			]
 		);
@@ -194,9 +192,7 @@ class MeshLd {
 
 		mat4.lookAt(
 			this.view,
-			[
-				15, 8, 0
-			], scrLoc, [
+			camLoc, scrLoc, [
 				0, 1, 0
 			]
 		);

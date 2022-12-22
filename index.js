@@ -10,9 +10,10 @@ var
 
 	theta = -100,
 
-	id = new Float32Array(16),
+	id = new Float32Array(16);
 
-	camScale = 1;
+const camLoc = [15, 8, 0];
+var camScale = 1;
 
 const col = [214, 215, 148];
 
@@ -73,7 +74,7 @@ document.addEventListener('mousewheel', function(e) {
 	gl.useProgram(cabinet.prog);
 
 	mat4.lookAt(cabinet.view, [
-		15 * camScale, 8 * camScale, 0 * camScale
+		camLoc[0] * camScale, camLoc[1] * camScale, camLoc[2] * camScale
 	], scrLoc, [
 		0, 1, 0
 	]);
