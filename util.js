@@ -39,6 +39,9 @@ class Util {
 };
 
 class Ld {
+	static resPath = 'res';
+	static objPath = this.resPath + '/' + 'obj';
+
 	static ws = ' ';
 
 	static sep = '/';
@@ -56,7 +59,7 @@ class Ld {
 		];
 
 		let data = [];
-		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
+		for (let l of Util.rd(this.objPath + '/' + name + '.obj').split('\n')) {
 			let tok = [];
 			for (let inst of l.split(this.ws)) {
 				tok.push(inst);
@@ -77,7 +80,7 @@ class Ld {
 
 	static idc(name, type) {
 		let data = [];
-		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
+		for (let l of Util.rd(this.objPath + '/' + name + '.obj').split('\n')) {
 			let tok = [];
 			for (let inst of l.split(this.ws)) {
 				tok.push(inst);
