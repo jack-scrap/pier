@@ -1,3 +1,11 @@
+const type = {
+	VTX: 0,
+	TEX: 1,
+	NORM: 2
+};
+
+const triVtc = 3;
+
 class Mesh {
 	_noIdc;
 
@@ -147,11 +155,3 @@ class Mesh {
 		}
 	}
 };
-
-const type = {
-	VTX: 0,
-	TEX: 1,
-	NORM: 2
-};
-
-const triVtc = 3;
