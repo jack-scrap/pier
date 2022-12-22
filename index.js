@@ -20,18 +20,6 @@ const col = [214, 215, 148];
 
 const scrLoc = [-0.5846, 2.7, 0];
 
-const scrVtc = [
-	-1.2, -0.6, 0.0,
-	1.2, -0.6, 0.0,
-	-1.2, 0.6, 0.0,
-	1.2, 0.6, 0.0
-];
-
-const scrIdc = [
-	0, 1, 2,
-	2, 1, 3
-];
-
 function fitCanv() {
 	window.canv.width = window.innerWidth;
 	window.canv.height = window.innerHeight;
