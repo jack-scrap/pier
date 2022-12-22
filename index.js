@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	window.gl.enable(window.gl.CULL_FACE);
 	gl.cullFace(gl.BACK);
 
-	scr = new MeshLd('scr', 'scr', 'scr', scrLoc);
+	scr = new MeshLd('scr', 'tex', 'tex', scrLoc);
 
 	gl.useProgram(scr.prog);
 
