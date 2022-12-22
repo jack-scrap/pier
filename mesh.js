@@ -126,10 +126,16 @@ class Mesh {
 	}
 
 	draw() {
+		mat4.lookAt(this.view, [
+			camLoc[0] * camScale, camLoc[1] * camScale, camLoc[2] * camScale
+		], scrLoc, [
+			0, 1, 0
+		]);
+
 		window.gl.bindVertexArray(this.vao);
 		window.gl.useProgram(this.prog);
 
-		window.gl.drawElements(window.gl.TRIANGLES, this.noIdc, window.gl.UNSIGNED_BYTE, 0);
+		window.gl.uniformMatrix4fv(this.uniView, window.gl.FALSE, this.view);
 
 		window.gl.useProgram(null);
 		window.gl.bindVertexArray(null);
@@ -272,8 +278,16 @@ class MeshLd {
 	}
 
 	draw() {
+		mat4.lookAt(this.view, [
+			camLoc[0] * camScale, camLoc[1] * camScale, camLoc[2] * camScale
+		], scrLoc, [
+			0, 1, 0
+		]);
+
 		window.gl.bindVertexArray(this.vao);
 		window.gl.useProgram(this.prog);
+
+		window.gl.uniformMatrix4fv(this.uniView, window.gl.FALSE, this.view);
 
 		window.gl.drawElements(window.gl.TRIANGLES, this.noIdc, window.gl.UNSIGNED_BYTE, 0);
 

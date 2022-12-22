@@ -70,18 +70,6 @@ document.addEventListener('mousewheel', function(e) {
 
 	camScale = Math.min(camScale, 2.0);
 	camScale = Math.max(camScale, 0.2);
-
-	gl.useProgram(cabinet.prog);
-
-	mat4.lookAt(cabinet.view, [
-		camLoc[0] * camScale, camLoc[1] * camScale, camLoc[2] * camScale
-	], scrLoc, [
-		0, 1, 0
-	]);
-
-	window.gl.uniformMatrix4fv(cabinet.uniView, window.gl.FALSE, cabinet.view);
-
-	gl.useProgram(null);
 });
 
 window.addEventListener('resize', fitCanv);
