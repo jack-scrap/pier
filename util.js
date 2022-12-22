@@ -1,13 +1,13 @@
 class Util {
-	static rd(name) {
+	static rd(fName) {
 		let req = new XMLHttpRequest();
-		req.open('GET', name, false);
+		req.open('GET', fName, false);
 		req.send(null);
 
 		if (req.status == 200) {
 			return req.responseText;
 		} else {
-			console.error(`Couldn't load '${name}'; status ${req.status}`);
+			console.error(`Couldn't load '${fName}'; status ${req.status}`);
 		}
 	}
 
