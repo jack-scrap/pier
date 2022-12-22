@@ -2,8 +2,12 @@
 
 precision mediump float;
 
+in vec2 _st;
+
 out vec4 frag;
 
+uniform sampler2D sampler;
+
 void main() {
-	frag = vec4(vec3(1.0), 1.0);
+	frag = texture(sampler, _st);
 }

@@ -167,6 +167,7 @@ class MeshLd {
 
 	vao;
 	vbo;
+	stbo;
 	ibo;
 
 	uniModel;
@@ -194,6 +195,17 @@ class MeshLd {
 		this.vbo = window.gl.createBuffer();
 		window.gl.bindBuffer(window.gl.ARRAY_BUFFER, this.vbo);
 		window.gl.bufferData(window.gl.ARRAY_BUFFER, new Float32Array(vtc), window.gl.STATIC_DRAW);
+
+		this.stbo = window.gl.createBuffer();
+		window.gl.bindBuffer(window.gl.ARRAY_BUFFER, this.stbo);
+
+		const st = [
+			0.0, 0.0,
+			1.0, 0.0,
+			0.0, 1.0,
+			1.0, 1.0,
+		]
+		window.gl.bufferData(window.gl.ARRAY_BUFFER, new Float32Array(st), window.gl.STATIC_DRAW);
 
 		let idc = Ld.idc(nameObj, type.VTX);
 
@@ -279,9 +291,15 @@ class MeshLd {
 		window.gl.useProgram(this.prog);
 
 		// Attributes
+		window.gl.bindBuffer(window.gl.ARRAY_BUFFER, this.vbo);
 		let attrPos = window.gl.getAttribLocation(this.prog, 'pos');
 		window.gl.vertexAttribPointer(attrPos, 3, window.gl.FLOAT, window.gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
 		window.gl.enableVertexAttribArray(attrPos);
+
+		window.gl.bindBuffer(window.gl.ARRAY_BUFFER, this.stbo);
+		let attrSt = window.gl.getAttribLocation(this.prog, 'st');
+		window.gl.vertexAttribPointer(attrSt, 2, window.gl.FLOAT, window.gl.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
+		window.gl.enableVertexAttribArray(attrSt);
 
 		// Uniforms
 		this.uniModel = window.gl.getUniformLocation(this.prog, 'model');

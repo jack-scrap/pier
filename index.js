@@ -95,7 +95,29 @@ document.addEventListener('DOMContentLoaded', function() {
 	window.gl.enable(window.gl.CULL_FACE);
 	gl.cullFace(gl.BACK);
 
-	scr = new MeshLd('scr', 'scr', 'solid', scrLoc);
+	scr = new MeshLd('scr', 'scr', 'scr', scrLoc);
+
+	gl.useProgram(scr.prog);
+
+	var tex = gl.createTexture();
+	gl.bindTexture(gl.TEXTURE_2D, tex);
+
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+
+	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, document.getElementById('texImg'));
+
+	gl.bindTexture(gl.TEXTURE_2D, null);
+
+	gl.useProgram(scr.prog);
+
+	gl.bindTexture(gl.TEXTURE_2D, tex);
+	gl.activeTexture(gl.TEXTURE0);
+
+	gl.useProgram(null);
 
 	cabinet = new MeshLd('cabinet', 'obj', 'dir', [0, 0, 0], [0, theta, 0], [
 		scr
