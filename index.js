@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	window.gl.enable(window.gl.CULL_FACE);
 	gl.cullFace(gl.BACK);
 
-	scr = new Mesh(scrVtc, scrIdc, 'scr', 'solid');
+	scr = new MeshLd('scr', 'scr', 'solid');
 
 	cabinet = new MeshLd('cabinet', 'obj', 'dir', [0, 0, 0], [0, theta, 0], [
 		scr
