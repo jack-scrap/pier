@@ -34,7 +34,7 @@ class Mesh {
 		this._vao = window.gl.createVertexArray();
 		window.gl.bindVertexArray(this._vao);
 
-		let vtc = Ld.vtc(nameObj);
+		let vtc = Ld.attr(nameObj, 0);
 
 		this._vbo = window.gl.createBuffer();
 		window.gl.bindBuffer(window.gl.ARRAY_BUFFER, this._vbo);

@@ -37,7 +37,18 @@ class Util {
 };
 
 class Ld {
-	static vtc(name) {
+	static attr(name, attr) {
+		const id = [
+			'v',
+			'vt',
+			'vn'
+		];
+		const sz = [
+			3,
+			2,
+			3
+		];
+
 		let data = [];
 		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
 			let tok = [];
@@ -45,33 +56,12 @@ class Ld {
 				tok.push(inst);
 			}
 
-			if (tok[0] == 'v') {
+			if (tok[0] == id[attr]) {
 				let vtc = tok;
 				vtc.shift();
 
-				for (let i = 0; i < 3; i++) {
+				for (let i = 0; i < sz[attr]; i++) {
 					data.push(vtc[i]);
-				}
-			}
-		}
-
-		return data;
-	}
-
-	static st(name) {
-		let data = [];
-		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
-			let tok = [];
-			for (let inst of l.split(' ')) {
-				tok.push(inst);
-			}
-
-			if (tok[0] == 'vt') {
-				let st = tok;
-				st.shift();
-
-				for (let i = 0; i < 2; i++) {
-					data.push(st[i]);
 				}
 			}
 		}
