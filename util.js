@@ -41,8 +41,8 @@ class Ld {
 		let data = [];
 		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
 			let tok = [];
-			for (let _ of l.split(' ')) {
-				tok.push(_);
+			for (let inst of l.split(' ')) {
+				tok.push(inst);
 			}
 
 			if (tok[0] == 'v') {
@@ -62,8 +62,8 @@ class Ld {
 		let data = [];
 		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
 			let tok = [];
-			for (let _ of l.split(' ')) {
-				tok.push(_);
+			for (let inst of l.split(' ')) {
+				tok.push(inst);
 			}
 
 			if (tok[0] == 'f') {
@@ -85,8 +85,8 @@ class Ld {
 		let data = [];
 		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
 			let tok = [];
-			for (let _ of l.split(' ')) {
-				tok.push(_);
+			for (let inst of l.split(' ')) {
+				tok.push(inst);
 			}
 
 			if (tok[0] == 'vn') {
