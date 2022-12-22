@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	window.gl.enable(window.gl.CULL_FACE);
 	gl.cullFace(gl.BACK);
 
-	scr = new MeshLd('scr', 'tex', 'tex', scrLoc);
+	scr = new Mesh('scr', 'tex', 'tex', scrLoc);
 
 	gl.useProgram(scr.prog);
 
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	gl.useProgram(null);
 
-	cabinet = new MeshLd('cabinet', 'obj', 'dir', [0, 0, 0], [0, theta, 0], [
+	cabinet = new Mesh('cabinet', 'obj', 'dir', [0, 0, 0], [0, theta, 0], [
 		scr
 	]);
 

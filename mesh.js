@@ -1,4 +1,4 @@
-class MeshLd {
+class Mesh {
 	_noIdc;
 
 	model = new Float32Array(16);
