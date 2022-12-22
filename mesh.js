@@ -39,17 +39,17 @@ class Mesh {
 	}
 
 	constructor(nameObj, nameVtx, nameFrag, loc = [0, 0, 0], rot = [0, 0, 0], child = []) {
-		this._vao = window.ctx.createVertexArray();
-		window.ctx.bindVertexArray(this._vao);
+		this._vao = ctx.createVertexArray();
+		ctx.bindVertexArray(this._vao);
 
 		let vtc = Ld.attr(nameObj, 0);
 
-		this._vbo = window.ctx.createBuffer();
-		window.ctx.bindBuffer(window.ctx.ARRAY_BUFFER, this._vbo);
-		window.ctx.bufferData(window.ctx.ARRAY_BUFFER, new Float32Array(vtc), window.ctx.STATIC_DRAW);
+		this._vbo = ctx.createBuffer();
+		ctx.bindBuffer(ctx.ARRAY_BUFFER, this._vbo);
+		ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(vtc), ctx.STATIC_DRAW);
 
-		this._stbo = window.ctx.createBuffer();
-		window.ctx.bindBuffer(window.ctx.ARRAY_BUFFER, this._stbo);
+		this._stbo = ctx.createBuffer();
+		ctx.bindBuffer(ctx.ARRAY_BUFFER, this._stbo);
 
 		const st = [
 			0.0, 0.0,
@@ -57,7 +57,7 @@ class Mesh {
 			0.0, 1.0,
 			1.0, 1.0,
 		]
-		window.ctx.bufferData(window.ctx.ARRAY_BUFFER, new Float32Array(st), window.ctx.STATIC_DRAW);
+		ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(st), ctx.STATIC_DRAW);
 
 		let idc = Ld.idc(nameObj, type.VTX);
 
@@ -67,9 +67,9 @@ class Mesh {
 			this._child.push(inst);
 		}
 
-		this._ibo = window.ctx.createBuffer();
-		window.ctx.bindBuffer(window.ctx.ELEMENT_ARRAY_BUFFER, this._ibo);
-		window.ctx.bufferData(window.ctx.ELEMENT_ARRAY_BUFFER, new Uint8Array(idc), window.ctx.STATIC_DRAW);
+		this._ibo = ctx.createBuffer();
+		ctx.bindBuffer(ctx.ELEMENT_ARRAY_BUFFER, this._ibo);
+		ctx.bufferData(ctx.ELEMENT_ARRAY_BUFFER, new Uint8Array(idc), ctx.STATIC_DRAW);
 
 		/* Matrix */
 		this.model = new Float32Array(16);
@@ -105,29 +105,29 @@ class Mesh {
 		/* Shader */
 		this.prog = new Prog(nameVtx, nameFrag);
 
-		window.ctx.useProgram(this.prog.id);
+		ctx.useProgram(this.prog.id);
 
 		// Attributes
-		window.ctx.bindBuffer(window.ctx.ARRAY_BUFFER, this._vbo);
-		let attrPos = window.ctx.getAttribLocation(this.prog.id, 'pos');
-		window.ctx.vertexAttribPointer(attrPos, 3, window.ctx.FLOAT, window.ctx.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-		window.ctx.enableVertexAttribArray(attrPos);
+		ctx.bindBuffer(ctx.ARRAY_BUFFER, this._vbo);
+		let attrPos = ctx.getAttribLocation(this.prog.id, 'pos');
+		ctx.vertexAttribPointer(attrPos, 3, ctx.FLOAT, ctx.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
+		ctx.enableVertexAttribArray(attrPos);
 
-		window.ctx.bindBuffer(window.ctx.ARRAY_BUFFER, this._stbo);
-		let attrSt = window.ctx.getAttribLocation(this.prog.id, 'st');
-		window.ctx.vertexAttribPointer(attrSt, 2, window.ctx.FLOAT, window.ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
-		window.ctx.enableVertexAttribArray(attrSt);
+		ctx.bindBuffer(ctx.ARRAY_BUFFER, this._stbo);
+		let attrSt = ctx.getAttribLocation(this.prog.id, 'st');
+		ctx.vertexAttribPointer(attrSt, 2, ctx.FLOAT, ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
+		ctx.enableVertexAttribArray(attrSt);
 
 		// Uniforms
-		this.uniModel = window.ctx.getUniformLocation(this.prog.id, 'model');
-		this.uniView = window.ctx.getUniformLocation(this.prog.id, 'view');
-		this._uniProj = window.ctx.getUniformLocation(this.prog.id, 'proj');
+		this.uniModel = ctx.getUniformLocation(this.prog.id, 'model');
+		this.uniView = ctx.getUniformLocation(this.prog.id, 'view');
+		this._uniProj = ctx.getUniformLocation(this.prog.id, 'proj');
 
-		window.ctx.uniformMatrix4fv(this.uniModel, window.ctx.FALSE, this.model);
-		window.ctx.uniformMatrix4fv(this.uniView, window.ctx.FALSE, this.view);
-		window.ctx.uniformMatrix4fv(this._uniProj, window.ctx.FALSE, this._proj);
+		ctx.uniformMatrix4fv(this.uniModel, ctx.FALSE, this.model);
+		ctx.uniformMatrix4fv(this.uniView, ctx.FALSE, this.view);
+		ctx.uniformMatrix4fv(this._uniProj, ctx.FALSE, this._proj);
 
-		window.ctx.useProgram(null);
+		ctx.useProgram(null);
 
 		this.accModel(this._acc);
 	}
@@ -139,16 +139,16 @@ class Mesh {
 			0, 1, 0
 		]);
 
-		window.ctx.bindVertexArray(this._vao);
-		window.ctx.useProgram(this.prog.id);
+		ctx.bindVertexArray(this._vao);
+		ctx.useProgram(this.prog.id);
 
-		window.ctx.uniformMatrix4fv(this.uniModel, window.ctx.FALSE, this._acc);
-		window.ctx.uniformMatrix4fv(this.uniView, window.ctx.FALSE, this.view);
+		ctx.uniformMatrix4fv(this.uniModel, ctx.FALSE, this._acc);
+		ctx.uniformMatrix4fv(this.uniView, ctx.FALSE, this.view);
 
-		window.ctx.drawElements(window.ctx.TRIANGLES, this._noIdc, window.ctx.UNSIGNED_BYTE, 0);
+		ctx.drawElements(ctx.TRIANGLES, this._noIdc, ctx.UNSIGNED_BYTE, 0);
 
-		window.ctx.useProgram(null);
-		window.ctx.bindVertexArray(null);
+		ctx.useProgram(null);
+		ctx.bindVertexArray(null);
 
 		for (let inst of this._child) {
 			inst.draw();

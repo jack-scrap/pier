@@ -66,20 +66,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	fitCanv();
 
-	window.ctx = window.canv.getContext('webgl2');
+	ctx = window.canv.getContext('webgl2');
 
-	if (!window.ctx) {
+	if (!ctx) {
 		console.log('WebGL not supported, falling back on experimental-webgl');
-		window.ctx = window.canv.getContext('experimental-webgl');
+		ctx = window.canv.getContext('experimental-webgl');
 	}
 
-	if (!window.ctx) {
+	if (!ctx) {
 		alert('Your browser does not support WebGL');
 	}
 
-	window.ctx.enable(window.ctx.DEPTH_TEST);
+	ctx.enable(ctx.DEPTH_TEST);
 
-	window.ctx.enable(window.ctx.CULL_FACE);
+	ctx.enable(ctx.CULL_FACE);
 	ctx.cullFace(ctx.BACK);
 
 	scr = new Mesh('scr', 'tex', 'tex', scrLoc);
@@ -111,8 +111,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	]);
 
 	function draw() {
-		window.ctx.clearColor(1 - ((1 - (col[0] / 255)) / 2), 1 - ((1 - (col[1] / 255)) / 2), 1 - ((1 - (col[2] / 255)) / 2), 1);
-		window.ctx.clear(window.ctx.COLOR_BUFFER_BIT | window.ctx.DEPTH_BUFFER_BIT);
+		ctx.clearColor(1 - ((1 - (col[0] / 255)) / 2), 1 - ((1 - (col[1] / 255)) / 2), 1 - ((1 - (col[2] / 255)) / 2), 1);
+		ctx.clear(ctx.COLOR_BUFFER_BIT | ctx.DEPTH_BUFFER_BIT);
 
 		cabinet.draw();
 
