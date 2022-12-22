@@ -1,47 +1,47 @@
 class MeshLd {
-	noIdc;
+	_noIdc;
 
 	model = new Float32Array(16);
-	acc = new Float32Array(16);
+	_acc = new Float32Array(16);
 
 	view = new Float32Array(16);
-	proj = new Float32Array(16);
+	_proj = new Float32Array(16);
 
-	vao;
+	_vao;
 
-	vbo;
-	stbo;
+	_vbo;
+	_stbo;
 
-	ibo;
+	_ibo;
 
 	uniModel;
 	uniView;
-	uniProj;
+	_uniProj;
 
 	prog;
 
-	child = [];
+	_child = [];
 
 	accModel(prev) {
-		mat4.mul(this.acc, this.model, prev);
+		mat4.mul(this._acc, this.model, prev);
 
-		for (let inst of this.child) {
-			inst.accModel(this.acc);
+		for (let inst of this._child) {
+			inst.accModel(this._acc);
 		}
 	}
 
 	constructor(nameObj, nameVtx, nameFrag, loc = [0, 0, 0], rot = [0, 0, 0], child = []) {
-		this.vao = window.gl.createVertexArray();
-		window.gl.bindVertexArray(this.vao);
+		this._vao = window.gl.createVertexArray();
+		window.gl.bindVertexArray(this._vao);
 
 		let vtc = Ld.vtc(nameObj);
 
-		this.vbo = window.gl.createBuffer();
-		window.gl.bindBuffer(window.gl.ARRAY_BUFFER, this.vbo);
+		this._vbo = window.gl.createBuffer();
+		window.gl.bindBuffer(window.gl.ARRAY_BUFFER, this._vbo);
 		window.gl.bufferData(window.gl.ARRAY_BUFFER, new Float32Array(vtc), window.gl.STATIC_DRAW);
 
-		this.stbo = window.gl.createBuffer();
-		window.gl.bindBuffer(window.gl.ARRAY_BUFFER, this.stbo);
+		this._stbo = window.gl.createBuffer();
+		window.gl.bindBuffer(window.gl.ARRAY_BUFFER, this._stbo);
 
 		const st = [
 			0.0, 0.0,
@@ -53,14 +53,14 @@ class MeshLd {
 
 		let idc = Ld.idc(nameObj, type.VTX);
 
-		this.noIdc = idc.length;
+		this._noIdc = idc.length;
 
 		for (let inst of child) {
-			this.child.push(inst);
+			this._child.push(inst);
 		}
 
-		this.ibo = window.gl.createBuffer();
-		window.gl.bindBuffer(window.gl.ELEMENT_ARRAY_BUFFER, this.ibo);
+		this._ibo = window.gl.createBuffer();
+		window.gl.bindBuffer(window.gl.ELEMENT_ARRAY_BUFFER, this._ibo);
 		window.gl.bufferData(window.gl.ELEMENT_ARRAY_BUFFER, new Uint8Array(idc), window.gl.STATIC_DRAW);
 
 		/* Matrix */
@@ -90,9 +90,9 @@ class MeshLd {
 			]
 		);
 
-		this.proj = new Float32Array(16);
+		this._proj = new Float32Array(16);
 
-		mat4.perspective(this.proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
+		mat4.perspective(this._proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
 
 		/* Shader */
 		this.prog = window.gl.createProgram();
@@ -135,12 +135,12 @@ class MeshLd {
 		window.gl.useProgram(this.prog);
 
 		// Attributes
-		window.gl.bindBuffer(window.gl.ARRAY_BUFFER, this.vbo);
+		window.gl.bindBuffer(window.gl.ARRAY_BUFFER, this._vbo);
 		let attrPos = window.gl.getAttribLocation(this.prog, 'pos');
 		window.gl.vertexAttribPointer(attrPos, 3, window.gl.FLOAT, window.gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
 		window.gl.enableVertexAttribArray(attrPos);
 
-		window.gl.bindBuffer(window.gl.ARRAY_BUFFER, this.stbo);
+		window.gl.bindBuffer(window.gl.ARRAY_BUFFER, this._stbo);
 		let attrSt = window.gl.getAttribLocation(this.prog, 'st');
 		window.gl.vertexAttribPointer(attrSt, 2, window.gl.FLOAT, window.gl.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
 		window.gl.enableVertexAttribArray(attrSt);
@@ -148,15 +148,15 @@ class MeshLd {
 		// Uniforms
 		this.uniModel = window.gl.getUniformLocation(this.prog, 'model');
 		this.uniView = window.gl.getUniformLocation(this.prog, 'view');
-		this.uniProj = window.gl.getUniformLocation(this.prog, 'proj');
+		this._uniProj = window.gl.getUniformLocation(this.prog, 'proj');
 
 		window.gl.uniformMatrix4fv(this.uniModel, window.gl.FALSE, this.model);
 		window.gl.uniformMatrix4fv(this.uniView, window.gl.FALSE, this.view);
-		window.gl.uniformMatrix4fv(this.uniProj, window.gl.FALSE, this.proj);
+		window.gl.uniformMatrix4fv(this._uniProj, window.gl.FALSE, this._proj);
 
 		window.gl.useProgram(null);
 
-		this.accModel(this.acc);
+		this.accModel(this._acc);
 	}
 
 	draw() {
@@ -166,18 +166,18 @@ class MeshLd {
 			0, 1, 0
 		]);
 
-		window.gl.bindVertexArray(this.vao);
+		window.gl.bindVertexArray(this._vao);
 		window.gl.useProgram(this.prog);
 
-		window.gl.uniformMatrix4fv(this.uniModel, window.gl.FALSE, this.acc);
+		window.gl.uniformMatrix4fv(this.uniModel, window.gl.FALSE, this._acc);
 		window.gl.uniformMatrix4fv(this.uniView, window.gl.FALSE, this.view);
 
-		window.gl.drawElements(window.gl.TRIANGLES, this.noIdc, window.gl.UNSIGNED_BYTE, 0);
+		window.gl.drawElements(window.gl.TRIANGLES, this._noIdc, window.gl.UNSIGNED_BYTE, 0);
 
 		window.gl.useProgram(null);
 		window.gl.bindVertexArray(null);
 
-		for (let inst of this.child) {
+		for (let inst of this._child) {
 			inst.draw();
 		}
 	}
