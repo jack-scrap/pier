@@ -166,8 +166,10 @@ class MeshLd {
 	proj = new Float32Array(16);
 
 	vao;
+
 	vbo;
 	stbo;
+
 	ibo;
 
 	uniModel;
