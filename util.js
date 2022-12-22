@@ -46,18 +46,18 @@ class Ld {
 
 	static sep = '/';
 
-	static attr(name, attr) {
-		const id = [
-			'v',
-			'vt',
-			'vn'
-		];
-		const sz = [
-			3,
-			2,
-			3
-		];
+	static id = [
+		'v',
+		'vt',
+		'vn'
+	];
+	static sz = [
+		3,
+		2,
+		3
+	];
 
+	static attr(name, attr) {
 		let data = [];
 		for (let l of Util.rd(this.objPath + '/' + name + '.obj').split('\n')) {
 			let tok = [];
@@ -65,11 +65,11 @@ class Ld {
 				tok.push(inst);
 			}
 
-			if (tok[0] == id[attr]) {
+			if (tok[0] == this.id[attr]) {
 				let vtc = tok;
 				vtc.shift();
 
-				for (let i = 0; i < sz[attr]; i++) {
+				for (let i = 0; i < this.sz[attr]; i++) {
 					data.push(vtc[i]);
 				}
 			}
