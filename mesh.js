@@ -95,59 +95,25 @@ class Mesh {
 		mat4.perspective(this._proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
 
 		/* Shader */
-		this.prog = window.gl.createProgram();
+		this.prog = new Prog(nameVtx, nameFrag);
 
-		const shadVtxBuff = Util.rd('res/shad/' + nameVtx + '.vs');
-		const shadFragBuff = Util.rd('res/shad/' + nameFrag + '.fs');
-
-		// Vertex
-		let shadVtx = window.gl.createShader(window.gl.VERTEX_SHADER);
-		window.gl.shaderSource(shadVtx, shadVtxBuff);
-
-		window.gl.compileShader(shadVtx);
-		if (!window.gl.getShaderParameter(shadVtx, window.gl.COMPILE_STATUS)) {
-			console.error('Error compiling vertex shader', window.gl.getShaderInfoLog(shadVtx));
-		}
-
-		// Fragment
-		let shadFrag = window.gl.createShader(window.gl.FRAGMENT_SHADER);
-		window.gl.shaderSource(shadFrag, shadFragBuff);
-
-		window.gl.compileShader(shadFrag);
-		if (!window.gl.getShaderParameter(shadFrag, window.gl.COMPILE_STATUS)) {
-			console.error('Error compiling fragment shader', window.gl.getShaderInfoLog(shadFrag));
-		}
-
-		window.gl.attachShader(this.prog, shadVtx);
-		window.gl.attachShader(this.prog, shadFrag);
-
-		window.gl.linkProgram(this.prog);
-		if (!window.gl.getProgramParameter(this.prog, window.gl.LINK_STATUS)) {
-			console.error('Error linking program', window.gl.getProgramInfoLog(this.prog));
-		}
-
-		window.gl.validateProgram(this.prog);
-		if (!window.gl.getProgramParameter(this.prog, window.gl.VALIDATE_STATUS)) {
-			console.error('Error validating program', window.gl.getProgramInfoLog(this.prog));
-		}
-
-		window.gl.useProgram(this.prog);
+		window.gl.useProgram(this.prog.id);
 
 		// Attributes
 		window.gl.bindBuffer(window.gl.ARRAY_BUFFER, this._vbo);
-		let attrPos = window.gl.getAttribLocation(this.prog, 'pos');
+		let attrPos = window.gl.getAttribLocation(this.prog.id, 'pos');
 		window.gl.vertexAttribPointer(attrPos, 3, window.gl.FLOAT, window.gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
 		window.gl.enableVertexAttribArray(attrPos);
 
 		window.gl.bindBuffer(window.gl.ARRAY_BUFFER, this._stbo);
-		let attrSt = window.gl.getAttribLocation(this.prog, 'st');
+		let attrSt = window.gl.getAttribLocation(this.prog.id, 'st');
 		window.gl.vertexAttribPointer(attrSt, 2, window.gl.FLOAT, window.gl.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
 		window.gl.enableVertexAttribArray(attrSt);
 
 		// Uniforms
-		this.uniModel = window.gl.getUniformLocation(this.prog, 'model');
-		this.uniView = window.gl.getUniformLocation(this.prog, 'view');
-		this._uniProj = window.gl.getUniformLocation(this.prog, 'proj');
+		this.uniModel = window.gl.getUniformLocation(this.prog.id, 'model');
+		this.uniView = window.gl.getUniformLocation(this.prog.id, 'view');
+		this._uniProj = window.gl.getUniformLocation(this.prog.id, 'proj');
 
 		window.gl.uniformMatrix4fv(this.uniModel, window.gl.FALSE, this.model);
 		window.gl.uniformMatrix4fv(this.uniView, window.gl.FALSE, this.view);
@@ -166,7 +132,7 @@ class Mesh {
 		]);
 
 		window.gl.bindVertexArray(this._vao);
-		window.gl.useProgram(this.prog);
+		window.gl.useProgram(this.prog.id);
 
 		window.gl.uniformMatrix4fv(this.uniModel, window.gl.FALSE, this._acc);
 		window.gl.uniformMatrix4fv(this.uniView, window.gl.FALSE, this.view);

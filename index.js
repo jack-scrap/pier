@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	scr = new Mesh('scr', 'tex', 'tex', scrLoc);
 
-	gl.useProgram(scr.prog);
+	gl.useProgram(scr.prog.id);
 
 	var tex = gl.createTexture();
 	gl.bindTexture(gl.TEXTURE_2D, tex);
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	gl.bindTexture(gl.TEXTURE_2D, null);
 
-	gl.useProgram(scr.prog);
+	gl.useProgram(scr.prog.id);
 
 	gl.bindTexture(gl.TEXTURE_2D, tex);
 	gl.activeTexture(gl.TEXTURE0);
