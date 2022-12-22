@@ -39,6 +39,10 @@ class Util {
 };
 
 class Ld {
+	static ws = ' ';
+
+	static sep = '/';
+
 	static attr(name, attr) {
 		const id = [
 			'v',
@@ -54,7 +58,7 @@ class Ld {
 		let data = [];
 		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
 			let tok = [];
-			for (let inst of l.split(' ')) {
+			for (let inst of l.split(this.ws)) {
 				tok.push(inst);
 			}
 
@@ -75,7 +79,7 @@ class Ld {
 		let data = [];
 		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
 			let tok = [];
-			for (let inst of l.split(' ')) {
+			for (let inst of l.split(this.ws)) {
 				tok.push(inst);
 			}
 
@@ -84,7 +88,7 @@ class Ld {
 				idc.shift();
 
 				for (let i = 0; i < 3; i++) {
-					let idx = idc[i].split('/');
+					let idx = idc[i].split(this.sep);
 
 					data.push(idx[type] - 1);
 				}
@@ -98,7 +102,7 @@ class Ld {
 		let data = [];
 		for (let l of Util.rd('res/obj/' + name + '.obj').split('\n')) {
 			let tok = [];
-			for (let inst of l.split(' ')) {
+			for (let inst of l.split(this.ws)) {
 				tok.push(inst);
 			}
 
