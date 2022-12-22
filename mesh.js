@@ -97,9 +97,8 @@ class Mesh {
 		/* Shader */
 		this.prog = window.gl.createProgram();
 
-		const
-			shadVtxBuff = Util.rd('res/shad/' + nameVtx + '.vs'),
-			shadFragBuff = Util.rd('res/shad/' + nameFrag + '.fs');
+		const shadVtxBuff = Util.rd('res/shad/' + nameVtx + '.vs');
+		const shadFragBuff = Util.rd('res/shad/' + nameFrag + '.fs');
 
 		// Vertex
 		let shadVtx = window.gl.createShader(window.gl.VERTEX_SHADER);
@@ -183,11 +182,10 @@ class Mesh {
 	}
 };
 
-const
-	type = {
-		VTX: 0,
-		TEX: 1,
-		NORM: 2
-	},
+const type = {
+	VTX: 0,
+	TEX: 1,
+	NORM: 2
+};
 
-	triVtc = 3;
+const triVtc = 3;

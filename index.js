@@ -1,17 +1,16 @@
-var
-	cabinet,
-	scr,
+var cabinet;
+var scr;
 
-	drag,
+var drag;
 
-	mouseStartX,
-	mouseCurrX,
-	mouseDeltaX,
+var mouseStartX;
+var mouseCurrX;
+var mouseDeltaX;
 
-	theta = -100,
+var theta = -100;
 
-	id = new Float32Array(16),
-	idWorld = new Float32Array(16);
+var id = new Float32Array(16);
+var idWorld = new Float32Array(16);
 
 const camLoc = [15, 8, 0];
 var camScale = 1;
