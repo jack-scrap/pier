@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		console.error('Error validating program', ctx.getProgramInfoLog(prog));
 	}
 
-	// Attribute
+	// Attributes
 	let attrPosTri = ctx.getAttribLocation(progTri, 'pos');
 	ctx.vertexAttribPointer(attrPosTri, 2, ctx.FLOAT, ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
 	ctx.enableVertexAttribArray(attrPosTri);
