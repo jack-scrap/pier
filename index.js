@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	let shadVtxTri = ctx.createShader(ctx.VERTEX_SHADER);
 	ctx.shaderSource(shadVtxTri, shadVtxTriBuff);
 
-	const shadFragTriBuff = Util.rd('res/shad/red.fs');
+	const shadFragTriBuff = Util.rd('res/shad/green.fs');
 
 	let shadFragTri = ctx.createShader(ctx.FRAGMENT_SHADER);
 	ctx.shaderSource(shadFragTri, shadFragTriBuff);
