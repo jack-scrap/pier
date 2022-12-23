@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		ctx.bindVertexArray(vaoTri);
 		ctx.useProgram(progTri);
 
-		mat4.translate(modelTri, modelTri, [0, 0.01, 0]);
+		mat4.translate(modelTri, modelTri, [0, 0.003, 0]);
 		ctx.uniformMatrix4fv(uniModelTri, ctx.FALSE, modelTri);
 
 		ctx.drawArrays(ctx.LINE_LOOP, 0, 3);
