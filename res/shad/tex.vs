@@ -14,5 +14,5 @@ uniform mat4 proj;
 void main() {
 	gl_Position = proj * view * model * vec4(pos, 1.0);
 
-	_st = vec2(st.x, 1.0 - st.y);
+	_st = st;
 }
