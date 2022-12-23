@@ -209,7 +209,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		scr
 	]);
 
+	const lineHt = 0.2;
+
 	const title = new Str('tachyon');
+
+	const opt = [
+		new Str('play', 0.0, -lineHt),
+		new Str('scoreboard', 0.0, 2 * -lineHt)
+	];
 
 	function draw() {
 		// Framebuffer
@@ -225,6 +232,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		switch (m) {
 			case 0: // Menu
 				title.draw();
+
+				for (let _ of opt) {
+					_.draw();
+				}
 
 				break;
 
