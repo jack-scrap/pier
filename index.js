@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.useProgram(scr.prog.id);
 
 	/* Triangle */
-	// Data
 	let vaoTri = ctx.createVertexArray();
 	ctx.bindVertexArray(vaoTri);
 
@@ -98,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.bindBuffer(ctx.ARRAY_BUFFER, vboTri);
 	ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(vtcTri), ctx.STATIC_DRAW);
 
-	// Shader
 	const shadVtxTriBuff = Util.rd('res/shad/scr.vs');
 
 	let shadVtxTri = ctx.createShader(ctx.VERTEX_SHADER);
@@ -223,13 +221,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	ctx.useProgram(null);
 
-	// Render to texture
 	cabinet = new Mesh('cabinet', 'obj', 'dir', [0, 0, 0], [0, theta, 0], [
 		scr
 	]);
 
 	function draw() {
-		/* Framebuffer */
+		// Framebuffer
 		ctx.disable(ctx.DEPTH_TEST);
 
 		ctx.disable(ctx.CULL_FACE);
@@ -249,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		ctx.bindFramebuffer(ctx.FRAMEBUFFER, null);
 
-		/* Cabinet */
+		// Cabinet
 		ctx.enable(ctx.DEPTH_TEST);
 
 		ctx.enable(ctx.CULL_FACE);
