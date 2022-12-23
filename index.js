@@ -172,66 +172,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.useProgram(null);
 	ctx.bindVertexArray(null);
 
-	/* Framebuffer */
-	let vaoFrame = ctx.createVertexArray();
-	ctx.bindVertexArray(vaoFrame);
-
-	const vtcFrame = [
-		-1.0, -1.0,
-		1.0, -1.0,
-		-1.0, 1.0,
-
-		-1.0, 1.0,
-		1.0, -1.0,
-		1.0, 1.0
-	];
-
-	let vboFrame = ctx.createBuffer();
-	ctx.bindBuffer(ctx.ARRAY_BUFFER, vboFrame);
-	ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(vtcFrame), ctx.STATIC_DRAW);
-
-	const shadVtxBuff = Util.rd('res/shad/scr.vs');
-
-	let shadVtx = ctx.createShader(ctx.VERTEX_SHADER);
-	ctx.shaderSource(shadVtx, shadVtxBuff);
-
-	const shadFragBuff = Util.rd('res/shad/tex.fs');
-
-	let shadFrag = ctx.createShader(ctx.FRAGMENT_SHADER);
-	ctx.shaderSource(shadFrag, shadFragBuff);
-
-	ctx.compileShader(shadVtx);
-	if (!ctx.getShaderParameter(shadVtx, ctx.COMPILE_STATUS)) {
-		console.error('Vertex error: ', ctx.getShaderInfoLog(shadVtx));
-	}
-
-	ctx.compileShader(shadFrag);
-	if (!ctx.getShaderParameter(shadFrag, ctx.COMPILE_STATUS)) {
-		console.error('Fragment error: ', ctx.getShaderInfoLog(shadFrag));
-	}
-
-	let progFrame = ctx.createProgram();
-	ctx.attachShader(progFrame, shadVtx);
-	ctx.attachShader(progFrame, shadFrag);
-
-	ctx.linkProgram(progFrame);
-	if (!ctx.getProgramParameter(progFrame, ctx.LINK_STATUS)) {
-		console.error('Error linking program', ctx.getProgramInfoLog(prog));
-	}
-
-	ctx.validateProgram(progFrame);
-	if (!ctx.getProgramParameter(progFrame, ctx.VALIDATE_STATUS)) {
-		console.error('Error validating program', ctx.getProgramInfoLog(prog));
-	}
-
-	// Attribute
-	let attrPosFrame = ctx.getAttribLocation(progFrame, 'pos');
-	ctx.vertexAttribPointer(attrPosFrame, 2, ctx.FLOAT, ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
-	ctx.enableVertexAttribArray(attrPosFrame);
-
-	ctx.useProgram(null);
-	ctx.bindVertexArray(null);
-
 	ctx.useProgram(scr.prog.id);
 
 	let tex = ctx.createTexture();
