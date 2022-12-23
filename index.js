@@ -88,9 +88,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.bindVertexArray(vaoTri);
 
 	const vtcTri = [
-		0.0, 0.5,
-		-0.5, -0.5,
-		0.5, -0.5
+		-0.6, -1.0,
+		0.6, -1.0,
+		0.0, 1.0
 	];
 
 	let vboTri = ctx.createBuffer();
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		mat4.translate(modelTri, modelTri, [0, 0.01, 0]);
 		ctx.uniformMatrix4fv(uniModelTri, ctx.FALSE, modelTri);
 
-		ctx.drawArrays(ctx.TRIANGLES, 0, 3);
+		ctx.drawArrays(ctx.LINE_LOOP, 0, 3);
 
 		ctx.useProgram(null);
 		ctx.bindVertexArray(null);
