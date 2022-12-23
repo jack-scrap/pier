@@ -29,6 +29,10 @@ const col = [214, 215, 148];
 
 const scrLoc = [-0.5846, 2.7, 0];
 
+const lineHt = 0.2;
+
+let score = [3, 7, 12];
+
 function fitCanv() {
 	window.canv.width = window.innerWidth;
 	window.canv.height = window.innerHeight;
@@ -210,8 +214,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		scr
 	]);
 
-	const lineHt = 0.2;
-
+	// Menu
 	const title = new Str("tachyon", [0.0, lineHt]);
 
 	const opt = [
@@ -220,6 +223,14 @@ document.addEventListener("DOMContentLoaded", function() {
 	];
 
 	let cursor = new Char("a", [-0.8, (o + 1) * -lineHt]);
+
+	// Scoreboard
+	let scoreLine = [];
+	for (let i = 0; i < 3; i++) {
+		if (i < score.length) {
+			scoreLine.push(new Str(score[i].toString(), [0.0, i * -lineHt]));
+		}
+	}
 
 	function draw() {
 		// Framebuffer
@@ -255,6 +266,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 				progShip.unUse();
 				gl.bindVertexArray(null);
+
+				break;
+
+			case 2: // Scoreboard
+				for (let line of scoreLine) {
+					line.draw();
+				}
 
 				break;
 		};
