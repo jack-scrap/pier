@@ -15,6 +15,8 @@ var idWorld = new Float32Array(16);
 const camLoc = [15, 8, 0];
 var camScale = 1;
 
+var shipSpeed = 0.003;
+
 var modelShip;
 
 var progShip;
@@ -72,7 +74,7 @@ document.addEventListener('keydown', function(e) {
 
 			mat4.rotate(modelShip, modelShip, 0.1, [0, 0, 1]);
 
-			gl.uniformMatrix4fv(ship.uniModel, gl.FALSE, ship.model);
+			ctx.uniformMatrix4fv(uniModelShip, ctx.FALSE, modelShip);
 
 			ctx.useProgram(null);
 
@@ -85,9 +87,27 @@ document.addEventListener('keydown', function(e) {
 
 			mat4.rotate(modelShip, modelShip, -0.1, [0, 0, 1]);
 
-			gl.uniformMatrix4fv(ship.uniModel, gl.FALSE, ship.model);
+			ctx.uniformMatrix4fv(uniModelShip, ctx.FALSE, modelShip);
 
 			ctx.useProgram(null);
+
+			break;
+
+		case 38: // Up
+			e.preventDefault();
+
+			shipSpeed = 0.01;
+
+			break;
+	}
+});
+
+document.addEventListener('keyup', function(e) {
+	switch (e.keyCode) {
+		case 38: // Up
+			e.preventDefault();
+
+			shipSpeed = 0.003;
 
 			break;
 	}
@@ -250,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		ctx.bindVertexArray(vaoShip);
 		ctx.useProgram(progShip.id);
 
-		mat4.translate(modelShip, modelShip, [0, 0.003, 0]);
+		mat4.translate(modelShip, modelShip, [0, shipSpeed, 0]);
 		ctx.uniformMatrix4fv(uniModelShip, ctx.FALSE, modelShip);
 
 		ctx.drawArrays(ctx.LINE_LOOP, 0, 3);
