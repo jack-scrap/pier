@@ -15,6 +15,11 @@ var idWorld = new Float32Array(16);
 const camLoc = [15, 8, 0];
 var camScale = 1;
 
+var modelShip;
+
+var progShip;
+var uniModelShip;
+
 const col = [214, 215, 148];
 
 const scrLoc = [-0.5846, 2.7, 0];
@@ -58,6 +63,36 @@ document.addEventListener('mousewheel', function(e) {
 	camScale = Math.max(camScale, 0.2);
 });
 
+document.addEventListener('keydown', function(e) {
+	switch (e.keyCode) {
+		case 37: // Left
+			e.preventDefault();
+
+			ctx.useProgram(progShip.id);
+
+			mat4.rotate(modelShip, modelShip, 0.1, [0, 0, 1]);
+
+			gl.uniformMatrix4fv(ship.uniModel, gl.FALSE, ship.model);
+
+			ctx.useProgram(null);
+
+			break;
+
+		case 39: // Right
+			e.preventDefault();
+
+			ctx.useProgram(progShip.id);
+
+			mat4.rotate(modelShip, modelShip, -0.1, [0, 0, 1]);
+
+			gl.uniformMatrix4fv(ship.uniModel, gl.FALSE, ship.model);
+
+			ctx.useProgram(null);
+
+			break;
+	}
+});
+
 window.addEventListener('resize', fitCanv);
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -97,9 +132,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.bindBuffer(ctx.ARRAY_BUFFER, vboShip);
 	ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(vtcShip), ctx.STATIC_DRAW);
 
-	let progShip = new Prog('vec', 'green');
+	progShip = new Prog('vec', 'green');
 
-	let modelShip = new Float32Array(16);
+	modelShip = new Float32Array(16);
 	mat4.identity(modelShip);
 
 	ctx.useProgram(progShip.id);
@@ -109,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.vertexAttribPointer(attrPosShip, 2, ctx.FLOAT, ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
 	ctx.enableVertexAttribArray(attrPosShip);
 
-	let uniModelShip = ctx.getUniformLocation(progShip.id, 'model');
+	uniModelShip = ctx.getUniformLocation(progShip.id, 'model');
 	ctx.uniformMatrix4fv(uniModelShip, ctx.FALSE, modelShip);
 
 	ctx.useProgram(null);
