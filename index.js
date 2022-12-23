@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	/* Triangle */
 	// Data
-	var vaoTri = ctx.createVertexArray();
+	let vaoTri = ctx.createVertexArray();
 	ctx.bindVertexArray(vaoTri);
 
 	const vtcTri = [
@@ -94,19 +94,19 @@ document.addEventListener('DOMContentLoaded', function() {
 		0.5, -0.5
 	];
 
-	var vboTri = ctx.createBuffer();
+	let vboTri = ctx.createBuffer();
 	ctx.bindBuffer(ctx.ARRAY_BUFFER, vboTri);
 	ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(vtcTri), ctx.STATIC_DRAW);
 
 	// Shader
 	const shadVtxTriBuff = Util.rd('res/shad/scr.vs');
 
-	var shadVtxTri = ctx.createShader(ctx.VERTEX_SHADER);
+	let shadVtxTri = ctx.createShader(ctx.VERTEX_SHADER);
 	ctx.shaderSource(shadVtxTri, shadVtxTriBuff);
 
 	const shadFragTriBuff = Util.rd('res/shad/red.fs');
 
-	var shadFragTri = ctx.createShader(ctx.FRAGMENT_SHADER);
+	let shadFragTri = ctx.createShader(ctx.FRAGMENT_SHADER);
 	ctx.shaderSource(shadFragTri, shadFragTriBuff);
 
 	ctx.compileShader(shadVtxTri);
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		console.error('Fragment error: ', ctx.getShaderInfoLog(shadFragTri));
 	}
 
-	var progTri = ctx.createProgram();
+	let progTri = ctx.createProgram();
 	ctx.attachShader(progTri, shadVtxTri);
 	ctx.attachShader(progTri, shadFragTri);
 
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	// Attribute
-	var attrPosTri = ctx.getAttribLocation(progTri, 'pos');
+	let attrPosTri = ctx.getAttribLocation(progTri, 'pos');
 	ctx.vertexAttribPointer(attrPosTri, 2, ctx.FLOAT, ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
 	ctx.enableVertexAttribArray(attrPosTri);
 
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.bindVertexArray(null);
 
 	/* Framebuffer */
-	var vaoFrame = ctx.createVertexArray();
+	let vaoFrame = ctx.createVertexArray();
 	ctx.bindVertexArray(vaoFrame);
 
 	const vtcFrame = [
@@ -155,18 +155,18 @@ document.addEventListener('DOMContentLoaded', function() {
 		1.0, 1.0
 	];
 
-	var vboFrame = ctx.createBuffer();
+	let vboFrame = ctx.createBuffer();
 	ctx.bindBuffer(ctx.ARRAY_BUFFER, vboFrame);
 	ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(vtcFrame), ctx.STATIC_DRAW);
 
 	const shadVtxBuff = Util.rd('res/shad/tex.vs');
 
-	var shadVtx = ctx.createShader(ctx.VERTEX_SHADER);
+	let shadVtx = ctx.createShader(ctx.VERTEX_SHADER);
 	ctx.shaderSource(shadVtx, shadVtxBuff);
 
 	const shadFragBuff = Util.rd('res/shad/tex.fs');
 
-	var shadFrag = ctx.createShader(ctx.FRAGMENT_SHADER);
+	let shadFrag = ctx.createShader(ctx.FRAGMENT_SHADER);
 	ctx.shaderSource(shadFrag, shadFragBuff);
 
 	ctx.compileShader(shadVtx);
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		console.error('Fragment error: ', ctx.getShaderInfoLog(shadFrag));
 	}
 
-	var progFrame = ctx.createProgram();
+	let progFrame = ctx.createProgram();
 	ctx.attachShader(progFrame, shadVtx);
 	ctx.attachShader(progFrame, shadFrag);
 
@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	// Attribute
-	var attrPosFrame = ctx.getAttribLocation(progFrame, 'pos');
+	let attrPosFrame = ctx.getAttribLocation(progFrame, 'pos');
 	ctx.vertexAttribPointer(attrPosFrame, 2, ctx.FLOAT, ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
 	ctx.enableVertexAttribArray(attrPosFrame);
 
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	ctx.useProgram(scr.prog.id);
 
-	var tex = ctx.createTexture();
+	let tex = ctx.createTexture();
 	ctx.bindTexture(ctx.TEXTURE_2D, tex);
 
 	ctx.texImage2D(ctx.TEXTURE_2D, 0, ctx.RGBA, 256, 256, 0, ctx.RGBA, ctx.UNSIGNED_BYTE, null);
@@ -212,10 +212,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_WRAP_S, ctx.CLAMP_TO_EDGE);
 	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_WRAP_T, ctx.CLAMP_TO_EDGE);
 
-	var fbo = ctx.createFramebuffer();
+	let fbo = ctx.createFramebuffer();
 	ctx.bindFramebuffer(ctx.FRAMEBUFFER, fbo);
 
-	var cbo = ctx.COLOR_ATTACHMENT0;
+	let cbo = ctx.COLOR_ATTACHMENT0;
 	ctx.framebufferTexture2D(ctx.FRAMEBUFFER, cbo, ctx.TEXTURE_2D, tex, 0);
 
 	// Render to texture
