@@ -1,4 +1,4 @@
-var m = 1;
+var m = 0;
 
 var cabinet;
 var scr;
@@ -209,6 +209,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		scr
 	]);
 
+	const title = new Str('tachyon');
+
 	function draw() {
 		// Framebuffer
 		gl.disable(gl.DEPTH_TEST);
@@ -221,6 +223,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		gl.clear(gl.COLOR_BUFFER_BIT);
 
 		switch (m) {
+			case 0: // Menu
+				title.draw();
+
+				break;
+
 			case 1: // Game
 				gl.bindVertexArray(vaoShip);
 				progShip.use();
