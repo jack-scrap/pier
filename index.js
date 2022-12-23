@@ -97,51 +97,19 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.bindBuffer(ctx.ARRAY_BUFFER, vboShip);
 	ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(vtcShip), ctx.STATIC_DRAW);
 
-	const shadVtxShipBuff = Util.rd('res/shad/scr_spc.vs');
-
-	let shadVtxShip = ctx.createShader(ctx.VERTEX_SHADER);
-	ctx.shaderSource(shadVtxShip, shadVtxShipBuff);
-
-	const shadFragShipBuff = Util.rd('res/shad/green.fs');
-
-	let shadFragShip = ctx.createShader(ctx.FRAGMENT_SHADER);
-	ctx.shaderSource(shadFragShip, shadFragShipBuff);
-
-	ctx.compileShader(shadVtxShip);
-	if (!ctx.getShaderParameter(shadVtxShip, ctx.COMPILE_STATUS)) {
-		console.error('Vertex error: ', ctx.getShaderInfoLog(shadVtxShip));
-	}
-
-	ctx.compileShader(shadFragShip);
-	if (!ctx.getShaderParameter(shadFragShip, ctx.COMPILE_STATUS)) {
-		console.error('Fragment error: ', ctx.getShaderInfoLog(shadFragShip));
-	}
-
-	let progShip = ctx.createProgram();
-	ctx.attachShader(progShip, shadVtxShip);
-	ctx.attachShader(progShip, shadFragShip);
-
-	ctx.linkProgram(progShip);
-	if (!ctx.getProgramParameter(progShip, ctx.LINK_STATUS)) {
-		console.error('Error linking program', ctx.getProgramInfoLog(prog));
-	}
-
-	ctx.validateProgram(progShip);
-	if (!ctx.getProgramParameter(progShip, ctx.VALIDATE_STATUS)) {
-		console.error('Error validating program', ctx.getProgramInfoLog(prog));
-	}
+	let progShip = new Prog('scr_spc', 'green');
 
 	let modelShip = new Float32Array(16);
 	mat4.identity(modelShip);
 
-	ctx.useProgram(progShip);
+	ctx.useProgram(progShip.id);
 
 	// Attributes
-	let attrPosShip = ctx.getAttribLocation(progShip, 'pos');
+	let attrPosShip = ctx.getAttribLocation(progShip.id, 'pos');
 	ctx.vertexAttribPointer(attrPosShip, 2, ctx.FLOAT, ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
 	ctx.enableVertexAttribArray(attrPosShip);
 
-	let uniModelShip = ctx.getUniformLocation(progShip, 'model');
+	let uniModelShip = ctx.getUniformLocation(progShip.id, 'model');
 	ctx.uniformMatrix4fv(uniModelShip, ctx.FALSE, modelShip);
 
 	ctx.useProgram(null);
@@ -245,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		ctx.clear(ctx.COLOR_BUFFER_BIT);
 
 		ctx.bindVertexArray(vaoShip);
-		ctx.useProgram(progShip);
+		ctx.useProgram(progShip.id);
 
 		mat4.translate(modelShip, modelShip, [0, 0.003, 0]);
 		ctx.uniformMatrix4fv(uniModelShip, ctx.FALSE, modelShip);
