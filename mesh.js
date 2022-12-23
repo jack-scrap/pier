@@ -28,6 +28,9 @@ class Mesh {
 
 	_child = [];
 
+	_szVtx = 3;
+	_szSt = 2;
+
 	accModel(prev) {
 		mat4.mul(this._acc, this.model, prev);
 
@@ -46,11 +49,11 @@ class Mesh {
 
 		let vtc = [];
 		for (let i = 0; i < idcVtc.length; i++) {
-			let idx = idcVtc[i] * 3;
+			let idx = idcVtc[i] * this._szVtx;
 
-			vtc.push(vtcUnIdxed[idx]);
-			vtc.push(vtcUnIdxed[idx + 1]);
-			vtc.push(vtcUnIdxed[idx + 2]);
+			for (let i = 0; i < this._szVtx; i++) {
+				vtc.push(vtcUnIdxed[idx + i]);
+			}
 		}
 
 		this._vbo = ctx.createBuffer();
@@ -66,10 +69,11 @@ class Mesh {
 
 		let st = [];
 		for (let i = 0; i < idcSt.length; i++) {
-			let idx = idcSt[i] * 2;
+			let idx = idcSt[i] * this._szSt;
 
-			st.push(stUnIdxed[idx]);
-			st.push(stUnIdxed[idx + 1]);
+			for (let i = 0; i < this._szSt; i++) {
+				st.push(stUnIdxed[idx + i]);
+			}
 		}
 
 		ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(st), ctx.STATIC_DRAW);
