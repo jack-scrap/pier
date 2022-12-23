@@ -131,10 +131,18 @@ document.addEventListener('DOMContentLoaded', function() {
 		console.error('Error validating program', ctx.getProgramInfoLog(prog));
 	}
 
+	let modelTri = new Float32Array(16);
+	mat4.identity(modelTri);
+
+	ctx.useProgram(progTri);
+
 	// Attributes
 	let attrPosTri = ctx.getAttribLocation(progTri, 'pos');
 	ctx.vertexAttribPointer(attrPosTri, 2, ctx.FLOAT, ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
 	ctx.enableVertexAttribArray(attrPosTri);
+
+	let uniModelTri = ctx.getUniformLocation(progTri, 'model');
+	ctx.uniformMatrix4fv(uniModelTri, ctx.FALSE, modelTri);
 
 	ctx.useProgram(null);
 	ctx.bindVertexArray(null);
@@ -238,6 +246,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		ctx.bindVertexArray(vaoTri);
 		ctx.useProgram(progTri);
+
+		mat4.translate(modelTri, modelTri, [0, 0.01, 0]);
+		ctx.uniformMatrix4fv(uniModelTri, ctx.FALSE, modelTri);
 
 		ctx.drawArrays(ctx.TRIANGLES, 0, 3);
 
