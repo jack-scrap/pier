@@ -52,4 +52,12 @@ class Prog {
 			console.error('Error validating program', ctx.getProgramInfoLog(this.id));
 		}
 	}
+
+	use() {
+		ctx.useProgram(this.id);
+	}
+
+	unUse() {
+		ctx.useProgram(null);
+	}
 };

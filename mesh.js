@@ -120,7 +120,7 @@ class Mesh {
 		/* Shader */
 		this.prog = new Prog(nameVtx, nameFrag);
 
-		ctx.useProgram(this.prog.id);
+		this.prog.use();
 
 		// Attributes
 		ctx.bindBuffer(ctx.ARRAY_BUFFER, this._vbo);
@@ -144,7 +144,7 @@ class Mesh {
 		ctx.uniformMatrix4fv(this.uniView, ctx.FALSE, this.view);
 		ctx.uniformMatrix4fv(this._uniProj, ctx.FALSE, this._proj);
 
-		ctx.useProgram(null);
+		this.prog.unUse();
 
 		this.accModel(this._acc);
 	}
@@ -157,14 +157,14 @@ class Mesh {
 		]);
 
 		ctx.bindVertexArray(this._vao);
-		ctx.useProgram(this.prog.id);
+		this.prog.use();
 
 		ctx.uniformMatrix4fv(this.uniModel, ctx.FALSE, this._acc);
 		ctx.uniformMatrix4fv(this.uniView, ctx.FALSE, this.view);
 
 		ctx.drawArrays(ctx.TRIANGLES, 0, this._noIdc);
 
-		ctx.useProgram(null);
+		this.prog.unUse();
 		ctx.bindVertexArray(null);
 
 		for (let inst of this._child) {

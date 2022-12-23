@@ -70,26 +70,26 @@ document.addEventListener('keydown', function(e) {
 		case 37: // Left
 			e.preventDefault();
 
-			ctx.useProgram(progShip.id);
+			progShip.use();
 
 			mat4.rotate(modelShip, modelShip, 0.1, [0, 0, 1]);
 
 			ctx.uniformMatrix4fv(uniModelShip, ctx.FALSE, modelShip);
 
-			ctx.useProgram(null);
+			progShip.unUse();
 
 			break;
 
 		case 39: // Right
 			e.preventDefault();
 
-			ctx.useProgram(progShip.id);
+			progShip.use();
 
 			mat4.rotate(modelShip, modelShip, -0.1, [0, 0, 1]);
 
 			ctx.uniformMatrix4fv(uniModelShip, ctx.FALSE, modelShip);
 
-			ctx.useProgram(null);
+			progShip.unUse();
 
 			break;
 
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	scr = new Mesh('scr', 'scr', 'tex');
 
-	ctx.useProgram(scr.prog.id);
+	scr.prog.use();
 
 	/* Ship */
 	let vaoShip = ctx.createVertexArray();
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	modelShip = new Float32Array(16);
 	mat4.identity(modelShip);
 
-	ctx.useProgram(progShip.id);
+	progShip.use();
 
 	// Attributes
 	let attrPosShip = ctx.getAttribLocation(progShip.id, 'pos');
@@ -170,10 +170,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	uniModelShip = ctx.getUniformLocation(progShip.id, 'model');
 	ctx.uniformMatrix4fv(uniModelShip, ctx.FALSE, modelShip);
 
-	ctx.useProgram(null);
+	scr.prog.unUse();
 	ctx.bindVertexArray(null);
 
-	ctx.useProgram(scr.prog.id);
+	scr.prog.use();
 
 	let tex = ctx.createTexture();
 	ctx.bindTexture(ctx.TEXTURE_2D, tex);
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.bindTexture(ctx.TEXTURE_2D, tex);
 	ctx.activeTexture(ctx.TEXTURE0);
 
-	ctx.useProgram(null);
+	scr.prog.unUse();
 
 	cabinet = new Mesh('cabinet', 'obj', 'dir', [0, 0, 0], [0, theta, 0], [
 		scr
@@ -211,14 +211,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		ctx.clear(ctx.COLOR_BUFFER_BIT);
 
 		ctx.bindVertexArray(vaoShip);
-		ctx.useProgram(progShip.id);
+		progShip.use();
 
 		mat4.translate(modelShip, modelShip, [0, shipSpeed, 0]);
 		ctx.uniformMatrix4fv(uniModelShip, ctx.FALSE, modelShip);
 
 		ctx.drawArrays(ctx.LINE_LOOP, 0, 3);
 
-		ctx.useProgram(null);
+		progShip.unUse();
 		ctx.bindVertexArray(null);
 
 		ctx.bindFramebuffer(ctx.FRAMEBUFFER, null);
