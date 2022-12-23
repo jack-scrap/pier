@@ -225,10 +225,10 @@ document.addEventListener("DOMContentLoaded", function() {
 	let cursor = new Char("a", [-0.8, (o + 1) * -lineHt]);
 
 	// Scoreboard
-	let scoreLine = [];
+	let scoreBuff = [];
 	for (let i = 0; i < 3; i++) {
 		if (i < score.length) {
-			scoreLine.push(new Str(score[i].toString(), [0.0, i * -lineHt]));
+			scoreBuff.push(new Str(score[i].toString(), [0.0, i * -lineHt]));
 		}
 	}
 
@@ -270,7 +270,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				break;
 
 			case 2: // Scoreboard
-				for (let line of scoreLine) {
+				for (let line of scoreBuff) {
 					line.draw();
 				}
 
