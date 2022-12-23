@@ -1,3 +1,5 @@
+var m = 1;
+
 var cabinet;
 var scr;
 
@@ -66,48 +68,58 @@ document.addEventListener('mousewheel', function(e) {
 });
 
 document.addEventListener('keydown', function(e) {
-	switch (e.keyCode) {
-		case 37: // Left
-			e.preventDefault();
+	switch (m) {
+		case 1: // Game
+			switch (e.keyCode) {
+				case 37: // Left
+					e.preventDefault();
 
-			progShip.use();
+					progShip.use();
 
-			mat4.rotate(modelShip, modelShip, 0.1, [0, 0, 1]);
+					mat4.rotate(modelShip, modelShip, 0.1, [0, 0, 1]);
 
-			gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
+					gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
 
-			progShip.unUse();
+					progShip.unUse();
+
+					break;
+
+				case 39: // Right
+					e.preventDefault();
+
+					progShip.use();
+
+					mat4.rotate(modelShip, modelShip, -0.1, [0, 0, 1]);
+
+					gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
+
+					progShip.unUse();
+
+					break;
+
+				case 38: // Up
+					e.preventDefault();
+
+					shipSpeed = 0.01;
+
+					break;
+			}
 
 			break;
-
-		case 39: // Right
-			e.preventDefault();
-
-			progShip.use();
-
-			mat4.rotate(modelShip, modelShip, -0.1, [0, 0, 1]);
-
-			gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
-
-			progShip.unUse();
-
-			break;
-
-		case 38: // Up
-			e.preventDefault();
-
-			shipSpeed = 0.01;
-
-			break;
-	}
+	};
 });
 
 document.addEventListener('keyup', function(e) {
-	switch (e.keyCode) {
-		case 38: // Up
-			e.preventDefault();
+	switch (m) {
+		case 1: // Game
+			switch (e.keyCode) {
+				case 38: // Up
+					e.preventDefault();
 
-			shipSpeed = 0.003;
+					shipSpeed = 0.003;
+
+					break;
+			}
 
 			break;
 	}
@@ -208,16 +220,21 @@ document.addEventListener('DOMContentLoaded', function() {
 		gl.clearColor(0, 0.06, 0, 1.0);
 		gl.clear(gl.COLOR_BUFFER_BIT);
 
-		gl.bindVertexArray(vaoShip);
-		progShip.use();
+		switch (m) {
+			case 1: // Game
+				gl.bindVertexArray(vaoShip);
+				progShip.use();
 
-		mat4.translate(modelShip, modelShip, [0, shipSpeed, 0]);
-		gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
+				mat4.translate(modelShip, modelShip, [0, shipSpeed, 0]);
+				gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
 
-		gl.drawArrays(gl.LINE_LOOP, 0, 3);
+				gl.drawArrays(gl.LINE_LOOP, 0, 3);
 
-		progShip.unUse();
-		gl.bindVertexArray(null);
+				progShip.unUse();
+				gl.bindVertexArray(null);
+
+				break;
+		};
 
 		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 
