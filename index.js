@@ -218,6 +218,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	let cbo = ctx.COLOR_ATTACHMENT0;
 	ctx.framebufferTexture2D(ctx.FRAMEBUFFER, cbo, ctx.TEXTURE_2D, tex, 0);
 
+	ctx.bindTexture(ctx.TEXTURE_2D, tex);
+	ctx.activeTexture(ctx.TEXTURE0);
+
+	ctx.useProgram(null);
+
 	// Render to texture
 	cabinet = new Mesh('cabinet', 'obj', 'dir', [0, 0, 0], [0, theta, 0], [
 		scr
