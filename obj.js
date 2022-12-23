@@ -6,7 +6,7 @@ const type = {
 
 const triVtc = 3;
 
-class Mesh {
+class Obj {
 	_noIdc;
 
 	model = new Float32Array(16);
