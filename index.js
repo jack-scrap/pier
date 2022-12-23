@@ -132,8 +132,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		alert('Your browser does not support WebGL');
 	}
 
-	gl.lineWidth(5);
-
 	gl.cullFace(gl.BACK);
 
 	scr = new Obj('scr', 'scr', 'tex');
