@@ -74,9 +74,9 @@ document.addEventListener("keydown", function(e) {
 				case 37: // Left
 					e.preventDefault();
 
-					progShip.use();
-
 					mat4.rotate(modelShip, modelShip, 0.1, [0, 0, 1]);
+
+					progShip.use();
 
 					gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
 
@@ -87,9 +87,9 @@ document.addEventListener("keydown", function(e) {
 				case 39: // Right
 					e.preventDefault();
 
-					progShip.use();
-
 					mat4.rotate(modelShip, modelShip, -0.1, [0, 0, 1]);
+
+					progShip.use();
 
 					gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
 
