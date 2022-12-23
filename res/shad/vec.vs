@@ -8,7 +8,7 @@ uniform mat4 model;
 
 const float scale = 0.1;
 
-vec2 dim = vec2(1.2, 0.6);
+const vec2 dim = vec2(1.2, 0.6);
 
 void main() {
 	float aspect = dim[0] / dim[1];
