@@ -212,14 +212,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	const lineHt = 0.2;
 
-	const title = new Str("tachyon", 0.0, lineHt);
+	const title = new Str("tachyon", [0.0, lineHt]);
 
 	const opt = [
-		new Str("play", 0.0, -lineHt),
-		new Str("scoreboard", 0.0, 2 * -lineHt)
+		new Str("play", [0.0, -lineHt]),
+		new Str("scoreboard", [0.0, 2 * -lineHt])
 	];
 
-	let cursor = new Char("a", -0.8, (o + 1) * -lineHt);
+	let cursor = new Char("a", [-0.8, (o + 1) * -lineHt]);
 
 	function draw() {
 		// Framebuffer

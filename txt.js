@@ -15,9 +15,9 @@ class Char {
 		}
 	}
 
-	constructor(c, x = 0.0, y = 0.0) {
-		this.x = x;
-		this.y = y;
+	constructor(c, loc = [0.0, 0.0]) {
+		this.x = loc[0];
+		this.y = loc[1];
 
 		this.vao = gl.createVertexArray();
 		gl.bindVertexArray(this.vao);
@@ -64,13 +64,13 @@ class Char {
 };
 
 class Str {
-	constructor(buff, x = 0.0, y = 0.0) {
+	constructor(buff, loc = [0.0, 0.0]) {
 		this.buff = [];
 
 		this.wd = (buff.length + (buff.length - 1)) / 10;
 
 		for (let i = 0; i < buff.length; i++) {
-			this.buff.push(new Char(buff[i], x - (this.wd / 4) + (i * (1 / 10)), y));
+			this.buff.push(new Char(buff[i], [loc[0] - (this.wd / 4) + (i * (1 / 10)), loc[1]]));
 		}
 	}
 
