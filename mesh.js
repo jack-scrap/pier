@@ -65,18 +65,20 @@ class Mesh {
 
 		let stUnIdxed = Ld.attr(nameObj, 1);
 
-		let idcSt = Ld.idc(nameObj, 1);
+		if (stUnIdxed.length) {
+			let idcSt = Ld.idc(nameObj, 1);
 
-		let st = [];
-		for (let i = 0; i < idcSt.length; i++) {
-			let idx = idcSt[i] * this._szSt;
+			let st = [];
+			for (let i = 0; i < idcSt.length; i++) {
+				let idx = idcSt[i] * this._szSt;
 
-			for (let i = 0; i < this._szSt; i++) {
-				st.push(stUnIdxed[idx + i]);
+				for (let i = 0; i < this._szSt; i++) {
+					st.push(stUnIdxed[idx + i]);
+				}
 			}
-		}
 
-		ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(st), ctx.STATIC_DRAW);
+			ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(st), ctx.STATIC_DRAW);
+		}
 
 		this._noIdc = idcVtc.length;
 
@@ -126,10 +128,12 @@ class Mesh {
 		ctx.vertexAttribPointer(attrPos, 3, ctx.FLOAT, ctx.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
 		ctx.enableVertexAttribArray(attrPos);
 
-		ctx.bindBuffer(ctx.ARRAY_BUFFER, this._stbo);
-		let attrSt = ctx.getAttribLocation(this.prog.id, 'st');
-		ctx.vertexAttribPointer(attrSt, 2, ctx.FLOAT, ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
-		ctx.enableVertexAttribArray(attrSt);
+		if (stUnIdxed.length) {
+			ctx.bindBuffer(ctx.ARRAY_BUFFER, this._stbo);
+			let attrSt = ctx.getAttribLocation(this.prog.id, 'st');
+			ctx.vertexAttribPointer(attrSt, 2, ctx.FLOAT, ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
+			ctx.enableVertexAttribArray(attrSt);
+		}
 
 		// Uniforms
 		this.uniModel = ctx.getUniformLocation(this.prog.id, 'model');

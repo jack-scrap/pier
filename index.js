@@ -204,6 +204,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.useProgram(null);
 	ctx.bindVertexArray(null);
 
+	ctx.useProgram(scr.prog.id);
+
 	var tex = ctx.createTexture();
 	ctx.bindTexture(ctx.TEXTURE_2D, tex);
 
@@ -220,26 +222,29 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.framebufferTexture2D(ctx.FRAMEBUFFER, cbo, ctx.TEXTURE_2D, tex, 0);
 
 	// Render to texture
-	ctx.clearColor(0, 0.06, 0, 1.0);
-	ctx.clear(ctx.COLOR_BUFFER_BIT);
-
-	ctx.bindVertexArray(vaoTri);
-	ctx.useProgram(progTri);
-
-	ctx.drawArrays(ctx.TRIANGLES, 0, 3);
-
-	ctx.useProgram(null);
-	ctx.bindVertexArray(null);
-
-	ctx.bindFramebuffer(ctx.FRAMEBUFFER, null);
-
 	cabinet = new Mesh('cabinet', 'obj', 'dir', [0, 0, 0], [0, theta, 0], [
 		scr
 	]);
 
-	ctx.clearColor(1 - ((1 - (col[0] / 255)) / 2), 1 - ((1 - (col[1] / 255)) / 2), 1 - ((1 - (col[2] / 255)) / 2), 1);
-
 	function draw() {
+		/* Framebuffer */
+		ctx.bindFramebuffer(ctx.FRAMEBUFFER, fbo);
+
+		ctx.clearColor(0, 0.06, 0, 1.0);
+		ctx.clear(ctx.COLOR_BUFFER_BIT);
+
+		ctx.bindVertexArray(vaoTri);
+		ctx.useProgram(progTri);
+
+		ctx.drawArrays(ctx.TRIANGLES, 0, 3);
+
+		ctx.useProgram(null);
+		ctx.bindVertexArray(null);
+
+		ctx.bindFramebuffer(ctx.FRAMEBUFFER, null);
+
+		/* Cabinet */
+		ctx.clearColor(1 - ((1 - (col[0] / 255)) / 2), 1 - ((1 - (col[1] / 255)) / 2), 1 - ((1 - (col[2] / 255)) / 2), 1);
 		ctx.clear(ctx.COLOR_BUFFER_BIT | ctx.DEPTH_BUFFER_BIT);
 
 		cabinet.draw();
