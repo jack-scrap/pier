@@ -1,3 +1,4 @@
+var o = 0;
 var m = 0;
 
 var cabinet;
@@ -218,6 +219,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		new Str("scoreboard", 0.0, 2 * -lineHt)
 	];
 
+	let cursor = new Char("a", -0.8, (o + 1) * -lineHt);
+
 	function draw() {
 		// Framebuffer
 		gl.disable(gl.DEPTH_TEST);
@@ -236,6 +239,8 @@ document.addEventListener("DOMContentLoaded", function() {
 				for (let line of opt) {
 					line.draw();
 				}
+
+				cursor.draw();
 
 				break;
 
