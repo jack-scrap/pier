@@ -12,15 +12,13 @@ class Util {
 	}
 
 	static calcNorm(vtc, i) {
-		let
-			startA = i * axes,
-			startB = (i + 1) * axes,
-			startC = (i + 2) * axes;
+		let startA = i * axes;
+		let startB = (i + 1) * axes;
+		let startC = (i + 2) * axes;
 
-		let
-			a = vec3.fromValues(vtc[startA], vtc[startA + 1], vtc[startA + 2]),
-			b = vec3.fromValues(vtc[startB], vtc[startB + 1], vtc[startB + 2]),
-			c = vec3.fromValues(vtc[startC], vtc[startC + 1], vtc[startC + 2]);
+		let a = vec3.fromValues(vtc[startA], vtc[startA + 1], vtc[startA + 2]);
+		let b = vec3.fromValues(vtc[startB], vtc[startB + 1], vtc[startB + 2]);
+		let c = vec3.fromValues(vtc[startC], vtc[startC + 1], vtc[startC + 2]);
 
 		let v = [
 			vec3.create(),
