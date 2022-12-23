@@ -269,6 +269,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		requestAnimationFrame(draw);
 	};
-
 	requestAnimationFrame(draw);
 });
