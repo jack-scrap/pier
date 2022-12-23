@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	ctx.useProgram(scr.prog.id);
 
-	/* Triangle */
+	/* Ship */
 	let vaoShip = ctx.createVertexArray();
 	ctx.bindVertexArray(vaoShip);
 
