@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.bindBuffer(ctx.ARRAY_BUFFER, vboTri);
 	ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(vtcTri), ctx.STATIC_DRAW);
 
-	const shadVtxTriBuff = Util.rd('res/shad/scr.vs');
+	const shadVtxTriBuff = Util.rd('res/shad/scr_spc.vs');
 
 	let shadVtxTri = ctx.createShader(ctx.VERTEX_SHADER);
 	ctx.shaderSource(shadVtxTri, shadVtxTriBuff);
