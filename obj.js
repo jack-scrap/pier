@@ -124,21 +124,21 @@ class Obj {
 
 		// Attributes
 		gl.bindBuffer(gl.ARRAY_BUFFER, this._vbo);
-		let attrPos = gl.getAttribLocation(this.prog.id, 'pos');
+		let attrPos = gl.getAttribLocation(this.prog.id, "pos");
 		gl.vertexAttribPointer(attrPos, 3, gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
 		gl.enableVertexAttribArray(attrPos);
 
 		if (stUnIdxed.length) {
 			gl.bindBuffer(gl.ARRAY_BUFFER, this._stbo);
-			let attrSt = gl.getAttribLocation(this.prog.id, 'st');
+			let attrSt = gl.getAttribLocation(this.prog.id, "st");
 			gl.vertexAttribPointer(attrSt, 2, gl.FLOAT, gl.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
 			gl.enableVertexAttribArray(attrSt);
 		}
 
 		// Uniforms
-		this.uniModel = gl.getUniformLocation(this.prog.id, 'model');
-		this.uniView = gl.getUniformLocation(this.prog.id, 'view');
-		this._uniProj = gl.getUniformLocation(this.prog.id, 'proj');
+		this.uniModel = gl.getUniformLocation(this.prog.id, "model");
+		this.uniView = gl.getUniformLocation(this.prog.id, "view");
+		this._uniProj = gl.getUniformLocation(this.prog.id, "proj");
 
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
 		gl.uniformMatrix4fv(this.uniView, gl.FALSE, this.view);

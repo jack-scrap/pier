@@ -18,14 +18,14 @@ class Shad {
 				break;
 		}
 
-		const buff = Util.rd('res/shad/' + name + "." + ext);
+		const buff = Util.rd("res/shad/" + name + "." + ext);
 
 		this.id = gl.createShader(type);
 		gl.shaderSource(this.id, buff);
 
 		gl.compileShader(this.id);
 		if (!gl.getShaderParameter(this.id, gl.COMPILE_STATUS)) {
-			console.error('Error compiling shader', gl.getShaderInfoLog(this.id));
+			console.error("Error compiling shader", gl.getShaderInfoLog(this.id));
 		}
 	}
 };
@@ -44,12 +44,12 @@ class Prog {
 
 		gl.linkProgram(this.id);
 		if (!gl.getProgramParameter(this.id, gl.LINK_STATUS)) {
-			console.error('Error linking program', gl.getProgramInfoLog(this.id));
+			console.error("Error linking program", gl.getProgramInfoLog(this.id));
 		}
 
 		gl.validateProgram(this.id);
 		if (!gl.getProgramParameter(this.id, gl.VALIDATE_STATUS)) {
-			console.error('Error validating program', gl.getProgramInfoLog(this.id));
+			console.error("Error validating program", gl.getProgramInfoLog(this.id));
 		}
 	}
 

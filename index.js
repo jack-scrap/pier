@@ -33,19 +33,19 @@ function fitCanv() {
 	window.canv.height = window.innerHeight;
 }
 
-document.addEventListener('mousedown', function(e) {
+document.addEventListener("mousedown", function(e) {
 	drag = true;
 
 	mouseStartX = e.clientX;
 });
 
-document.addEventListener('mouseup', function() {
+document.addEventListener("mouseup", function() {
 	drag = false;
 
 	theta += mouseDeltaX;
 });
 
-document.addEventListener('mousemove', function(e) {
+document.addEventListener("mousemove", function(e) {
 	if (drag) {
 		mouseCurrX = e.clientX;
 
@@ -60,14 +60,14 @@ document.addEventListener('mousemove', function(e) {
 	}
 });
 
-document.addEventListener('mousewheel', function(e) {
+document.addEventListener("mousewheel", function(e) {
 	camScale += e.deltaY / 300;
 
 	camScale = Math.min(camScale, 2.0);
 	camScale = Math.max(camScale, 0.2);
 });
 
-document.addEventListener('keydown', function(e) {
+document.addEventListener("keydown", function(e) {
 	switch (m) {
 		case 1: // Game
 			switch (e.keyCode) {
@@ -109,7 +109,7 @@ document.addEventListener('keydown', function(e) {
 	};
 });
 
-document.addEventListener('keyup', function(e) {
+document.addEventListener("keyup", function(e) {
 	switch (m) {
 		case 1: // Game
 			switch (e.keyCode) {
@@ -125,28 +125,28 @@ document.addEventListener('keyup', function(e) {
 	}
 });
 
-window.addEventListener('resize', fitCanv);
+window.addEventListener("resize", fitCanv);
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function() {
 	// Context
-	window.canv = document.getElementById('disp');
+	window.canv = document.getElementById("disp");
 
 	fitCanv();
 
-	gl = window.canv.getContext('webgl2');
+	gl = window.canv.getContext("webgl2");
 
 	if (!gl) {
-		console.log('WebGL not supported, falling back on experimental-webgl');
-		gl = window.canv.getContext('experimental-webgl');
+		console.log("WebGL not supported, falling back on experimental-webgl");
+		gl = window.canv.getContext("experimental-webgl");
 	}
 
 	if (!gl) {
-		alert('Your browser does not support WebGL');
+		alert("Your browser does not support WebGL");
 	}
 
 	gl.cullFace(gl.BACK);
 
-	scr = new Obj('scr', 'scr', 'tex');
+	scr = new Obj("scr", "scr", "tex");
 
 	scr.prog.use();
 
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	gl.bindBuffer(gl.ARRAY_BUFFER, vboShip);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vtcShip), gl.STATIC_DRAW);
 
-	progShip = new Prog('vec', 'green');
+	progShip = new Prog("vec", "green");
 
 	modelShip = new Float32Array(16);
 	mat4.identity(modelShip);
@@ -172,12 +172,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	progShip.use();
 
 	// Attributes
-	let attrPosShip = gl.getAttribLocation(progShip.id, 'pos');
+	let attrPosShip = gl.getAttribLocation(progShip.id, "pos");
 	gl.vertexAttribPointer(attrPosShip, 2, gl.FLOAT, gl.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
 	gl.enableVertexAttribArray(attrPosShip);
 
 	// Uniforms
-	uniModelShip = gl.getUniformLocation(progShip.id, 'model');
+	uniModelShip = gl.getUniformLocation(progShip.id, "model");
 	gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
 
 	scr.prog.unUse();
@@ -205,17 +205,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	scr.prog.unUse();
 
-	cabinet = new Obj('cabinet', 'obj', 'dir', [0, 0, 0], [0, theta, 0], [
+	cabinet = new Obj("cabinet", "obj", "dir", [0, 0, 0], [0, theta, 0], [
 		scr
 	]);
 
 	const lineHt = 0.2;
 
-	const title = new Str('tachyon');
+	const title = new Str("tachyon");
 
 	const opt = [
-		new Str('play', 0.0, -lineHt),
-		new Str('scoreboard', 0.0, 2 * -lineHt)
+		new Str("play", 0.0, -lineHt),
+		new Str("scoreboard", 0.0, 2 * -lineHt)
 	];
 
 	function draw() {

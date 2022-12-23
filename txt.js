@@ -662,11 +662,11 @@ class Char {
 	asciiToAlphaNo(c) {
 		let i = c.charCodeAt(0);
 
-		if (i >= '0'.charCodeAt(0) && i <= '9'.charCodeAt(0)) {
+		if (i >= "0".charCodeAt(0) && i <= "9".charCodeAt(0)) {
 			return i - 48;
 		}
 
-		if (i >= 'a'.charCodeAt(0) && i <= 'z'.charCodeAt(0)) {
+		if (i >= "a".charCodeAt(0) && i <= "z".charCodeAt(0)) {
 			return i - 97 + 10;
 		}
 	}
@@ -683,7 +683,7 @@ class Char {
 		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.vtc), gl.STATIC_DRAW);
 
 		// program
-		this.prog = new Prog('vec', 'green');
+		this.prog = new Prog("vec", "green");
 
 		// matrix
 		this.model = new Float32Array(16);
@@ -696,12 +696,12 @@ class Char {
 		mat4.identity(this.id);
 
 		// attribute
-		this.attrPos = gl.getAttribLocation(this.prog.id, 'pos');
+		this.attrPos = gl.getAttribLocation(this.prog.id, "pos");
 		gl.vertexAttribPointer(this.attrPos, 2, gl.FLOAT, gl.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
 		gl.enableVertexAttribArray(this.attrPos);
 
 		// uniform
-		this.uniModel = gl.getUniformLocation(this.prog.id, 'model');
+		this.uniModel = gl.getUniformLocation(this.prog.id, "model");
 
 		this.x = x;
 		this.y = y;

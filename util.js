@@ -1,13 +1,13 @@
 class Util {
 	static rd(fName) {
 		let req = new XMLHttpRequest();
-		req.open('GET', fName, false);
+		req.open("GET", fName, false);
 		req.send(null);
 
 		if (req.status == 200) {
 			return req.responseText;
 		} else {
-			console.error(`Couldn't load '${fName}'; status ${req.status}`);
+			console.error(`Couldn"t load "${fName}"; status ${req.status}`);
 		}
 	}
 
@@ -37,17 +37,17 @@ class Util {
 };
 
 class Ld {
-	static resPath = 'res';
-	static objPath = this.resPath + '/' + 'obj';
+	static resPath = "res";
+	static objPath = this.resPath + "/" + "obj";
 
-	static ws = ' ';
+	static ws = " ";
 
-	static sep = '/';
+	static sep = "/";
 
 	static id = [
-		'v',
-		'vt',
-		'vn'
+		"v",
+		"vt",
+		"vn"
 	];
 	static sz = [
 		3,
@@ -57,7 +57,7 @@ class Ld {
 
 	static attr(name, attr) {
 		let data = [];
-		for (let l of Util.rd(this.objPath + '/' + name + '.obj').split('\n')) {
+		for (let l of Util.rd(this.objPath + "/" + name + ".obj").split("\n")) {
 			let tok = [];
 			for (let inst of l.split(this.ws)) {
 				tok.push(inst);
@@ -78,13 +78,13 @@ class Ld {
 
 	static idc(name, type) {
 		let data = [];
-		for (let l of Util.rd(this.objPath + '/' + name + '.obj').split('\n')) {
+		for (let l of Util.rd(this.objPath + "/" + name + ".obj").split("\n")) {
 			let tok = [];
 			for (let inst of l.split(this.ws)) {
 				tok.push(inst);
 			}
 
-			if (tok[0] == 'f') {
+			if (tok[0] == "f") {
 				let idc = tok;
 				idc.shift();
 
