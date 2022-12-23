@@ -7,7 +7,7 @@ var mouseStartX;
 var mouseCurrX;
 var mouseDeltaX;
 
-var theta = -100;
+var theta = 0.3;
 
 var id = new Float32Array(16);
 var idWorld = new Float32Array(16);
