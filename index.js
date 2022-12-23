@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	let tex = ctx.createTexture();
 	ctx.bindTexture(ctx.TEXTURE_2D, tex);
 
-	ctx.texImage2D(ctx.TEXTURE_2D, 0, ctx.RGBA, 256, 256, 0, ctx.RGBA, ctx.UNSIGNED_BYTE, null);
+	ctx.texImage2D(ctx.TEXTURE_2D, 0, ctx.RGBA, window.canv.width, window.canv.height, 0, ctx.RGBA, ctx.UNSIGNED_BYTE, null);
 
 	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_MIN_FILTER, ctx.LINEAR);
 	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_WRAP_S, ctx.CLAMP_TO_EDGE);
