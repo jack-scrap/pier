@@ -1,43 +1,43 @@
 class Char {
 	glyph = [
 		[ // 0
-			// left
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			1.0, 0.0,
 
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0
 		], [ // 1
-			// horizontal
+			// Horizontal
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0
 		], [ // 2
-			// left
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			1.0, 0.0,
 
@@ -47,11 +47,11 @@ class Char {
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.5,
 			1.0, 1.0
 		], [ /// 3
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			1.0, 0.0,
 
@@ -61,33 +61,33 @@ class Char {
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0
 		], [ // 4
-			// left
+			// Left
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.5,
 			1.0, 0.5,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0
 		], [ // 5
-			// left
+			// Left
 			1.0, 0.0,
 			1.0, 0.5,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			1.0, 0.0,
 
@@ -97,18 +97,18 @@ class Char {
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			0.0, 0.5,
 			0.0, 1.0
 		], [ // 6
-			// left
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			1.0, 0.0,
 
@@ -118,32 +118,32 @@ class Char {
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5
 		], [ // 7
-			// horizontal
+			// Horizontal
 			0.0, 0.5,
 			1.0, 0.5,
 
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0
 		], [ // 8
-			// left
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			1.0, 0.0,
 
@@ -153,60 +153,60 @@ class Char {
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0
 		], [ // 9
-			// left
+			// Left
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.5,
 			1.0, 0.5,
 
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0
-		], [ // a
-			// left
+		], [ // A
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.5,
 			1.0, 0.5,
 
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0
-		], [ // b
-			// left
+		], [ // B
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			1.0, 0.0,
 
@@ -216,49 +216,49 @@ class Char {
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0
-		], [ // c
-			// left
+		], [ // C
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			1.0, 0.0,
 
 			0.0, 1.0,
 			1.0, 1.0,
-		], [ // d
-			// right
+		], [ // D
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			1.0, 0.0,
 
 			0.0, 1.0,
 			1.0, 1.0,
-		], [ // e
-			// left
+		], [ // E
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			1.0, 0.0,
 
@@ -267,29 +267,29 @@ class Char {
 
 			0.0, 1.0,
 			1.0, 1.0,
-		], [ // f
-			// left
+		], [ // F
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.5,
 			1.0, 0.5,
 
 			0.0, 1.0,
 			1.0, 1.0
-		], [ // g
-			// left
+		], [ // G
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			1.0, 0.0,
 
@@ -299,219 +299,219 @@ class Char {
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5
-		], [ // h
-			// left
+		], [ // H
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.5,
 			1.0, 0.5
-		], [ // i
-			// left
+		], [ // I
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0
-		], [ // j
-			// right
+		], [ // J
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			1.0, 0.0
-		], [ // k
-			// left
+		], [ // K
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.5,
 			1.0, 0.5,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0
-		], [ // l
-			// left
+		], [ // L
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			1.0, 0.0
-		], [ // m
-			// left
+		], [ // M
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// middle
+			// Middle
 			0.5, 0.0,
 			0.5, 0.5,
 
 			0.5, 0.5,
 			0.5, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 1.0,
 			0.5, 1.0,
 
 			0.5, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0
-		], [ // n
-			// left
+		], [ // N
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal (top)
+			// Horizontal (top)
 			0.0, 1.0,
 			0.5, 1.0,
 
-			// center
+			// Center
 			0.5, 1.0,
 			0.5, 0.0,
 
-			// horizontal (bottom)
+			// Horizontal (bottom)
 			0.5, 0.0,
 			1.0, 0.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0,
-		], [ // o
-			// left
+		], [ // O
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// bottom
+			// Bottom
 			0.0, 0.0,
 			0.5, 0.0,
 
 			0.5, 0.0,
 			1.0, 0.0,
 
-			// top
+			// Top
 			0.0, 1.0,
 			0.5, 1.0,
 
 			0.5, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0,
-		], [ // p
-			// left
+		], [ // P
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.5,
 			1.0, 0.5,
 
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.5,
 			1.0, 1.0
-		], [ // q
-			// left
+		], [ // Q
+			// Left
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.5,
 			1.0, 0.5,
 
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0,
-		], [ // r
-			// left
+		], [ // R
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 			
-			// horizontal
+			// Horizontal
 			0.0, 0.5,
 			1.0, 0.5,
 
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0,
-		], [ // s
-			// left
+		], [ // S
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			1.0, 0.0,
 
@@ -521,129 +521,129 @@ class Char {
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.5,
 			1.0, 1.0
-		], [ // t
-			// left
+		], [ // T
+			// Left
 			0.5, 0.0,
 			0.5, 0.5,
 
 			0.5, 0.5,
 			0.5, 1.0,
 
-			// top
+			// Top
 			0.0, 1.0,
 			0.5, 1.0,
 
 			0.5, 1.0,
 			1.0, 1.0
-		], [ // u
-			// left
+		], [ // U
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			0.5, 0.0,
 
 			0.5, 0.0,
 			1.0, 0.0,
 
-			// right
-			1.0, 0.0,
-			1.0, 0.5,
-
-			1.0, 0.5,
-			1.0, 1.0,
-		], [ // v
-			// left
-			0.0, 0.0,
-			0.0, 0.5,
-
-			0.0, 0.5,
-			0.0, 1.0,
-
-			// horizontal
-			0.0, 0.0,
-			0.5, 0.0,
-
-			// right
-			0.5, 0.0,
-			0.5, 0.5,
-
-			0.5, 0.5,
-			0.5, 1.0,
-		], [ // w
-			// left
-			0.0, 0.0,
-			0.0, 0.5,
-
-			0.0, 0.5,
-			0.0, 1.0,
-
-			// middle
-			0.5, 0.0,
-			0.5, 0.5,
-
-			0.5, 0.5,
-			0.5, 1.0,
-
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0,
+		], [ // V
+			// Left
+			0.0, 0.0,
+			0.0, 0.5,
 
-			// bottom
+			0.0, 0.5,
+			0.0, 1.0,
+
+			// Horizontal
+			0.0, 0.0,
+			0.5, 0.0,
+
+			// Right
+			0.5, 0.0,
+			0.5, 0.5,
+
+			0.5, 0.5,
+			0.5, 1.0,
+		], [ // W
+			// Left
+			0.0, 0.0,
+			0.0, 0.5,
+
+			0.0, 0.5,
+			0.0, 1.0,
+
+			// Middle
+			0.5, 0.0,
+			0.5, 0.5,
+
+			0.5, 0.5,
+			0.5, 1.0,
+
+			// Right
+			1.0, 0.0,
+			1.0, 0.5,
+
+			1.0, 0.5,
+			1.0, 1.0,
+
+			// Bottom
 			0.0, 0.0,
 			0.5, 0.0,
 
 			0.5, 0.0,
 			1.0, 0.0
-		], [ // x
-			// left
+		], [ // X
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.5,
 			1.0, 0.5
-		], [ // y
-			// left
+		], [ // Y
+			// Left
 			0.0, 0.5,
 			0.0, 1.0,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.5,
 			1.0, 0.5,
 
-			// right
+			// Right
 			1.0, 0.0,
 			1.0, 0.5,
 
 			1.0, 0.5,
 			1.0, 1.0
-		], [ // z
-			// left
+		], [ // Z
+			// Left
 			0.0, 0.0,
 			0.0, 0.5,
 
-			// horizontal
+			// Horizontal
 			0.0, 0.0,
 			1.0, 0.0,
 
@@ -653,7 +653,7 @@ class Char {
 			0.0, 1.0,
 			1.0, 1.0,
 
-			// right
+			// Right
 			1.0, 0.5,
 			1.0, 1.0
 		]
@@ -675,17 +675,17 @@ class Char {
 		this.vao = gl.createVertexArray();
 		gl.bindVertexArray(this.vao);
 
-		// data
+		// Data
 		this.vtc = this.glyph[this.asciiToAlphaNo(c)];
 
 		this.vbo = gl.createBuffer();
 		gl.bindBuffer(gl.ARRAY_BUFFER, this.vbo);
 		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.vtc), gl.STATIC_DRAW);
 
-		// program
+		// Program
 		this.prog = new Prog("vec", "green");
 
-		// matrix
+		// Matrix
 		this.model = new Float32Array(16);
 		mat4.identity(this.model);
 
@@ -695,12 +695,12 @@ class Char {
 
 		mat4.identity(this.id);
 
-		// attribute
+		// Attribute
 		this.attrPos = gl.getAttribLocation(this.prog.id, "pos");
 		gl.vertexAttribPointer(this.attrPos, 2, gl.FLOAT, gl.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
 		gl.enableVertexAttribArray(this.attrPos);
 
-		// uniform
+		// Uniform
 		this.uniModel = gl.getUniformLocation(this.prog.id, "model");
 
 		this.x = x;
