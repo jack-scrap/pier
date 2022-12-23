@@ -86,25 +86,152 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	ctx.useProgram(scr.prog.id);
 
+	/* Triangle */
+	// Data
+	var vaoTri = ctx.createVertexArray();
+	ctx.bindVertexArray(vaoTri);
+
+	const vtcTri = [
+		0.0, 0.5,
+		-0.5, -0.5,
+		0.5, -0.5
+	];
+
+	var vboTri = ctx.createBuffer();
+	ctx.bindBuffer(ctx.ARRAY_BUFFER, vboTri);
+	ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(vtcTri), ctx.STATIC_DRAW);
+
+	// Shader
+	const shadVtxTriBuff = Util.rd('res/shad/main.vs');
+
+	var shadVtxTri = ctx.createShader(ctx.VERTEX_SHADER);
+	ctx.shaderSource(shadVtxTri, shadVtxTriBuff);
+
+	const shadFragTriBuff = Util.rd('res/shad/red.fs');
+
+	var shadFragTri = ctx.createShader(ctx.FRAGMENT_SHADER);
+	ctx.shaderSource(shadFragTri, shadFragTriBuff);
+
+	ctx.compileShader(shadVtxTri);
+	if (!ctx.getShaderParameter(shadVtxTri, ctx.COMPILE_STATUS)) {
+		console.error('Vertex error: ', ctx.getShaderInfoLog(shadVtxTri));
+	}
+
+	ctx.compileShader(shadFragTri);
+	if (!ctx.getShaderParameter(shadFragTri, ctx.COMPILE_STATUS)) {
+		console.error('Fragment error: ', ctx.getShaderInfoLog(shadFragTri));
+	}
+
+	var progTri = ctx.createProgram();
+	ctx.attachShader(progTri, shadVtxTri);
+	ctx.attachShader(progTri, shadFragTri);
+
+	ctx.linkProgram(progTri);
+	if (!ctx.getProgramParameter(progTri, ctx.LINK_STATUS)) {
+		console.error('Error linking program', ctx.getProgramInfoLog(prog));
+	}
+
+	ctx.validateProgram(progTri);
+	if (!ctx.getProgramParameter(progTri, ctx.VALIDATE_STATUS)) {
+		console.error('Error validating program', ctx.getProgramInfoLog(prog));
+	}
+
+	// Attribute
+	var attrPosTri = ctx.getAttribLocation(progTri, 'pos');
+	ctx.vertexAttribPointer(attrPosTri, 2, ctx.FLOAT, ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
+	ctx.enableVertexAttribArray(attrPosTri);
+
+	ctx.useProgram(null);
+	ctx.bindVertexArray(null);
+
+	/* Framebuffer */
+	var vaoFrame = ctx.createVertexArray();
+	ctx.bindVertexArray(vaoFrame);
+
+	const vtcFrame = [
+		-1.0, -1.0,
+		1.0, -1.0,
+		-1.0, 1.0,
+
+		-1.0, 1.0,
+		1.0, -1.0,
+		1.0, 1.0
+	];
+
+	var vboFrame = ctx.createBuffer();
+	ctx.bindBuffer(ctx.ARRAY_BUFFER, vboFrame);
+	ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(vtcFrame), ctx.STATIC_DRAW);
+
+	const shadVtxBuff = Util.rd('res/shad/tex.vs');
+
+	var shadVtx = ctx.createShader(ctx.VERTEX_SHADER);
+	ctx.shaderSource(shadVtx, shadVtxBuff);
+
+	const shadFragBuff = Util.rd('res/shad/tex.fs');
+
+	var shadFrag = ctx.createShader(ctx.FRAGMENT_SHADER);
+	ctx.shaderSource(shadFrag, shadFragBuff);
+
+	ctx.compileShader(shadVtx);
+	if (!ctx.getShaderParameter(shadVtx, ctx.COMPILE_STATUS)) {
+		console.error('Vertex error: ', ctx.getShaderInfoLog(shadVtx));
+	}
+
+	ctx.compileShader(shadFrag);
+	if (!ctx.getShaderParameter(shadFrag, ctx.COMPILE_STATUS)) {
+		console.error('Fragment error: ', ctx.getShaderInfoLog(shadFrag));
+	}
+
+	var progFrame = ctx.createProgram();
+	ctx.attachShader(progFrame, shadVtx);
+	ctx.attachShader(progFrame, shadFrag);
+
+	ctx.linkProgram(progFrame);
+	if (!ctx.getProgramParameter(progFrame, ctx.LINK_STATUS)) {
+		console.error('Error linking program', ctx.getProgramInfoLog(prog));
+	}
+
+	ctx.validateProgram(progFrame);
+	if (!ctx.getProgramParameter(progFrame, ctx.VALIDATE_STATUS)) {
+		console.error('Error validating program', ctx.getProgramInfoLog(prog));
+	}
+
+	// Attribute
+	var attrPosFrame = ctx.getAttribLocation(progFrame, 'pos');
+	ctx.vertexAttribPointer(attrPosFrame, 2, ctx.FLOAT, ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
+	ctx.enableVertexAttribArray(attrPosFrame);
+
+	ctx.useProgram(null);
+	ctx.bindVertexArray(null);
+
 	var tex = ctx.createTexture();
 	ctx.bindTexture(ctx.TEXTURE_2D, tex);
 
+	ctx.texImage2D(ctx.TEXTURE_2D, 0, ctx.RGBA, 256, 256, 0, ctx.RGBA, ctx.UNSIGNED_BYTE, null);
+
+	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_MIN_FILTER, ctx.LINEAR);
 	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_WRAP_S, ctx.CLAMP_TO_EDGE);
 	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_WRAP_T, ctx.CLAMP_TO_EDGE);
 
-	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_MIN_FILTER, ctx.LINEAR);
-	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_MAG_FILTER, ctx.LINEAR);
+	var fbo = ctx.createFramebuffer();
+	ctx.bindFramebuffer(ctx.FRAMEBUFFER, fbo);
 
-	ctx.texImage2D(ctx.TEXTURE_2D, 0, ctx.RGBA, ctx.RGBA, ctx.UNSIGNED_BYTE, document.getElementById('texImg'));
+	var cbo = ctx.COLOR_ATTACHMENT0;
+	ctx.framebufferTexture2D(ctx.FRAMEBUFFER, cbo, ctx.TEXTURE_2D, tex, 0);
 
-	ctx.bindTexture(ctx.TEXTURE_2D, null);
+	// Render to texture
+	ctx.clearColor(0, 0, 0, 1.0);
+	ctx.clear(ctx.COLOR_BUFFER_BIT);
 
-	ctx.useProgram(scr.prog.id);
+	ctx.bindVertexArray(vaoTri);
+	ctx.useProgram(progTri);
 
-	ctx.bindTexture(ctx.TEXTURE_2D, tex);
-	ctx.activeTexture(ctx.TEXTURE0);
+	ctx.drawArrays(ctx.TRIANGLES, 0, 3);
 
 	ctx.useProgram(null);
+	ctx.bindVertexArray(null);
+
+	ctx.bindFramebuffer(ctx.FRAMEBUFFER, null);
 
 	cabinet = new Mesh('cabinet', 'obj', 'dir', [0, 0, 0], [0, theta, 0], [
 		scr
