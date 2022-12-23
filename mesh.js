@@ -20,8 +20,6 @@ class Mesh {
 	_vbo;
 	_stbo;
 
-	_ibo;
-
 	uniModel;
 	uniView;
 	_uniProj;
@@ -42,7 +40,18 @@ class Mesh {
 		this._vao = ctx.createVertexArray();
 		ctx.bindVertexArray(this._vao);
 
-		let vtc = Ld.attr(nameObj, 0);
+		let vtcUnIdxed = Ld.attr(nameObj, 0);
+
+		let idcVtc = Ld.idc(nameObj, 0);
+
+		let vtc = [];
+		for (let i = 0; i < idcVtc.length; i++) {
+			let idx = idcVtc[i] * 3;
+
+			vtc.push(vtcUnIdxed[idx]);
+			vtc.push(vtcUnIdxed[idx + 1]);
+			vtc.push(vtcUnIdxed[idx + 2]);
+		}
 
 		this._vbo = ctx.createBuffer();
 		ctx.bindBuffer(ctx.ARRAY_BUFFER, this._vbo);
@@ -51,25 +60,25 @@ class Mesh {
 		this._stbo = ctx.createBuffer();
 		ctx.bindBuffer(ctx.ARRAY_BUFFER, this._stbo);
 
-		const st = [
-			0.0, 0.0,
-			1.0, 0.0,
-			0.0, 1.0,
-			1.0, 1.0,
-		]
+		let stUnIdxed = Ld.attr(nameObj, 1);
+
+		let idcSt = Ld.idc(nameObj, 1);
+
+		let st = [];
+		for (let i = 0; i < idcSt.length; i++) {
+			let idx = idcSt[i] * 2;
+
+			st.push(stUnIdxed[idx]);
+			st.push(stUnIdxed[idx + 1]);
+		}
+
 		ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(st), ctx.STATIC_DRAW);
 
-		let idc = Ld.idc(nameObj, type.VTX);
-
-		this._noIdc = idc.length;
+		this._noIdc = idcVtc.length;
 
 		for (let inst of child) {
 			this._child.push(inst);
 		}
-
-		this._ibo = ctx.createBuffer();
-		ctx.bindBuffer(ctx.ELEMENT_ARRAY_BUFFER, this._ibo);
-		ctx.bufferData(ctx.ELEMENT_ARRAY_BUFFER, new Uint8Array(idc), ctx.STATIC_DRAW);
 
 		/* Matrix */
 		this.model = new Float32Array(16);
@@ -145,7 +154,7 @@ class Mesh {
 		ctx.uniformMatrix4fv(this.uniModel, ctx.FALSE, this._acc);
 		ctx.uniformMatrix4fv(this.uniView, ctx.FALSE, this.view);
 
-		ctx.drawElements(ctx.TRIANGLES, this._noIdc, ctx.UNSIGNED_BYTE, 0);
+		ctx.drawArrays(ctx.TRIANGLES, 0, this._noIdc);
 
 		ctx.useProgram(null);
 		ctx.bindVertexArray(null);
