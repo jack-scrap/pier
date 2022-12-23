@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.bindBuffer(ctx.ARRAY_BUFFER, vboShip);
 	ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(vtcShip), ctx.STATIC_DRAW);
 
-	let progShip = new Prog('scr_spc', 'green');
+	let progShip = new Prog('vec', 'green');
 
 	let modelShip = new Float32Array(16);
 	mat4.identity(modelShip);
