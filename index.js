@@ -77,9 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		alert('Your browser does not support WebGL');
 	}
 
-	ctx.enable(ctx.DEPTH_TEST);
-
-	ctx.enable(ctx.CULL_FACE);
 	ctx.cullFace(ctx.BACK);
 
 	scr = new Mesh('scr', 'tex', 'tex');
@@ -228,6 +225,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	function draw() {
 		/* Framebuffer */
+		ctx.disable(ctx.DEPTH_TEST);
+
+		ctx.disable(ctx.CULL_FACE);
+
 		ctx.bindFramebuffer(ctx.FRAMEBUFFER, fbo);
 
 		ctx.clearColor(0, 0.06, 0, 1.0);
@@ -244,6 +245,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		ctx.bindFramebuffer(ctx.FRAMEBUFFER, null);
 
 		/* Cabinet */
+		ctx.enable(ctx.DEPTH_TEST);
+
+		ctx.enable(ctx.CULL_FACE);
+
 		ctx.clearColor(1 - ((1 - (col[0] / 255)) / 2), 1 - ((1 - (col[1] / 255)) / 2), 1 - ((1 - (col[2] / 255)) / 2), 1);
 		ctx.clear(ctx.COLOR_BUFFER_BIT | ctx.DEPTH_BUFFER_BIT);
 
