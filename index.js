@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	ctx.cullFace(ctx.BACK);
 
-	scr = new Mesh('scr', 'tex', 'tex');
+	scr = new Mesh('scr', 'scr', 'tex');
 
 	ctx.useProgram(scr.prog.id);
 
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.bindBuffer(ctx.ARRAY_BUFFER, vboFrame);
 	ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(vtcFrame), ctx.STATIC_DRAW);
 
-	const shadVtxBuff = Util.rd('res/shad/tex.vs');
+	const shadVtxBuff = Util.rd('res/shad/scr.vs');
 
 	let shadVtx = ctx.createShader(ctx.VERTEX_SHADER);
 	ctx.shaderSource(shadVtx, shadVtxBuff);
