@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.framebufferTexture2D(ctx.FRAMEBUFFER, cbo, ctx.TEXTURE_2D, tex, 0);
 
 	// Render to texture
-	ctx.clearColor(0, 0, 0, 1.0);
+	ctx.clearColor(0, 0.06, 0, 1.0);
 	ctx.clear(ctx.COLOR_BUFFER_BIT);
 
 	ctx.bindVertexArray(vaoTri);
