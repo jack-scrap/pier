@@ -132,6 +132,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		alert('Your browser does not support WebGL');
 	}
 
+	ctx.lineWidth(5);
+
 	ctx.cullFace(ctx.BACK);
 
 	scr = new Mesh('scr', 'scr', 'tex');
