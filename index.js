@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	const lineHt = 0.2;
 
-	const title = new Str("tachyon");
+	const title = new Str("tachyon", 0.0, lineHt);
 
 	const opt = [
 		new Str("play", 0.0, -lineHt),
