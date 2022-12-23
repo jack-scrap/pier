@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(vtcTri), ctx.STATIC_DRAW);
 
 	// Shader
-	const shadVtxTriBuff = Util.rd('res/shad/main.vs');
+	const shadVtxTriBuff = Util.rd('res/shad/scr.vs');
 
 	var shadVtxTri = ctx.createShader(ctx.VERTEX_SHADER);
 	ctx.shaderSource(shadVtxTri, shadVtxTriBuff);
