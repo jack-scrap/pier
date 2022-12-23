@@ -233,8 +233,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			case 0: // Menu
 				title.draw();
 
-				for (let _ of opt) {
-					_.draw();
+				for (let line of opt) {
+					line.draw();
 				}
 
 				break;
