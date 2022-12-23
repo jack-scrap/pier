@@ -166,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	ctx.vertexAttribPointer(attrPosShip, 2, ctx.FLOAT, ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
 	ctx.enableVertexAttribArray(attrPosShip);
 
+	// Uniforms
 	uniModelShip = ctx.getUniformLocation(progShip.id, 'model');
 	ctx.uniformMatrix4fv(uniModelShip, ctx.FALSE, modelShip);
 
