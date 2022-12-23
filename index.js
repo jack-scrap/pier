@@ -74,7 +74,7 @@ document.addEventListener('keydown', function(e) {
 
 			mat4.rotate(modelShip, modelShip, 0.1, [0, 0, 1]);
 
-			ctx.uniformMatrix4fv(uniModelShip, ctx.FALSE, modelShip);
+			gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
 
 			progShip.unUse();
 
@@ -87,7 +87,7 @@ document.addEventListener('keydown', function(e) {
 
 			mat4.rotate(modelShip, modelShip, -0.1, [0, 0, 1]);
 
-			ctx.uniformMatrix4fv(uniModelShip, ctx.FALSE, modelShip);
+			gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
 
 			progShip.unUse();
 
@@ -121,28 +121,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	fitCanv();
 
-	ctx = window.canv.getContext('webgl2');
+	gl = window.canv.getContext('webgl2');
 
-	if (!ctx) {
+	if (!gl) {
 		console.log('WebGL not supported, falling back on experimental-webgl');
-		ctx = window.canv.getContext('experimental-webgl');
+		gl = window.canv.getContext('experimental-webgl');
 	}
 
-	if (!ctx) {
+	if (!gl) {
 		alert('Your browser does not support WebGL');
 	}
 
-	ctx.lineWidth(5);
+	gl.lineWidth(5);
 
-	ctx.cullFace(ctx.BACK);
+	gl.cullFace(gl.BACK);
 
 	scr = new Mesh('scr', 'scr', 'tex');
 
 	scr.prog.use();
 
 	/* Ship */
-	let vaoShip = ctx.createVertexArray();
-	ctx.bindVertexArray(vaoShip);
+	let vaoShip = gl.createVertexArray();
+	gl.bindVertexArray(vaoShip);
 
 	const vtcShip = [
 		-0.6, -1.0,
@@ -150,9 +150,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		0.0, 1.0
 	];
 
-	let vboShip = ctx.createBuffer();
-	ctx.bindBuffer(ctx.ARRAY_BUFFER, vboShip);
-	ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(vtcShip), ctx.STATIC_DRAW);
+	let vboShip = gl.createBuffer();
+	gl.bindBuffer(gl.ARRAY_BUFFER, vboShip);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vtcShip), gl.STATIC_DRAW);
 
 	progShip = new Prog('vec', 'green');
 
@@ -162,36 +162,36 @@ document.addEventListener('DOMContentLoaded', function() {
 	progShip.use();
 
 	// Attributes
-	let attrPosShip = ctx.getAttribLocation(progShip.id, 'pos');
-	ctx.vertexAttribPointer(attrPosShip, 2, ctx.FLOAT, ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
-	ctx.enableVertexAttribArray(attrPosShip);
+	let attrPosShip = gl.getAttribLocation(progShip.id, 'pos');
+	gl.vertexAttribPointer(attrPosShip, 2, gl.FLOAT, gl.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
+	gl.enableVertexAttribArray(attrPosShip);
 
 	// Uniforms
-	uniModelShip = ctx.getUniformLocation(progShip.id, 'model');
-	ctx.uniformMatrix4fv(uniModelShip, ctx.FALSE, modelShip);
+	uniModelShip = gl.getUniformLocation(progShip.id, 'model');
+	gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
 
 	scr.prog.unUse();
-	ctx.bindVertexArray(null);
+	gl.bindVertexArray(null);
 
 	scr.prog.use();
 
-	let tex = ctx.createTexture();
-	ctx.bindTexture(ctx.TEXTURE_2D, tex);
+	let tex = gl.createTexture();
+	gl.bindTexture(gl.TEXTURE_2D, tex);
 
-	ctx.texImage2D(ctx.TEXTURE_2D, 0, ctx.RGBA, window.canv.width, window.canv.height, 0, ctx.RGBA, ctx.UNSIGNED_BYTE, null);
+	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, window.canv.width, window.canv.height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
 
-	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_MIN_FILTER, ctx.LINEAR);
-	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_WRAP_S, ctx.CLAMP_TO_EDGE);
-	ctx.texParameteri(ctx.TEXTURE_2D, ctx.TEXTURE_WRAP_T, ctx.CLAMP_TO_EDGE);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
 
-	let fbo = ctx.createFramebuffer();
-	ctx.bindFramebuffer(ctx.FRAMEBUFFER, fbo);
+	let fbo = gl.createFramebuffer();
+	gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
 
-	let cbo = ctx.COLOR_ATTACHMENT0;
-	ctx.framebufferTexture2D(ctx.FRAMEBUFFER, cbo, ctx.TEXTURE_2D, tex, 0);
+	let cbo = gl.COLOR_ATTACHMENT0;
+	gl.framebufferTexture2D(gl.FRAMEBUFFER, cbo, gl.TEXTURE_2D, tex, 0);
 
-	ctx.bindTexture(ctx.TEXTURE_2D, tex);
-	ctx.activeTexture(ctx.TEXTURE0);
+	gl.bindTexture(gl.TEXTURE_2D, tex);
+	gl.activeTexture(gl.TEXTURE0);
 
 	scr.prog.unUse();
 
@@ -201,35 +201,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	function draw() {
 		// Framebuffer
-		ctx.disable(ctx.DEPTH_TEST);
+		gl.disable(gl.DEPTH_TEST);
 
-		ctx.disable(ctx.CULL_FACE);
+		gl.disable(gl.CULL_FACE);
 
-		ctx.bindFramebuffer(ctx.FRAMEBUFFER, fbo);
+		gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
 
-		ctx.clearColor(0, 0.06, 0, 1.0);
-		ctx.clear(ctx.COLOR_BUFFER_BIT);
+		gl.clearColor(0, 0.06, 0, 1.0);
+		gl.clear(gl.COLOR_BUFFER_BIT);
 
-		ctx.bindVertexArray(vaoShip);
+		gl.bindVertexArray(vaoShip);
 		progShip.use();
 
 		mat4.translate(modelShip, modelShip, [0, shipSpeed, 0]);
-		ctx.uniformMatrix4fv(uniModelShip, ctx.FALSE, modelShip);
+		gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
 
-		ctx.drawArrays(ctx.LINE_LOOP, 0, 3);
+		gl.drawArrays(gl.LINE_LOOP, 0, 3);
 
 		progShip.unUse();
-		ctx.bindVertexArray(null);
+		gl.bindVertexArray(null);
 
-		ctx.bindFramebuffer(ctx.FRAMEBUFFER, null);
+		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 
 		// Cabinet
-		ctx.enable(ctx.DEPTH_TEST);
+		gl.enable(gl.DEPTH_TEST);
 
-		ctx.enable(ctx.CULL_FACE);
+		gl.enable(gl.CULL_FACE);
 
-		ctx.clearColor(1 - ((1 - (col[0] / 255)) / 2), 1 - ((1 - (col[1] / 255)) / 2), 1 - ((1 - (col[2] / 255)) / 2), 1);
-		ctx.clear(ctx.COLOR_BUFFER_BIT | ctx.DEPTH_BUFFER_BIT);
+		gl.clearColor(1 - ((1 - (col[0] / 255)) / 2), 1 - ((1 - (col[1] / 255)) / 2), 1 - ((1 - (col[2] / 255)) / 2), 1);
+		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
 		cabinet.draw();
 

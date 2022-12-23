@@ -6,13 +6,13 @@ class Shad {
 		let type;
 		switch (stage) {
 			case 0:
-				type = ctx.VERTEX_SHADER;
+				type = gl.VERTEX_SHADER;
 				ext = "vs";
 
 				break;
 
 			case 1:
-				type = ctx.FRAGMENT_SHADER;
+				type = gl.FRAGMENT_SHADER;
 				ext = "fs";
 
 				break;
@@ -20,12 +20,12 @@ class Shad {
 
 		const buff = Util.rd('res/shad/' + name + "." + ext);
 
-		this.id = ctx.createShader(type);
-		ctx.shaderSource(this.id, buff);
+		this.id = gl.createShader(type);
+		gl.shaderSource(this.id, buff);
 
-		ctx.compileShader(this.id);
-		if (!ctx.getShaderParameter(this.id, ctx.COMPILE_STATUS)) {
-			console.error('Error compiling shader', ctx.getShaderInfoLog(this.id));
+		gl.compileShader(this.id);
+		if (!gl.getShaderParameter(this.id, gl.COMPILE_STATUS)) {
+			console.error('Error compiling shader', gl.getShaderInfoLog(this.id));
 		}
 	}
 };
@@ -34,30 +34,30 @@ class Prog {
 	id;
 
 	constructor(nameVtx, nameFrag) {
-		this.id = ctx.createProgram();
+		this.id = gl.createProgram();
 
 		let shadVtx = new Shad(nameVtx, 0);
 		let shadFrag = new Shad(nameFrag, 1);
 
-		ctx.attachShader(this.id, shadVtx.id);
-		ctx.attachShader(this.id, shadFrag.id);
+		gl.attachShader(this.id, shadVtx.id);
+		gl.attachShader(this.id, shadFrag.id);
 
-		ctx.linkProgram(this.id);
-		if (!ctx.getProgramParameter(this.id, ctx.LINK_STATUS)) {
-			console.error('Error linking program', ctx.getProgramInfoLog(this.id));
+		gl.linkProgram(this.id);
+		if (!gl.getProgramParameter(this.id, gl.LINK_STATUS)) {
+			console.error('Error linking program', gl.getProgramInfoLog(this.id));
 		}
 
-		ctx.validateProgram(this.id);
-		if (!ctx.getProgramParameter(this.id, ctx.VALIDATE_STATUS)) {
-			console.error('Error validating program', ctx.getProgramInfoLog(this.id));
+		gl.validateProgram(this.id);
+		if (!gl.getProgramParameter(this.id, gl.VALIDATE_STATUS)) {
+			console.error('Error validating program', gl.getProgramInfoLog(this.id));
 		}
 	}
 
 	use() {
-		ctx.useProgram(this.id);
+		gl.useProgram(this.id);
 	}
 
 	unUse() {
-		ctx.useProgram(null);
+		gl.useProgram(null);
 	}
 };

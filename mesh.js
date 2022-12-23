@@ -40,8 +40,8 @@ class Mesh {
 	}
 
 	constructor(nameObj, nameVtx, nameFrag, loc = [0, 0, 0], rot = [0, 0, 0], child = []) {
-		this._vao = ctx.createVertexArray();
-		ctx.bindVertexArray(this._vao);
+		this._vao = gl.createVertexArray();
+		gl.bindVertexArray(this._vao);
 
 		let vtcUnIdxed = Ld.attr(nameObj, 0);
 
@@ -56,12 +56,12 @@ class Mesh {
 			}
 		}
 
-		this._vbo = ctx.createBuffer();
-		ctx.bindBuffer(ctx.ARRAY_BUFFER, this._vbo);
-		ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(vtc), ctx.STATIC_DRAW);
+		this._vbo = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, this._vbo);
+		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vtc), gl.STATIC_DRAW);
 
-		this._stbo = ctx.createBuffer();
-		ctx.bindBuffer(ctx.ARRAY_BUFFER, this._stbo);
+		this._stbo = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, this._stbo);
 
 		let stUnIdxed = Ld.attr(nameObj, 1);
 
@@ -77,7 +77,7 @@ class Mesh {
 				}
 			}
 
-			ctx.bufferData(ctx.ARRAY_BUFFER, new Float32Array(st), ctx.STATIC_DRAW);
+			gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(st), gl.STATIC_DRAW);
 		}
 
 		this._noIdc = idcVtc.length;
@@ -123,26 +123,26 @@ class Mesh {
 		this.prog.use();
 
 		// Attributes
-		ctx.bindBuffer(ctx.ARRAY_BUFFER, this._vbo);
-		let attrPos = ctx.getAttribLocation(this.prog.id, 'pos');
-		ctx.vertexAttribPointer(attrPos, 3, ctx.FLOAT, ctx.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
-		ctx.enableVertexAttribArray(attrPos);
+		gl.bindBuffer(gl.ARRAY_BUFFER, this._vbo);
+		let attrPos = gl.getAttribLocation(this.prog.id, 'pos');
+		gl.vertexAttribPointer(attrPos, 3, gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
+		gl.enableVertexAttribArray(attrPos);
 
 		if (stUnIdxed.length) {
-			ctx.bindBuffer(ctx.ARRAY_BUFFER, this._stbo);
-			let attrSt = ctx.getAttribLocation(this.prog.id, 'st');
-			ctx.vertexAttribPointer(attrSt, 2, ctx.FLOAT, ctx.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
-			ctx.enableVertexAttribArray(attrSt);
+			gl.bindBuffer(gl.ARRAY_BUFFER, this._stbo);
+			let attrSt = gl.getAttribLocation(this.prog.id, 'st');
+			gl.vertexAttribPointer(attrSt, 2, gl.FLOAT, gl.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
+			gl.enableVertexAttribArray(attrSt);
 		}
 
 		// Uniforms
-		this.uniModel = ctx.getUniformLocation(this.prog.id, 'model');
-		this.uniView = ctx.getUniformLocation(this.prog.id, 'view');
-		this._uniProj = ctx.getUniformLocation(this.prog.id, 'proj');
+		this.uniModel = gl.getUniformLocation(this.prog.id, 'model');
+		this.uniView = gl.getUniformLocation(this.prog.id, 'view');
+		this._uniProj = gl.getUniformLocation(this.prog.id, 'proj');
 
-		ctx.uniformMatrix4fv(this.uniModel, ctx.FALSE, this.model);
-		ctx.uniformMatrix4fv(this.uniView, ctx.FALSE, this.view);
-		ctx.uniformMatrix4fv(this._uniProj, ctx.FALSE, this._proj);
+		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
+		gl.uniformMatrix4fv(this.uniView, gl.FALSE, this.view);
+		gl.uniformMatrix4fv(this._uniProj, gl.FALSE, this._proj);
 
 		this.prog.unUse();
 
@@ -156,16 +156,16 @@ class Mesh {
 			0, 1, 0
 		]);
 
-		ctx.bindVertexArray(this._vao);
+		gl.bindVertexArray(this._vao);
 		this.prog.use();
 
-		ctx.uniformMatrix4fv(this.uniModel, ctx.FALSE, this._acc);
-		ctx.uniformMatrix4fv(this.uniView, ctx.FALSE, this.view);
+		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this._acc);
+		gl.uniformMatrix4fv(this.uniView, gl.FALSE, this.view);
 
-		ctx.drawArrays(ctx.TRIANGLES, 0, this._noIdc);
+		gl.drawArrays(gl.TRIANGLES, 0, this._noIdc);
 
 		this.prog.unUse();
-		ctx.bindVertexArray(null);
+		gl.bindVertexArray(null);
 
 		for (let inst of this._child) {
 			inst.draw();
