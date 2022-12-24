@@ -22,6 +22,8 @@ var shipSpeed = 0.003;
 
 var ship;
 
+var scn = [];
+
 const col = [214, 215, 148];
 
 const scrLoc = [-0.5846, 2.7, 0];
@@ -159,6 +161,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	ship = new Entity(vtcShip);
 
+	scn.push(ship);
+
 	scr.prog.unUse();
 	gl.bindVertexArray(null);
 
@@ -241,7 +245,9 @@ document.addEventListener("DOMContentLoaded", function() {
 				ship.prog.unUse();
 				gl.bindVertexArray(null);
 
-				ship.draw();
+				for (let vec of scn) {
+					vec.draw();
+				}
 
 				break;
 
