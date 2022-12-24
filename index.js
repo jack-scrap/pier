@@ -120,8 +120,6 @@ document.addEventListener("keydown", function(e) {
 					score = 0;
 					scoreStr = new Str(score.toString(), [-0.8, 0.8]);
 
-					scn.push(scoreStr);
-
 					m = o + 1;
 
 					break;
@@ -168,6 +166,9 @@ document.addEventListener("keydown", function(e) {
 					let laser = new Laser();
 
 					scn.push(laser);
+
+					score++;
+					scoreStr = new Str(score.toString(), [-0.8, 0.8]);
 
 					break;
 			}
@@ -301,6 +302,8 @@ document.addEventListener("DOMContentLoaded", function() {
 				break;
 
 			case 1: // Game
+				scoreStr.draw();
+
 				for (let vec of scn) {
 					vec.draw();
 				}
