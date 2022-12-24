@@ -4,6 +4,12 @@ const scrLoc = [-0.5846, 2.7, 0];
 
 const lineHt = 0.2;
 
+const vtcShip = [
+	-0.6, -1.0,
+	0.6, -1.0,
+	0.0, 1.0
+];
+
 var o = 0;
 var m = 0;
 
@@ -153,12 +159,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	scr = new Obj("scr", "scr", "tex");
 
 	/* Ship */
-	const vtcShip = [
-		-0.6, -1.0,
-		0.6, -1.0,
-		0.0, 1.0
-	];
-
 	ship = new Entity(vtcShip);
 
 	scn.push(ship);
