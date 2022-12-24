@@ -204,7 +204,7 @@ document.addEventListener("keyup", function(e) {
 window.addEventListener("resize", fitCanv);
 
 document.addEventListener("DOMContentLoaded", function() {
-	// Context
+	/* Context */
 	window.canv = document.getElementById("disp");
 
 	fitCanv();
