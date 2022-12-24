@@ -56,8 +56,6 @@ document.addEventListener("mousemove", function(e) {
 		mat4.identity(id);
 		mat4.rotate(cabinet.model, id, (theta + mouseDeltaX) / 500, [0, 1, 0]);
 
-		let idWorld = new Float32Array(16);
-		mat4.identity(idWorld);
 		cabinet.accModel(idWorld);
 	}
 });
@@ -154,6 +152,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	gl.cullFace(gl.BACK);
+
+	mat4.identity(idWorld);
 
 	scr = new Obj("scr", "scr", "tex");
 
