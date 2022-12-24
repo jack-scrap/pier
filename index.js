@@ -108,6 +108,11 @@ document.addEventListener("keydown", function(e) {
 
 					break;
 				}
+
+				case 13: // Enter
+					m = o + 1;
+
+					break;
 			}
 
 			break;
