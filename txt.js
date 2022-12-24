@@ -3,6 +3,8 @@ var glyphBuff = Util.rd("res/glyph.json");
 var glyph = JSON.parse(glyphBuff);
 
 class Char {
+	mesh;
+
 	asciiToAlphaNo(c) {
 		let i = c.charCodeAt(0);
 
@@ -19,15 +21,10 @@ class Char {
 		this.x = loc[0];
 		this.y = loc[1];
 
-		this.vao = gl.createVertexArray();
-		gl.bindVertexArray(this.vao);
-
 		// Data
 		this.vtc = glyph[this.asciiToAlphaNo(c)];
 
-		this.vbo = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, this.vbo);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.vtc), gl.STATIC_DRAW);
+		this.mesh = new Mesh(this.vtc);
 
 		// Matrix
 		this.model = new Float32Array(16);
@@ -38,6 +35,7 @@ class Char {
 		// Program
 		this.prog = new Prog("vec", "green");
 
+		gl.bindVertexArray(this.mesh.vao);
 		this.prog.use();
 
 		// Attribute
@@ -50,10 +48,11 @@ class Char {
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
 
 		this.prog.unUse();
+		gl.bindVertexArray(null);
 	}
 
 	draw() {
-		gl.bindVertexArray(this.vao);
+		gl.bindVertexArray(this.mesh.vao);
 		gl.useProgram(this.prog.id);
 
 		gl.drawArrays(gl.LINES, 0, this.vtc.length / 2);
