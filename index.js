@@ -183,6 +183,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	scr.prog.use();
 
+	// Texture
 	let tex = gl.createTexture();
 	gl.bindTexture(gl.TEXTURE_2D, tex);
 
