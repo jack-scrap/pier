@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	fitCanv();
 
-	gl = window.canv.getContext("webgl2");
+	window.gl = window.canv.getContext("webgl2");
 
 	if (!gl) {
 		console.log("WebGL not supported, falling back on experimental-webgl");
