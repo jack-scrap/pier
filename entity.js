@@ -20,7 +20,7 @@ class Entity {
 		this.model = new Float32Array(16);
 		mat4.identity(this.model);
 
-		mat4.translate(this.model, this.model, loc);
+		mat4.translate(this.model, this.model, [loc[0], loc[1], 0]);
 
 		mat4.rotate(this.model, this.model, rot, [0, 0, 1]);
 
