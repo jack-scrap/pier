@@ -10,11 +10,6 @@ const vtcShip = [
 	0.0, 1.0
 ];
 
-const vtcLaser = [
-	0.0, 0.0,
-	1.0, 0.0
-];
-
 var o = 0;
 var m = 0;
 

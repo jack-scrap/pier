@@ -52,8 +52,13 @@ class Entity {
 }
 
 class Laser extends Entity {
+	static _vtc = [
+		0.0, 0.0,
+		1.0, 0.0
+	];
+
 	constructor() {
-		super(vtcLaser);
+		super(Laser._vtc);
 	}
 
 	draw() {
