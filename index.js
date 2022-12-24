@@ -153,8 +153,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	scr = new Obj("scr", "scr", "tex");
 
-	scr.prog.use();
-
 	/* Ship */
 	const vtcShip = [
 		-0.6, -1.0,
