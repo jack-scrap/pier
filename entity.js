@@ -9,10 +9,10 @@ class Entity {
 
 	uniModel;
 
-	constructor(vtc, loc = [0.0, 0.0], rot = 0.0) {
-		this._noPt = vtc.length / 2;
+	constructor(pt, loc = [0.0, 0.0], rot = 0.0) {
+		this._noPt = pt.length / 2;
 
-		this._mesh = new Mesh(vtc);
+		this._mesh = new Mesh(pt);
 
 		this.prog = new Prog("vec", "green");
 
