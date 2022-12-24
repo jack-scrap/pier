@@ -9,7 +9,7 @@ class Entity {
 
 	uniModel;
 
-	constructor(vtc, loc = [0.0, 0.0]) {
+	constructor(vtc, loc = [0.0, 0.0], rot = 0.0) {
 		this._noPt = vtc.length / 2;
 
 		this._mesh = new Mesh(vtc);
@@ -21,6 +21,8 @@ class Entity {
 		mat4.identity(this.model);
 
 		mat4.translate(this.model, this.model, loc);
+
+		mat4.rotate(this.model, this.model, rot, [0, 0, 1]);
 
 		gl.bindVertexArray(this._mesh.vao);
 		this.prog.use();
