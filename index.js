@@ -165,6 +165,14 @@ document.addEventListener("keydown", function(e) {
 				case 13: // Enter
 					let laser = new Laser();
 
+					laser.model = mat4.clone(ship.model);
+
+					laser.prog.use();
+
+					gl.uniformMatrix4fv(laser.uniModel, gl.FALSE, laser.model);
+
+					laser.prog.unUse();
+
 					scn.push(laser);
 
 					score++;
