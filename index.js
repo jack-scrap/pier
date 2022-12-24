@@ -28,7 +28,10 @@ var ship;
 
 var scn = [];
 
-var score = {
+var score;
+var scoreStr;
+
+var scoreBoard = {
 	'asdf': 3,
 	'hjkl': 7,
 	'qwer': 12
@@ -114,6 +117,11 @@ document.addEventListener("keydown", function(e) {
 				}
 
 				case 13: // Enter
+					score = 0;
+					scoreStr = new Str(score.toString(), [-0.8, 0.8]);
+
+					scn.push(scoreStr);
+
 					m = o + 1;
 
 					break;
@@ -255,7 +263,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	// Scoreboard
 	let scoreBuff = [];
-	const key = Object.keys(score);
+	const key = Object.keys(scoreBoard);
 	for (let i = 0; i < 3; i++) {
 		if (i < key.length) {
 			let k = key[i];
