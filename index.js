@@ -193,7 +193,13 @@ document.addEventListener("DOMContentLoaded", function() {
 		new Str("scoreboard", [0.0, 2 * -lineHt])
 	];
 
-	let cursor = new Char("a", [-0.8, (o + 1) * -lineHt]);
+	const cursorVtc = [
+		0.0, 0.0,
+		-1.0, 1.0,
+		-1.0, -1.0
+	];
+
+	let cursor = new Entity(cursorVtc, [-0.6, (o + 1) * -lineHt]);
 
 	// Scoreboard
 	let scoreBuff = [];
