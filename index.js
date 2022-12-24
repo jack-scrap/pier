@@ -28,7 +28,7 @@ var ship;
 
 var scn = [];
 
-let score = [];
+var score = [];
 
 var cursor;
 
