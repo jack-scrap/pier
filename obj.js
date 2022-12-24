@@ -145,8 +145,6 @@ class Obj {
 		gl.uniformMatrix4fv(this._uniProj, gl.FALSE, this._proj);
 
 		this.prog.unUse();
-
-		this.accModel(this._acc);
 	}
 
 	draw() {
