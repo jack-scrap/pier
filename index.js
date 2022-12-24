@@ -4,12 +4,6 @@ const scrLoc = [-0.5846, 2.7, 0];
 
 const lineHt = 0.2;
 
-const vtcShip = [
-	-0.6, -1.0,
-	0.6, -1.0,
-	0.0, 1.0
-];
-
 var o = 0;
 var m = 0;
 
@@ -29,8 +23,6 @@ var idWorld = new Float32Array(16);
 
 const camLoc = [15, 8, 0];
 var camScale = 1;
-
-var shipSpeed = 0.003;
 
 var ship;
 
@@ -110,7 +102,7 @@ document.addEventListener("keydown", function(e) {
 				case 38: // Up
 					e.preventDefault();
 
-					shipSpeed = 0.01;
+					ship.speed = Ship.speedFast;
 
 					break;
 
@@ -133,7 +125,7 @@ document.addEventListener("keyup", function(e) {
 				case 38: // Up
 					e.preventDefault();
 
-					shipSpeed = 0.003;
+					ship.speed = Ship.speedDefault;
 
 					break;
 			}
@@ -166,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	scr = new Obj("scr", "scr", "tex");
 
 	/* Ship */
-	ship = new Entity(vtcShip);
+	ship = new Ship();
 
 	scn.push(ship);
 
@@ -242,16 +234,6 @@ document.addEventListener("DOMContentLoaded", function() {
 				break;
 
 			case 1: // Game
-				mat4.translate(ship.model, ship.model, [0, shipSpeed, 0]);
-
-				gl.bindVertexArray(ship._mesh.vao);
-				ship.prog.use();
-
-				gl.uniformMatrix4fv(ship.uniModel, gl.FALSE, ship.model);
-
-				ship.prog.unUse();
-				gl.bindVertexArray(null);
-
 				for (let vec of scn) {
 					vec.draw();
 				}
