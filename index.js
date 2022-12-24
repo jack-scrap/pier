@@ -155,12 +155,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	mat4.identity(idWorld);
 
+	/* Screen */
 	scr = new Obj("scr", "scr", "tex");
-
-	/* Ship */
-	ship = new Ship();
-
-	scn.push(ship);
 
 	scr.prog.use();
 
@@ -206,6 +202,11 @@ document.addEventListener("DOMContentLoaded", function() {
 			scoreBuff.push(new Str(score[i].toString(), [0.0, i * -lineHt]));
 		}
 	}
+
+	/* Ship */
+	ship = new Ship();
+
+	scn.push(ship);
 
 	function draw() {
 		// Framebuffer
