@@ -4,11 +4,13 @@ class Util {
 		req.open("GET", fName, false);
 		req.send(null);
 
-		if (req.status == 200) { // OK
-			return req.responseText;
-		} else {
+		if (req.status != 200) { // OK
 			console.error(`Couldn"t load "${fName}"; status ${req.status}`);
+
+			return;
 		}
+
+		return req.responseText;
 	}
 
 	static calcNorm(vtc, i) {
