@@ -20,10 +20,7 @@ var camScale = 1;
 
 var shipSpeed = 0.003;
 
-var modelShip;
-
-var progShip;
-var uniModelShip;
+var ship;
 
 const col = [214, 215, 148];
 
@@ -79,26 +76,26 @@ document.addEventListener("keydown", function(e) {
 				case 37: // Left
 					e.preventDefault();
 
-					mat4.rotate(modelShip, modelShip, 0.1, [0, 0, 1]);
+					mat4.rotate(ship.model, ship.model, 0.1, [0, 0, 1]);
 
-					progShip.use();
+					ship.prog.use();
 
-					gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
+					gl.uniformMatrix4fv(ship.uniModel, gl.FALSE, ship.model);
 
-					progShip.unUse();
+					ship.prog.unUse();
 
 					break;
 
 				case 39: // Right
 					e.preventDefault();
 
-					mat4.rotate(modelShip, modelShip, -0.1, [0, 0, 1]);
+					mat4.rotate(ship.model, ship.model, -0.1, [0, 0, 1]);
 
-					progShip.use();
+					ship.prog.use();
 
-					gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
+					gl.uniformMatrix4fv(ship.uniModel, gl.FALSE, ship.model);
 
-					progShip.unUse();
+					ship.prog.unUse();
 
 					break;
 
@@ -160,23 +157,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		0.0, 1.0
 	];
 
-	let meshShip = new Mesh(vtcShip);
-
-	progShip = new Prog("vec", "green");
-
-	modelShip = new Float32Array(16);
-	mat4.identity(modelShip);
-
-	progShip.use();
-
-	// Attributes
-	let attrPosShip = gl.getAttribLocation(progShip.id, "pos");
-	gl.vertexAttribPointer(attrPosShip, 2, gl.FLOAT, gl.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
-	gl.enableVertexAttribArray(attrPosShip);
-
-	// Uniforms
-	uniModelShip = gl.getUniformLocation(progShip.id, "model");
-	gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
+	ship = new Entity(vtcShip);
 
 	scr.prog.unUse();
 	gl.bindVertexArray(null);
@@ -250,16 +231,17 @@ document.addEventListener("DOMContentLoaded", function() {
 				break;
 
 			case 1: // Game
-				gl.bindVertexArray(meshShip.vao);
-				progShip.use();
+				mat4.translate(ship.model, ship.model, [0, shipSpeed, 0]);
 
-				mat4.translate(modelShip, modelShip, [0, shipSpeed, 0]);
-				gl.uniformMatrix4fv(uniModelShip, gl.FALSE, modelShip);
+				gl.bindVertexArray(ship._mesh.vao);
+				ship.prog.use();
 
-				gl.drawArrays(gl.LINE_LOOP, 0, 3);
+				gl.uniformMatrix4fv(ship.uniModel, gl.FALSE, ship.model);
 
-				progShip.unUse();
+				ship.prog.unUse();
 				gl.bindVertexArray(null);
+
+				ship.draw();
 
 				break;
 
