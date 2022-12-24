@@ -39,6 +39,8 @@ var scoreBoard = {
 
 var cursor;
 
+var osc;
+
 function fitCanv() {
 	window.canv.width = window.innerWidth;
 	window.canv.height = window.innerHeight;
@@ -77,6 +79,10 @@ document.addEventListener("mousewheel", function(e) {
 });
 
 document.addEventListener("keydown", function(e) {
+	if (audioCtx.state === "suspended") {
+		audioCtx.resume();
+	}
+
 	switch (m) {
 		case 0: // Menu
 			switch (e.keyCode) {
@@ -221,6 +227,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	gl.cullFace(gl.BACK);
+
+	window.audioCtx = new window.AudioContext() || window.webkitAudioContext();
 
 	mat4.identity(idWorld);
 
