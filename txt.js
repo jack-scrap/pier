@@ -1,6 +1,4 @@
-var glyphBuff = Util.rd("res/glyph.json");
-
-var glyph = JSON.parse(glyphBuff);
+var glyph = JSON.parse(Util.rd("res/glyph.json"));
 
 class Char extends Entity {
 	static asciiToAlphaNo(c) {
