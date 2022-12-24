@@ -4,7 +4,7 @@ class Util {
 		req.open("GET", fName, false);
 		req.send(null);
 
-		if (req.status == 200) {
+		if (req.status == 200) { // OK
 			return req.responseText;
 		} else {
 			console.error(`Couldn"t load "${fName}"; status ${req.status}`);
