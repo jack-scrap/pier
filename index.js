@@ -156,18 +156,13 @@ document.addEventListener("DOMContentLoaded", function() {
 	scr.prog.use();
 
 	/* Ship */
-	let vaoShip = gl.createVertexArray();
-	gl.bindVertexArray(vaoShip);
-
 	const vtcShip = [
 		-0.6, -1.0,
 		0.6, -1.0,
 		0.0, 1.0
 	];
 
-	let vboShip = gl.createBuffer();
-	gl.bindBuffer(gl.ARRAY_BUFFER, vboShip);
-	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vtcShip), gl.STATIC_DRAW);
+	let meshShip = new Mesh(vtcShip);
 
 	progShip = new Prog("vec", "green");
 
@@ -256,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				break;
 
 			case 1: // Game
-				gl.bindVertexArray(vaoShip);
+				gl.bindVertexArray(meshShip.vao);
 				progShip.use();
 
 				mat4.translate(modelShip, modelShip, [0, shipSpeed, 0]);
