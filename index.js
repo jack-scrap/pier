@@ -31,7 +31,7 @@ const scrLoc = [-0.5846, 2.7, 0];
 
 const lineHt = 0.2;
 
-let score = [3, 7, 12];
+let score = [];
 
 function fitCanv() {
 	window.canv.width = window.innerWidth;
