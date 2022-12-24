@@ -1,3 +1,9 @@
+const col = [214, 215, 148];
+
+const scrLoc = [-0.5846, 2.7, 0];
+
+const lineHt = 0.2;
+
 var o = 0;
 var m = 0;
 
@@ -23,12 +29,6 @@ var shipSpeed = 0.003;
 var ship;
 
 var scn = [];
-
-const col = [214, 215, 148];
-
-const scrLoc = [-0.5846, 2.7, 0];
-
-const lineHt = 0.2;
 
 let score = [];
 
