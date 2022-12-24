@@ -28,7 +28,11 @@ var ship;
 
 var scn = [];
 
-var score = [];
+var score = {
+	'asdf': 3,
+	'hjkl': 7,
+	'qwer': 12
+};
 
 var cursor;
 
@@ -251,9 +255,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	// Scoreboard
 	let scoreBuff = [];
+	const key = Object.keys(score);
 	for (let i = 0; i < 3; i++) {
-		if (i < score.length) {
-			scoreBuff.push(new Str(score[i].toString(), [0.0, i * -lineHt]));
+		if (i < key.length) {
+			let k = key[i];
+
+			scoreBuff.push(new Str(k, [0.0, i * -lineHt]));
 		}
 	}
 
