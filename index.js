@@ -10,8 +10,13 @@ const vtcShip = [
 	0.0, 1.0
 ];
 
+const vtcLaser = [
+	0.0, 0.0,
+	1.0, 0.0
+];
+
 var o = 0;
-var m = 0;
+var m = 1;
 
 var cabinet;
 var scr;
@@ -111,6 +116,13 @@ document.addEventListener("keydown", function(e) {
 					e.preventDefault();
 
 					shipSpeed = 0.01;
+
+					break;
+
+				case 13: // Enter
+					let laser = new Laser();
+
+					scn.push(laser);
 
 					break;
 			}
