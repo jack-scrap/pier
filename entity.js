@@ -16,14 +16,14 @@ class Entity {
 
 		this.prog = new Prog("vec", "green");
 
-		gl.bindVertexArray(this._mesh.vao);
-		this.prog.use();
-
 		// Matrix
 		this.model = new Float32Array(16);
 		mat4.identity(this.model);
 
 		mat4.translate(this.model, this.model, loc);
+
+		gl.bindVertexArray(this._mesh.vao);
+		this.prog.use();
 
 		// Attributes
 		let attrPosShip = gl.getAttribLocation(this.prog.id, "pos");
