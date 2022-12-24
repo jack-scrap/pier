@@ -85,7 +85,7 @@ class Ship extends Entity {
 class Laser extends Entity {
 	static _vtc = [
 		0.0, 0.0,
-		1.0, 0.0
+		0.0, 1.0
 	];
 
 	constructor() {
@@ -93,7 +93,7 @@ class Laser extends Entity {
 	}
 
 	draw() {
-		mat4.translate(this.model, this.model, [0.1, 0, 0]);
+		mat4.translate(this.model, this.model, [0, 0.1, 0]);
 
 		gl.bindVertexArray(this._mesh.vao);
 		this.prog.use();
