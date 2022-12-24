@@ -2,10 +2,8 @@ var glyphBuff = Util.rd("res/glyph.json");
 
 var glyph = JSON.parse(glyphBuff);
 
-class Char {
-	mesh;
-
-	asciiToAlphaNo(c) {
+class Char extends Entity {
+	static asciiToAlphaNo(c) {
 		let i = c.charCodeAt(0);
 
 		if (i >= "0".charCodeAt(0) && i <= "9".charCodeAt(0)) {
@@ -18,44 +16,14 @@ class Char {
 	}
 
 	constructor(c, loc = [0.0, 0.0]) {
-		this.x = loc[0];
-		this.y = loc[1];
-
-		// Data
-		this.vtc = glyph[this.asciiToAlphaNo(c)];
-
-		this.mesh = new Mesh(this.vtc);
-
-		// Matrix
-		this.model = new Float32Array(16);
-		mat4.identity(this.model);
-
-		mat4.translate(this.model, this.model, [this.x, this.y, 0.0]);
-
-		// Program
-		this.prog = new Prog("vec", "green");
-
-		gl.bindVertexArray(this.mesh.vao);
-		this.prog.use();
-
-		// Attribute
-		this.attrPos = gl.getAttribLocation(this.prog.id, "pos");
-		gl.vertexAttribPointer(this.attrPos, 2, gl.FLOAT, gl.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
-		gl.enableVertexAttribArray(this.attrPos);
-
-		// Uniform
-		this.uniModel = gl.getUniformLocation(this.prog.id, "model");
-		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
-
-		this.prog.unUse();
-		gl.bindVertexArray(null);
+		super(glyph[Char.asciiToAlphaNo(c)], loc);
 	}
 
 	draw() {
-		gl.bindVertexArray(this.mesh.vao);
+		gl.bindVertexArray(this._mesh.vao);
 		gl.useProgram(this.prog.id);
 
-		gl.drawArrays(gl.LINES, 0, this.vtc.length / 2);
+		gl.drawArrays(gl.LINES, 0, this._noPt);
 
 		gl.bindVertexArray(null);
 		this.prog.unUse();
