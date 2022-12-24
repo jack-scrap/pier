@@ -28,7 +28,7 @@ class Shad {
 			console.error("Error compiling shader", gl.getShaderInfoLog(this.id));
 		}
 	}
-};
+}
 
 class Prog {
 	id;
@@ -60,4 +60,4 @@ class Prog {
 	unUse() {
 		gl.useProgram(null);
 	}
-};
+}

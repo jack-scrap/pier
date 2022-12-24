@@ -34,7 +34,7 @@ class Util {
 
 		return prod;
 	}
-};
+}
 
 class Ld {
 	static resPath = "res";
@@ -98,4 +98,4 @@ class Ld {
 
 		return data;
 	}
-};
+}

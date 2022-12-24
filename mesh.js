@@ -13,4 +13,4 @@ class Mesh {
 
 		gl.bindVertexArray(null);
 	}
-};
+}

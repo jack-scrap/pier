@@ -61,7 +61,7 @@ class Char {
 		gl.bindVertexArray(null);
 		this.prog.unUse();
 	}
-};
+}
 
 class Str {
 	constructor(buff, loc = [0.0, 0.0]) {
@@ -79,4 +79,4 @@ class Str {
 			c.draw();
 		}
 	}
-};
+}
