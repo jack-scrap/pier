@@ -30,6 +30,8 @@ var scn = [];
 
 let score = [];
 
+var cursor;
+
 function fitCanv() {
 	window.canv.width = window.innerWidth;
 	window.canv.height = window.innerHeight;
@@ -69,6 +71,47 @@ document.addEventListener("mousewheel", function(e) {
 
 document.addEventListener("keydown", function(e) {
 	switch (m) {
+		case 0: // Menu
+			switch (e.keyCode) {
+				case 40: { // Down
+					o++;
+
+					o = Math.min(o, 1);
+
+					let model = new Float32Array(16);
+					mat4.identity(model);
+					mat4.translate(model, model, [-0.6, (o + 1) * -lineHt, 0]);
+
+					cursor.prog.use();
+
+					gl.uniformMatrix4fv(cursor.uniModel, gl.FALSE, model);
+
+					cursor.prog.unUse();
+
+					break;
+				}
+
+				case 38: { // Up
+					o--;
+
+					o = Math.max(o, 0);
+
+					let model = new Float32Array(16);
+					mat4.identity(model);
+					mat4.translate(model, model, [-0.6, (o + 1) * -lineHt, 0]);
+
+					cursor.prog.use();
+
+					gl.uniformMatrix4fv(cursor.uniModel, gl.FALSE, model);
+
+					cursor.prog.unUse();
+
+					break;
+				}
+			}
+
+			break;
+
 		case 1: // Game
 			switch (e.keyCode) {
 				case 37: // Left
@@ -199,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		-1.0, -1.0
 	];
 
-	let cursor = new Entity(cursorVtc, [-0.6, (o + 1) * -lineHt]);
+	cursor = new Entity(cursorVtc, [-0.6, (o + 1) * -lineHt]);
 
 	// Scoreboard
 	let scoreBuff = [];
