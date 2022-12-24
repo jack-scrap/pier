@@ -9,7 +9,7 @@ class Entity {
 
 	uniModel;
 
-	constructor(vtc) {
+	constructor(vtc, loc = [0.0, 0.0]) {
 		this._noPt = vtc.length / 2;
 
 		this._mesh = new Mesh(vtc);
@@ -22,6 +22,8 @@ class Entity {
 		// Matrix
 		this.model = new Float32Array(16);
 		mat4.identity(this.model);
+
+		mat4.translate(this.model, this.model, loc);
 
 		// Attributes
 		let attrPosShip = gl.getAttribLocation(this.prog.id, "pos");

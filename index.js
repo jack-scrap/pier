@@ -16,7 +16,7 @@ const vtcLaser = [
 ];
 
 var o = 0;
-var m = 1;
+var m = 0;
 
 var cabinet;
 var scr;
