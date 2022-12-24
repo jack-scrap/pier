@@ -162,9 +162,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	scn.push(ship);
 
-	scr.prog.unUse();
-	gl.bindVertexArray(null);
-
 	scr.prog.use();
 
 	// Texture
