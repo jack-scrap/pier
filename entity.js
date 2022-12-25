@@ -114,7 +114,7 @@ class Aste extends Entity {
 	static _rot = Math.PI * 2;
 
 	constructor() {
-		const n = Math.floor(Math.random() * (Aste._maxPt - Aste._minPt)) + Aste._minPt;
+		const n = randInt(Aste._minPt, Aste._maxPt);
 
 		const inc = Aste._rot / n;
 
