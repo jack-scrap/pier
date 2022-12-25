@@ -181,9 +181,6 @@ document.addEventListener("keydown", function(e) {
 
 					scn.push(laser);
 
-					score++;
-					scoreStr = new Str(score.toString(), [-0.8, 0.8]);
-
 					break;
 			}
 
