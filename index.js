@@ -181,6 +181,20 @@ document.addEventListener("keydown", function(e) {
 
 					scn.push(laser);
 
+					const decay = 0.2;
+
+					let osc = audioCtx.createOscillator();
+					osc.frequency.value = 1200.0;
+					osc.type.value = 'triangle';
+
+					osc.frequency.linearRampToValueAtTime(200.0, audioCtx.currentTime + decay);
+
+					osc.connect(audioCtx.destination);
+
+					osc.start();
+
+					osc.stop(audioCtx.currentTime + decay);
+
 					break;
 			}
 
