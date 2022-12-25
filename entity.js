@@ -123,8 +123,8 @@ class Aste extends Entity {
 
 		let vtc = [];
 		for (let i = 0; i < n; i++) {
-			vtc.push(Math.cos(i * inc) * 3 * randFloat(Aste._minSz, Aste._maxSz));
-			vtc.push(Math.sin(i * inc) * 3 * randFloat(Aste._minSz, Aste._maxSz));
+			vtc.push(Math.cos(i * inc) * randFloat(Aste._minSz, Aste._maxSz));
+			vtc.push(Math.sin(i * inc) * randFloat(Aste._minSz, Aste._maxSz));
 		}
 
 		super(vtc);
