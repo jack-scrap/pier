@@ -295,9 +295,9 @@ document.addEventListener("DOMContentLoaded", function() {
 	scn.push(ship);
 
 	/* Asteroids */
-	let aste = new Aste();
-
-	scn.push(aste);
+	for (let i = 0; i < 3; i++) {
+		scn.push(new Aste());
+	}
 
 	function draw() {
 		// Framebuffer
