@@ -21,7 +21,7 @@ class Char extends Entity {
 		gl.bindVertexArray(this._mesh.vao);
 		gl.useProgram(this.prog.id);
 
-		gl.drawArrays(gl.LINES, 0, this._noPt);
+		gl.drawArrays(gl.LINES, 0, this._pt.length);
 
 		gl.bindVertexArray(null);
 		this.prog.unUse();

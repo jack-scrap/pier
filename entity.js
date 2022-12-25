@@ -1,5 +1,5 @@
 class Entity {
-	_noPt;
+	_pt;
 
 	_mesh;
 
@@ -10,7 +10,7 @@ class Entity {
 	uniModel;
 
 	constructor(pt, loc = [0.0, 0.0], rot = 0.0) {
-		this._noPt = pt.length / 2;
+		this._pt = pt;
 
 		this._mesh = new Mesh(pt);
 
@@ -44,7 +44,7 @@ class Entity {
 		gl.bindVertexArray(this._mesh.vao);
 		this.prog.use();
 
-		gl.drawArrays(gl.LINE_LOOP, 0, this._noPt);
+		gl.drawArrays(gl.LINE_LOOP, 0, this._pt.length);
 
 		this.prog.unUse();
 		gl.bindVertexArray(null);
@@ -75,7 +75,7 @@ class Ship extends Entity {
 
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
 
-		gl.drawArrays(gl.LINE_LOOP, 0, this._noPt);
+		gl.drawArrays(gl.LINE_LOOP, 0, this._pt.length);
 
 		this.prog.unUse();
 		gl.bindVertexArray(null);
@@ -100,7 +100,7 @@ class Laser extends Entity {
 
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
 
-		gl.drawArrays(gl.LINE_LOOP, 0, this._noPt);
+		gl.drawArrays(gl.LINE_LOOP, 0, this._pt.length);
 
 		this.prog.unUse();
 		gl.bindVertexArray(null);
@@ -148,7 +148,7 @@ class Aste extends Entity {
 
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
 
-		gl.drawArrays(gl.LINE_LOOP, 0, this._noPt);
+		gl.drawArrays(gl.LINE_LOOP, 0, this._pt.length);
 
 		this.prog.unUse();
 		gl.bindVertexArray(null);
