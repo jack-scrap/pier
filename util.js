@@ -101,3 +101,60 @@ class Ld {
 		return data;
 	}
 }
+
+class Phys {
+	static sat(p, q) {
+		for (let s = 0; s < 2; s++) {
+			let poly = [
+				s ? q : p,
+				s ? p : q
+			];
+
+			let model = [];
+			for (let i = 0; i < 2; i++) {
+				model[i] = apply(poly[i].vtc, poly[i].model);
+			}
+
+			for (let v = 0; v < poly[0].n; v++) {
+				let a = v;
+				let b = (v + 1) % poly[0].n;
+
+				let axis = [
+					model[0][b * 2] - model[0][a * 2],
+					model[0][(b * 2) + 1] - model[0][(a * 2) + 1]
+				];
+				let d = axis[0] * axis[0] + axis[1] * axis[1]
+				for (let i = 0; i < 2; i++) {
+					axis[i] /= d;
+				}
+
+				let rng = [];
+				for (let p = 0; p < 2; p++) {
+					let bound = [];
+					for (let i = 0; i < 2; i++) {
+						bound.push(i ? -Infinity : Infinity);
+					}
+					for (let i = 0; i < poly[p].n; i++) {
+						let proj = (model[p][i * 2] * axis[0] + model[p][(i * 2) + 1] * axis[1]);
+
+						if (proj < bound[0]) {
+							bound[0] = proj;
+						}
+
+						if (proj > bound[1]) {
+							bound[1] = proj;
+						}
+					}
+
+					rng.push(bound);
+				}
+
+				if (!interAxis(rng[0], rng[1])) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+}
