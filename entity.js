@@ -111,6 +111,9 @@ class Aste extends Entity {
 	static _minPt = 5;
 	static _maxPt = 7;
 
+	static _minSz = 1;
+	static _maxSz = 1.5;
+
 	static _rot = Math.PI * 2;
 
 	constructor() {
@@ -120,8 +123,8 @@ class Aste extends Entity {
 
 		let vtc = [];
 		for (let i = 0; i < n; i++) {
-			vtc.push(Math.cos(i * inc) * 3);
-			vtc.push(Math.sin(i * inc) * 3);
+			vtc.push(Math.cos(i * inc) * 3 * randFloat(Aste._minSz, Aste._maxSz));
+			vtc.push(Math.sin(i * inc) * 3 * randFloat(Aste._minSz, Aste._maxSz));
 		}
 
 		super(vtc);
