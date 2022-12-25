@@ -139,4 +139,18 @@ class Aste extends Entity {
 
 		this.prog.unUse();
 	}
+
+	draw() {
+		mat4.translate(this.model, this.model, [0, 0.01, 0]);
+
+		gl.bindVertexArray(this._mesh.vao);
+		this.prog.use();
+
+		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
+
+		gl.drawArrays(gl.LINE_LOOP, 0, this._noPt);
+
+		this.prog.unUse();
+		gl.bindVertexArray(null);
+	}
 }
