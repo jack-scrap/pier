@@ -106,3 +106,24 @@ class Laser extends Entity {
 		gl.bindVertexArray(null);
 	}
 }
+
+class Aste extends Entity {
+	static _minPt = 5;
+	static _maxPt = 7;
+
+	static _rot = Math.PI * 2;
+
+	constructor() {
+		const n = Math.floor(Math.random() * (Aste._maxPt - Aste._minPt)) + Aste._minPt;
+
+		const inc = Aste._rot / n;
+
+		let vtc = [];
+		for (let i = 0; i < n; i++) {
+			vtc.push(Math.cos(i * inc) * 3);
+			vtc.push(Math.sin(i * inc) * 3);
+		}
+
+		super(vtc);
+	}
+}

@@ -294,6 +294,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	scn.push(ship);
 
+	/* Asteroids */
+	let aste = new Aste();
+
+	scn.push(aste);
+
 	function draw() {
 		// Framebuffer
 		gl.disable(gl.DEPTH_TEST);
