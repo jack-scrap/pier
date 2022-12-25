@@ -239,7 +239,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	gl.cullFace(gl.BACK);
 
-	window.audioCtx = new window.AudioContext() || window.webkitAudioContext();
+	const audioOpt = {
+		sampleRate: 6000
+	};
+
+	window.audioCtx = new window.AudioContext(audioOpt) || window.webkitAudioContext(audioOpt);
 
 	mat4.identity(idWorld);
 
