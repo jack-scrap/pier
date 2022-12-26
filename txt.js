@@ -1,6 +1,6 @@
 var glyph = JSON.parse(Fs.rd("res/glyph.json"));
 
-class Char extends Entity {
+class Char extends Vec {
 	static asciiToAlphaNo(c) {
 		let i = c.charCodeAt(0);
 

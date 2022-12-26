@@ -1,4 +1,4 @@
-class Entity {
+class Vec {
 	_pt;
 
 	_mesh;
@@ -51,7 +51,7 @@ class Entity {
 	}
 }
 
-class Ship extends Entity {
+class Ship extends Vec {
 	static _vtc = [
 		-0.6, -1.0,
 		0.6, -1.0,
@@ -82,7 +82,7 @@ class Ship extends Entity {
 	}
 }
 
-class Laser extends Entity {
+class Laser extends Vec {
 	static _vtc = [
 		0.0, 0.0,
 		0.0, 1.0
@@ -107,7 +107,7 @@ class Laser extends Entity {
 	}
 }
 
-class Aste extends Entity {
+class Aste extends Vec {
 	static _minPt = 5;
 	static _maxPt = 7;
 

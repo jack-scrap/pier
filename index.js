@@ -294,7 +294,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		-1.0, -1.0
 	];
 
-	cursor = new Entity(cursorVtc, [-0.6, (o + 1) * -lineHt]);
+	cursor = new Vec(cursorVtc, [-0.6, (o + 1) * -lineHt]);
 
 	// Scoreboard
 	let scoreBuff = [];
