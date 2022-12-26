@@ -28,9 +28,9 @@ class Vec {
 		this.prog.use();
 
 		// Attributes
-		let attrPosShip = gl.getAttribLocation(this.prog.id, "pos");
-		gl.vertexAttribPointer(attrPosShip, 2, gl.FLOAT, gl.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
-		gl.enableVertexAttribArray(attrPosShip);
+		let attrPos = gl.getAttribLocation(this.prog.id, "pos");
+		gl.vertexAttribPointer(attrPos, 2, gl.FLOAT, gl.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
+		gl.enableVertexAttribArray(attrPos);
 
 		// Uniforms
 		this.uniModel = gl.getUniformLocation(this.prog.id, "model");
