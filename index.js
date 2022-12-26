@@ -46,6 +46,8 @@ const decay = 0.2;
 const laserPeakFreq = 1200.0;
 const laserReleaseFreq = 200.0;
 
+var aste = [];
+
 function fitCanv() {
 	window.canv.width = window.innerWidth;
 	window.canv.height = window.innerHeight;
@@ -314,7 +316,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	/* Asteroids */
 	for (let i = 0; i < 3; i++) {
-		scn.push(new Aste());
+		aste.push(new Aste());
+	}
+
+	for (let i = 0; i < aste.length; i++) {
+		scn.push(aste[i]);
 	}
 
 	function draw() {
