@@ -31,6 +31,9 @@ var scn = [];
 var score;
 var scoreStr;
 
+var life;
+var lifeStr;
+
 var scoreBoard = {
 	'asdf': 3,
 	'hjkl': 7,
@@ -132,6 +135,9 @@ document.addEventListener("keydown", function(e) {
 				case 13: // Enter
 					score = 0;
 					scoreStr = new Str(score.toString(), [-0.8, 0.8]);
+
+					life = 3;
+					lifeStr = new Str(life.toString(), [0.8, 0.8]);
 
 					m = o + 1;
 
@@ -348,6 +354,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 			case 1: // Game
 				scoreStr.draw();
+				lifeStr.draw();
 
 				for (let vec of scn) {
 					vec.draw();
