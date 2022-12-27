@@ -42,8 +42,6 @@ var scoreBoard = {
 
 var cursor;
 
-var osc;
-
 const decay = 0.2;
 
 const laserPeakFreq = 1200.0;
