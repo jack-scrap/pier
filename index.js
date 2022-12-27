@@ -42,7 +42,7 @@ var scoreBoard = {
 
 var cursor;
 
-const decay = 0.2;
+const laserDecay = 0.2;
 
 const laserPeakFreq = 1200.0;
 const laserReleaseFreq = 200.0;
@@ -196,13 +196,13 @@ document.addEventListener("keydown", function(e) {
 					osc.frequency.value = laserPeakFreq;
 					osc.type.value = 'triangle';
 
-					osc.frequency.linearRampToValueAtTime(laserReleaseFreq, audioCtx.currentTime + decay);
+					osc.frequency.linearRampToValueAtTime(laserReleaseFreq, audioCtx.currentTime + laserDecay);
 
 					osc.connect(audioCtx.destination);
 
 					osc.start();
 
-					osc.stop(audioCtx.currentTime + decay);
+					osc.stop(audioCtx.currentTime + laserDecay);
 
 					break;
 			}
