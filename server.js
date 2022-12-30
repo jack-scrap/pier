@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const fs = require("fs");
+const highScore = require("./high_score");
 
 const app = express();
 
@@ -16,6 +17,17 @@ app.use(express.text());
 app.set("views", path.join(__dirname, "/public/view"));
 
 app.use("/public", express.static("public"));
+
+app.get("/high_score", (req, res) => {
+	const raw = fs.readFileSync(path.join(__dirname, "conf.json"));
+	const conf = JSON.parse(raw);
+
+	mongoose.connect(`mongodb+srv://${conf.user}:${conf.pass}@cluster0.vxrjwi8.mongodb.net/tachyon`);
+
+	highScore.HighScore.find({}, (err, response) => {
+		res.json(response);
+	});
+});
 
 app.listen(port, (err) => {
 	if (err) {
