@@ -34,11 +34,8 @@ var scoreStr;
 var life;
 var lifeStr;
 
-var scoreBoard = {
-	'asdf': 3,
-	'hjkl': 7,
-	'qwer': 12
-};
+var scoreBoard = {};
+var scoreBuff = [];
 
 var cursor;
 
@@ -138,6 +135,28 @@ document.addEventListener("keydown", function(e) {
 					lifeStr = new Str(life.toString(), [0.8, 0.8]);
 
 					m = o + 1;
+					
+					if (m == 2) {
+						HTTP.getSync("/high_score", (res, err) => {
+							const deser = JSON.parse(res);
+
+							scoreBoard = {};
+							for (let obj of deser) {
+								scoreBoard[obj.player] = obj.score;
+							}
+
+							scoreBuff = [];
+
+							const key = Object.keys(scoreBoard);
+							for (let i = 0; i < 3; i++) {
+								if (i < key.length) {
+									let k = key[i];
+
+									scoreBuff.push(new Str(`${k}${scoreBoard[k]}`, [0.0, i * -lineHt]));
+								}
+							}
+						});
+					}
 
 					break;
 			}
@@ -303,7 +322,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	cursor = new Vec(cursorVtc, [-0.6, (o + 1) * -lineHt]);
 
 	// Scoreboard
-	let scoreBuff = [];
+	scoreBuff = [];
 	const key = Object.keys(scoreBoard);
 	for (let i = 0; i < 3; i++) {
 		if (i < key.length) {
