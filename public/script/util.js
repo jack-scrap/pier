@@ -16,7 +16,7 @@ class Fs {
 
 class Ld {
 	static resPath = "/public/res";
-	static objPath = this.resPath + "/" + "obj";
+	static objPath = this.resPath + "/obj";
 
 	static ws = " ";
 
