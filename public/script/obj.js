@@ -6,6 +6,19 @@ const type = {
 
 const triVtc = 3;
 
+function idx(attr, idc, ln) {
+	let attrIdxed = [];
+	for (let i = 0; i < idc.length; i++) {
+		let idx = idc[i] * ln;
+
+		for (let a = 0; a < ln; a++) {
+			attrIdxed.push(attr[idx + a]);
+		}
+	}
+
+	return attrIdxed;
+}
+
 class Obj {
 	_noIdc;
 
@@ -47,17 +60,9 @@ class Obj {
 		gl.bindBuffer(gl.ARRAY_BUFFER, this._vbo);
 
 		let vtcUnIdxed = Ld.attr(nameObj, 0);
-
 		let idcVtc = Ld.idc(nameObj, 0);
 
-		let vtc = [];
-		for (let i = 0; i < idcVtc.length; i++) {
-			let idx = idcVtc[i] * this._szVtx;
-
-			for (let i = 0; i < this._szVtx; i++) {
-				vtc.push(vtcUnIdxed[idx + i]);
-			}
-		}
+		let vtc = idx(vtcUnIdxed, idcVtc, 3);
 
 		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vtc), gl.STATIC_DRAW);
 
@@ -69,14 +74,7 @@ class Obj {
 		if (stUnIdxed.length) {
 			let idcSt = Ld.idc(nameObj, 1);
 
-			let st = [];
-			for (let i = 0; i < idcSt.length; i++) {
-				let idx = idcSt[i] * this._szSt;
-
-				for (let i = 0; i < this._szSt; i++) {
-					st.push(stUnIdxed[idx + i]);
-				}
-			}
+			let st = idx(stUnIdxed, idcSt, 2);
 
 			gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(st), gl.STATIC_DRAW);
 		}
