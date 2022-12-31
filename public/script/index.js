@@ -86,7 +86,7 @@ document.addEventListener("mousewheel", function(e) {
 	camScale += e.deltaY / 300;
 
 	camScale = Math.min(camScale, 2.0);
-	camScale = Math.max(camScale, 0.2);
+	camScale = Math.max(camScale, 0.02);
 
 	camLoc = [camMin[0] + (camDelta[0] * camScale), camMin[1] + (camDelta[1] * camScale), camMin[2] + (camDelta[2] * camScale)];
 });
