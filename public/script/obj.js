@@ -43,6 +43,9 @@ class Obj {
 		this._vao = gl.createVertexArray();
 		gl.bindVertexArray(this._vao);
 
+		this._vbo = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, this._vbo);
+
 		let vtcUnIdxed = Ld.attr(nameObj, 0);
 
 		let idcVtc = Ld.idc(nameObj, 0);
@@ -56,8 +59,6 @@ class Obj {
 			}
 		}
 
-		this._vbo = gl.createBuffer();
-		gl.bindBuffer(gl.ARRAY_BUFFER, this._vbo);
 		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vtc), gl.STATIC_DRAW);
 
 		this._stbo = gl.createBuffer();
