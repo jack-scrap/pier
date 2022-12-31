@@ -34,8 +34,8 @@ class Obj {
 	accModel(prev) {
 		mat4.mul(this._acc, this.model, prev);
 
-		for (let inst of this._child) {
-			inst.accModel(this._acc);
+		for (let child of this._child) {
+			child.accModel(this._acc);
 		}
 	}
 
@@ -165,8 +165,8 @@ class Obj {
 		this.prog.unUse();
 		gl.bindVertexArray(null);
 
-		for (let inst of this._child) {
-			inst.draw();
+		for (let obj of this._child) {
+			obj.draw();
 		}
 	}
 }
