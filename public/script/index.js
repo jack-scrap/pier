@@ -275,6 +275,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	gl.cullFace(gl.BACK);
 
+	gl.lineWidth(3);
+
 	const audioOpt = {
 		sampleRate: 6000
 	};
