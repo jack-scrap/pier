@@ -100,7 +100,7 @@ class Laser extends Vec {
 
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
 
-		gl.drawArrays(gl.LINE_LOOP, 0, this._pt.length);
+		gl.drawArrays(gl.LINES, 0, this._pt.length);
 
 		this.prog.unUse();
 		gl.bindVertexArray(null);
