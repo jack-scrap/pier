@@ -1,5 +1,6 @@
 class Vec {
 	_pt;
+	_noPt;
 
 	_mesh;
 
@@ -11,6 +12,7 @@ class Vec {
 
 	constructor(pt, loc = [0.0, 0.0], rot = 0.0) {
 		this._pt = pt;
+		this._noPt = this._pt.length / 2;
 
 		this._mesh = new Mesh(pt);
 
@@ -44,7 +46,7 @@ class Vec {
 		gl.bindVertexArray(this._mesh.vao);
 		this.prog.use();
 
-		gl.drawArrays(gl.LINE_LOOP, 0, this._pt.length);
+		gl.drawArrays(gl.LINE_LOOP, 0, this._noPt);
 
 		this.prog.unUse();
 		gl.bindVertexArray(null);
@@ -75,7 +77,7 @@ class Ship extends Vec {
 
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
 
-		gl.drawArrays(gl.LINE_LOOP, 0, this._pt.length);
+		gl.drawArrays(gl.LINE_LOOP, 0, this._noPt);
 
 		this.prog.unUse();
 		gl.bindVertexArray(null);
@@ -100,7 +102,7 @@ class Laser extends Vec {
 
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
 
-		gl.drawArrays(gl.LINES, 0, this._pt.length);
+		gl.drawArrays(gl.LINES, 0, this._noPt);
 
 		this.prog.unUse();
 		gl.bindVertexArray(null);
@@ -148,7 +150,7 @@ class Aste extends Vec {
 
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
 
-		gl.drawArrays(gl.LINE_LOOP, 0, this._pt.length);
+		gl.drawArrays(gl.LINE_LOOP, 0, this._noPt);
 
 		this.prog.unUse();
 		gl.bindVertexArray(null);
