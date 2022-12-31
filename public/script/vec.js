@@ -52,7 +52,7 @@ class Vec {
 }
 
 class Ship extends Vec {
-	static _vtc = [
+	static _pt = [
 		-0.6, -1.0,
 		0.6, -1.0,
 		0.0, 1.0
@@ -64,7 +64,7 @@ class Ship extends Vec {
 	speed = Ship.speedDefault;
 
 	constructor() {
-		super(Ship._vtc);
+		super(Ship._pt);
 	}
 
 	draw() {
@@ -83,13 +83,13 @@ class Ship extends Vec {
 }
 
 class Laser extends Vec {
-	static _vtc = [
+	static _pt = [
 		0.0, 0.0,
 		0.0, 1.0
 	];
 
 	constructor() {
-		super(Laser._vtc);
+		super(Laser._pt);
 	}
 
 	draw() {
@@ -121,13 +121,13 @@ class Aste extends Vec {
 
 		const inc = Aste._rot / n;
 
-		let vtc = [];
+		let pt = [];
 		for (let i = 0; i < n; i++) {
-			vtc.push(Math.cos(i * inc) * randFloat(Aste._minSz, Aste._maxSz));
-			vtc.push(Math.sin(i * inc) * randFloat(Aste._minSz, Aste._maxSz));
+			pt.push(Math.cos(i * inc) * randFloat(Aste._minSz, Aste._maxSz));
+			pt.push(Math.sin(i * inc) * randFloat(Aste._minSz, Aste._maxSz));
 		}
 
-		super(vtc);
+		super(pt);
 
 		mat4.rotate(this.model, this.model, randFloat(0, Aste._rot), [0, 0, 1]);
 
