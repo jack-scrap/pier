@@ -1,4 +1,7 @@
 class Fs {
+	static resPath = "/public/res";
+	static objPath = this.resPath + "/obj";
+
 	static rd(fName) {
 		let req = new XMLHttpRequest();
 		req.open("GET", fName, false);
@@ -15,9 +18,6 @@ class Fs {
 }
 
 class Ld {
-	static resPath = "/public/res";
-	static objPath = this.resPath + "/obj";
-
 	static ws = " ";
 
 	static sep = "/";
@@ -35,7 +35,7 @@ class Ld {
 
 	static attr(name, attr) {
 		let data = [];
-		for (let l of Fs.rd(this.objPath + "/" + name + ".obj").split("\n")) {
+		for (let l of Fs.rd(Fs.objPath + "/" + name + ".obj").split("\n")) {
 			let tok = [];
 			for (let inst of l.split(this.ws)) {
 				tok.push(inst);
@@ -56,7 +56,7 @@ class Ld {
 
 	static idc(name, type) {
 		let data = [];
-		for (let l of Fs.rd(this.objPath + "/" + name + ".obj").split("\n")) {
+		for (let l of Fs.rd(Fs.objPath + "/" + name + ".obj").split("\n")) {
 			let tok = [];
 			for (let inst of l.split(this.ws)) {
 				tok.push(inst);

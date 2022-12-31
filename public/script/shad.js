@@ -18,7 +18,7 @@ class Shad {
 				break;
 		}
 
-		const buff = Fs.rd(Ld.resPath + "/shad/" + name + "." + ext);
+		const buff = Fs.rd(Fs.resPath + "/shad/" + name + "." + ext);
 
 		this.id = gl.createShader(type);
 		gl.shaderSource(this.id, buff);
