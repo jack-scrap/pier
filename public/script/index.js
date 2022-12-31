@@ -21,8 +21,14 @@ var theta = 0.3;
 var id = new Float32Array(16);
 var idWorld = new Float32Array(16);
 
-const camLoc = [15, 8, 0];
+const camMin = [scrLoc[0] + 1.2, scrLoc[1], scrLoc[2]];
+const camMax = [15, 8, 0];
+
+const camDelta = [camMax[0] - camMin[0], camMax[1] - camMin[1], camMax[2] - camMin[2]];
+
 var camScale = 1;
+
+var camLoc = [camMin[0] + (camDelta[0] * camScale), camMin[1] + (camDelta[1] * camScale), camMin[2] + (camDelta[2] * camScale)];
 
 var ship;
 
@@ -78,6 +84,8 @@ document.addEventListener("mousemove", function(e) {
 
 document.addEventListener("mousewheel", function(e) {
 	camScale += e.deltaY / 300;
+
+	camLoc = [camMin[0] + (camDelta[0] * camScale), camMin[1] + (camDelta[1] * camScale), camMin[2] + (camDelta[2] * camScale)];
 
 	camScale = Math.min(camScale, 2.0);
 	camScale = Math.max(camScale, 0.2);

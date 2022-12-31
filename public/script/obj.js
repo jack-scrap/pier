@@ -149,7 +149,7 @@ class Obj {
 
 	draw() {
 		mat4.lookAt(this.view, [
-			camLoc[0] * camScale, camLoc[1] * camScale, camLoc[2] * camScale
+			camLoc[0], camLoc[1], camLoc[2]
 		], scrLoc, [
 			0, 1, 0
 		]);
