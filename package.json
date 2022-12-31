@@ -1,7 +1,7 @@
 {
   "name": "tachyon",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "public/script/index.js",
   "scripts": {
     "build": "sass --update scss:public/style",
     "start": "http-server .",
