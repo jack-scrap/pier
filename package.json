@@ -3,14 +3,16 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-		"start": "http-server .",
-		"dev": "nodemon server.js"
+    "build": "sass --update scss:public/style",
+    "start": "http-server .",
+    "dev": "nodemon server.js"
   },
   "author": "JackHasaKeyboard",
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",
     "http-server": "^14.1.1",
-    "mongoose": "^6.8.2"
+    "mongoose": "^6.8.2",
+    "sass": "^1.57.1"
   }
 }
