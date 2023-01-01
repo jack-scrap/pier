@@ -119,6 +119,15 @@ class Geom {
 	}
 }
 
+class Matrix {
+	static apply(vtx, model) {
+		var norm = vec4.clone(vtx);
+		norm[3] = 1;
+
+		vec4.transformMat4(norm, norm, model);
+	}
+}
+
 class Phys {
 	static sat(p, q) {
 		for (let s = 0; s < 2; s++) {
