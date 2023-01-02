@@ -125,8 +125,10 @@ class Aste extends Vec {
 
 		let pt = [];
 		for (let i = 0; i < n; i++) {
-			pt.push(Math.cos(i * inc) * randFloat(Aste._minSz, Aste._maxSz));
-			pt.push(Math.sin(i * inc) * randFloat(Aste._minSz, Aste._maxSz));
+			let step = i * inc;
+
+			pt.push(Math.cos(step) * randFloat(Aste._minSz, Aste._maxSz));
+			pt.push(Math.sin(step) * randFloat(Aste._minSz, Aste._maxSz));
 		}
 
 		super(pt);
