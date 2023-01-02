@@ -18,6 +18,8 @@ var mouseDeltaX;
 
 var theta = 0.3;
 
+const dragFac = 500;
+
 var id = new Float32Array(16);
 
 const camMin = [scrLoc[0] + 1.2, scrLoc[1], scrLoc[2]];
@@ -69,7 +71,7 @@ document.addEventListener("mousedown", function(e) {
 document.addEventListener("mouseup", function() {
 	drag = false;
 
-	theta += mouseDeltaX / 500;
+	theta += mouseDeltaX / dragFac;
 });
 
 document.addEventListener("mousemove", function(e) {
@@ -79,7 +81,7 @@ document.addEventListener("mousemove", function(e) {
 		mouseDeltaX = mouseCurrX - mouseStartX;
 
 		mat4.identity(id);
-		mat4.rotate(cabinet.model, id, theta + (mouseDeltaX / 500), [0, 1, 0]);
+		mat4.rotate(cabinet.model, id, theta + (mouseDeltaX / dragFac), [0, 1, 0]);
 
 		cabinet.accModel(id);
 	}
