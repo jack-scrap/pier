@@ -240,7 +240,7 @@ document.addEventListener("keydown", function(e) {
 			}
 
 			break;
-	};
+	}
 });
 
 document.addEventListener("keyup", function(e) {
