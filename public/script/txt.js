@@ -11,6 +11,10 @@ class Char extends Vec {
 		if (i >= "a".charCodeAt(0) && i <= "z".charCodeAt(0)) {
 			return i - 97 + 10;
 		}
+
+		if (i == " ".charCodeAt(0)) {
+			return 26 + 10;
+		}
 	}
 
 	constructor(c, loc = [0.0, 0.0]) {

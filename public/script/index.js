@@ -164,7 +164,7 @@ document.addEventListener("keydown", function(e) {
 								if (i < key.length) {
 									let k = key[i];
 
-									scoreBuff.push(new Str(`${k}${scoreBoard[k]}`, [0.0, i * -lineHt]));
+									scoreBuff.push(new Str(`${k} ${scoreBoard[k]}`, [0.0, i * -lineHt]));
 								}
 							}
 						});
@@ -375,7 +375,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		scn.push(aste[i]);
 	}
 
-	gameOver = new Str("gameover");
+	gameOver = new Str("game over");
 
 	function draw() {
 		// Framebuffer
