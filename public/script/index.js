@@ -70,7 +70,7 @@ document.addEventListener("mousedown", function(e) {
 document.addEventListener("mouseup", function() {
 	drag = false;
 
-	theta += mouseDeltaX;
+	theta += mouseDeltaX / 500;
 });
 
 document.addEventListener("mousemove", function(e) {
@@ -80,7 +80,7 @@ document.addEventListener("mousemove", function(e) {
 		mouseDeltaX = mouseCurrX - mouseStartX;
 
 		mat4.identity(id);
-		mat4.rotate(cabinet.model, id, (theta + mouseDeltaX) / 500, [0, 1, 0]);
+		mat4.rotate(cabinet.model, id, theta + (mouseDeltaX / 500), [0, 1, 0]);
 
 		cabinet.accModel(idWorld);
 	}
