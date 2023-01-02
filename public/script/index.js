@@ -45,10 +45,12 @@ var scoreBuff = [];
 
 var cursor;
 
-const laserDecay = 0.2;
+var laserFilter;
+
+const laserDecay = 0.16;
 
 const laserPeakFreq = 1200.0;
-const laserReleaseFreq = 200.0;
+const laserReleaseFreq = 400.0;
 
 var aste = [];
 
@@ -221,11 +223,12 @@ document.addEventListener("keydown", function(e) {
 
 					let osc = audioCtx.createOscillator();
 					osc.frequency.value = laserPeakFreq;
-					osc.type.value = 'triangle';
+					osc.type.value = 'sawtooth';
 
-					osc.frequency.linearRampToValueAtTime(laserReleaseFreq, audioCtx.currentTime + laserDecay);
+					osc.frequency.exponentialRampToValueAtTime(400.0, audioCtx.currentTime + laserDecay);
 
-					osc.connect(audioCtx.destination);
+					osc.connect(laserFilter);
+					laserFilter.connect(audioCtx.destination);
 
 					osc.start();
 
@@ -346,6 +349,10 @@ document.addEventListener("DOMContentLoaded", function() {
 	ship = new Ship();
 
 	scn.push(ship);
+
+	laserFilter = audioCtx.createBiquadFilter();
+	laserFilter.type = 'lowpass';
+	laserFilter.frequency.value = 400.0;
 
 	/* Asteroids */
 	for (let i = 0; i < 3; i++) {
