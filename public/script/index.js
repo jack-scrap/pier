@@ -19,7 +19,6 @@ var mouseDeltaX;
 var theta = 0.3;
 
 var id = new Float32Array(16);
-var idWorld = new Float32Array(16);
 
 const camMin = [scrLoc[0] + 1.2, scrLoc[1], scrLoc[2]];
 const camMax = [15, 8, 0];
@@ -82,7 +81,7 @@ document.addEventListener("mousemove", function(e) {
 		mat4.identity(id);
 		mat4.rotate(cabinet.model, id, theta + (mouseDeltaX / 500), [0, 1, 0]);
 
-		cabinet.accModel(idWorld);
+		cabinet.accModel(id);
 	}
 });
 
@@ -298,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	window.audioCtx = new window.AudioContext(audioOpt) || window.webkitAudioContext(audioOpt);
 
-	mat4.identity(idWorld);
+	mat4.identity(id);
 
 	/* Screen */
 	scr = new Obj("scr", "scr", "tex");
