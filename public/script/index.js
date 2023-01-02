@@ -43,6 +43,8 @@ var lifeStr;
 var scoreBoard = {};
 var scoreBuff = [];
 
+var gameOver;
+
 var cursor;
 
 var laserFilter;
@@ -372,6 +374,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	for (let i = 0; i < aste.length; i++) {
 		scn.push(aste[i]);
 	}
+
+	gameOver = new Str("gameover");
 
 	function draw() {
 		// Framebuffer
