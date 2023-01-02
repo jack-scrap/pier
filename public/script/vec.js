@@ -134,14 +134,6 @@ class Aste extends Vec {
 		super(pt);
 
 		mat4.rotate(this.model, this.model, randFloat(0, Aste._rot), [0, 0, 1]);
-
-		mat4.translate(this.model, this.model, [randFloat(0.5, 1), randFloat(0.5, 1), 0]);
-
-		this.prog.use();
-
-		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
-
-		this.prog.unUse();
 	}
 
 	draw() {

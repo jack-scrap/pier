@@ -360,6 +360,16 @@ document.addEventListener("DOMContentLoaded", function() {
 	}
 
 	for (let i = 0; i < aste.length; i++) {
+		mat4.translate(aste[i].model, aste[i].model, [randFloat(0.5, 1), randFloat(0.5, 1), 0]);
+
+		aste[i].prog.use();
+
+		gl.uniformMatrix4fv(aste[i].uniModel, gl.FALSE, aste[i].model);
+
+		aste[i].prog.unUse();
+	}
+
+	for (let i = 0; i < aste.length; i++) {
 		scn.push(aste[i]);
 	}
 
