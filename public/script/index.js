@@ -240,6 +240,16 @@ document.addEventListener("keydown", function(e) {
 			}
 
 			break;
+
+			case 2:
+				switch (e.keyCode) {
+					case 27: // Escape
+						m = 0;
+
+						break;
+				}
+
+			break;
 	}
 });
 
