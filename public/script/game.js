@@ -164,7 +164,9 @@ class UFO extends Vec {
 	constructor() {
 		let y = randFloat(-1.0, 1.0);
 
-		super(UFO._pt, [0.0, y]);
+		let side = randInt(0, 2);
+
+		super(UFO._pt, [side ? 1 : -1, y]);
 	}
 
 	draw() {
