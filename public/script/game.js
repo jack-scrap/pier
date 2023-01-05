@@ -100,8 +100,8 @@ class Laser extends Vec {
 
 		// Source
 		let osc = audioCtx.createOscillator();
-		osc.frequency.value = Laser._peakFreq;
 		osc.type = "sawtooth";
+		osc.frequency.value = Laser._peakFreq;
 
 		osc.frequency.exponentialRampToValueAtTime(400.0, audioCtx.currentTime + Laser._decay);
 
