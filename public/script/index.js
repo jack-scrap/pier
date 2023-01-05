@@ -386,6 +386,11 @@ document.addEventListener("DOMContentLoaded", function() {
 		scn.push(aste[i]);
 	}
 
+	/* UFOs */
+	let ufo = new UFO;
+
+	scn.push(ufo);
+
 	gameOver = new Str("game over");
 
 	function draw() {
