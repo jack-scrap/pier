@@ -139,7 +139,7 @@ class Obj {
 		this.uniView = gl.getUniformLocation(this.prog.id, "view");
 		this._uniProj = gl.getUniformLocation(this.prog.id, "proj");
 
-		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
+		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this._acc);
 		gl.uniformMatrix4fv(this.uniView, gl.FALSE, this.view);
 		gl.uniformMatrix4fv(this._uniProj, gl.FALSE, this._proj);
 
