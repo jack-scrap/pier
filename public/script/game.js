@@ -234,6 +234,11 @@ class UFO extends Vec {
 		this._lfo.start();
 	}
 
+	destroy() {
+		this._carrier.stop();
+		this._lfo.stop();
+	}
+
 	draw() {
 		mat4.translate(this.model, this.model, [(this._side ? -1 : 1) * UFO._speed, 0.00, 0]);
 
