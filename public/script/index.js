@@ -56,6 +56,7 @@ const laserPeakFreq = 1200.0;
 const laserReleaseFreq = 400.0;
 
 var aste = [];
+var ufo = [];
 
 function fitCanv() {
 	window.canv.width = window.innerWidth;
@@ -392,7 +393,11 @@ document.addEventListener("DOMContentLoaded", function() {
 		let spawnUFO = randInt(0, 500);
 
 		if (!spawnUFO) {
-			scn.push(new UFO);
+			let inst = new UFO;
+
+			ufo.push(inst);
+
+			scn.push(inst);
 		}
 
 		// Framebuffer
