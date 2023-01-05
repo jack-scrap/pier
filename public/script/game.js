@@ -144,6 +144,8 @@ class Aste extends Vec {
 
 	static _rot = Math.PI * 2;
 
+	static _decayTime = 0.6;
+
 	constructor() {
 		const n = randInt(Aste._minPt, Aste._maxPt);
 
@@ -168,6 +170,30 @@ class Aste extends Vec {
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
 
 		this.prog.unUse();
+	}
+
+	destroy() {
+		// Source
+		let osc = audioCtx.createOscillator();
+		osc.type = "square";
+		osc.frequency.value = 80.0;
+
+		// Effect
+		let filter = audioCtx.createBiquadFilter();
+		filter.type = "lowpass";
+		filter.frequency.value = 80.0;
+
+		// Route
+		osc.connect(filter);
+		filter.connect(audioCtx.destination);
+
+		// Schedule
+		osc.start();
+
+		osc.frequency.exponentialRampToValueAtTime(1.0, audioCtx.currentTime + Aste._decayTime);
+		filter.frequency.exponentialRampToValueAtTime(1.0, audioCtx.currentTime + 1.5);
+
+		osc.stop(audioCtx.currentTime + Aste._decayTime);
 	}
 
 	draw() {
