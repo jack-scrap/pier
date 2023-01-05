@@ -210,14 +210,14 @@ class UFO extends Vec {
 
 		this._carrier = audioCtx.createOscillator();
 		this._carrier.type = "triangle";
-		this._carrier.frequency.value = 200;
+		this._carrier.frequency.value = 300;
 
 		this._lfo = audioCtx.createOscillator();
 		this._lfo.type = "sine";
 		this._lfo.frequency.value = 7.0;
 
 		this._lfoGain = audioCtx.createGain();
-		this._lfoGain.gain.value = 40.0;
+		this._lfoGain.gain.value = 30.0;
 
 		this._lfo.connect(this._lfoGain);
 		this._lfoGain.connect(this._carrier.frequency);
