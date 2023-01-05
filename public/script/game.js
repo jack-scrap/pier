@@ -161,6 +161,8 @@ class UFO extends Vec {
 		0.0, 1.6
 	];
 
+	static _speed = 0.01;
+
 	_side;
 
 	constructor() {
@@ -174,7 +176,7 @@ class UFO extends Vec {
 	}
 
 	draw() {
-		mat4.translate(this.model, this.model, [(this._side ? -1 : 1) * 0.01, 0.00, 0]);
+		mat4.translate(this.model, this.model, [(this._side ? -1 : 1) * UFO._speed, 0.00, 0]);
 
 		gl.bindVertexArray(this._mesh.vao);
 		this.prog.use();
