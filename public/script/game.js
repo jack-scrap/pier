@@ -165,6 +165,10 @@ class UFO extends Vec {
 
 	_side;
 
+	_carrier;
+	_lfo;
+	_lfoGain;
+
 	constructor() {
 		let y = randFloat(-1.0, 1.0);
 
@@ -173,6 +177,24 @@ class UFO extends Vec {
 		super(UFO._pt, [side ? 1 : -1, y]);
 
 		this._side = side;
+
+		this._carrier = audioCtx.createOscillator();
+		this._carrier.type = "triangle";
+		this._carrier.frequency.value = 200;
+
+		this._lfo = audioCtx.createOscillator();
+		this._lfo.type = "sine";
+		this._lfo.frequency.value = 7.0;
+
+		this._lfoGain = audioCtx.createGain();
+		this._lfoGain.gain.value = 40.0;
+
+		this._lfo.connect(this._lfoGain);
+		this._lfoGain.connect(this._carrier.frequency);
+		this._carrier.connect(audioCtx.destination);
+
+		this._carrier.start();
+		this._lfo.start();
 	}
 
 	draw() {
