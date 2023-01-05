@@ -98,19 +98,23 @@ class Laser extends Vec {
 	constructor() {
 		super(Laser._pt);
 
+		// Source
 		let osc = audioCtx.createOscillator();
 		osc.frequency.value = Laser._peakFreq;
 		osc.type = "sawtooth";
 
 		osc.frequency.exponentialRampToValueAtTime(400.0, audioCtx.currentTime + Laser._decay);
 
+		// Effect
 		let laserFilter = audioCtx.createBiquadFilter();
 		laserFilter.type = "lowpass";
 		laserFilter.frequency.value = 400.0;
 
+		// Route
 		osc.connect(laserFilter);
 		laserFilter.connect(audioCtx.destination);
 
+		// Schedule
 		osc.start();
 
 		osc.stop(audioCtx.currentTime + Laser._decay);
@@ -208,6 +212,7 @@ class UFO extends Vec {
 
 		this._side = side;
 
+		// Source
 		this._carrier = audioCtx.createOscillator();
 		this._carrier.type = "triangle";
 		this._carrier.frequency.value = 300;
@@ -219,10 +224,12 @@ class UFO extends Vec {
 		this._lfoGain = audioCtx.createGain();
 		this._lfoGain.gain.value = 30.0;
 
+		// Route
 		this._lfo.connect(this._lfoGain);
 		this._lfoGain.connect(this._carrier.frequency);
 		this._carrier.connect(audioCtx.destination);
 
+		// Schedule
 		this._carrier.start();
 		this._lfo.start();
 	}
