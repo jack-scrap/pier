@@ -150,3 +150,32 @@ class Aste extends Vec {
 		gl.bindVertexArray(null);
 	}
 }
+
+class UFO extends Vec {
+	static _pt = [
+		0.0, 1.0,
+		-2.0, 0.0,
+		0.0, -1.0,
+		2.0, 0.0,
+		0.0, 1.0,
+		0.0, 1.6
+	];
+
+	constructor() {
+		super(UFO._pt);
+	}
+
+	draw() {
+		mat4.translate(this.model, this.model, [0.01, 0.00, 0]);
+
+		gl.bindVertexArray(this._mesh.vao);
+		this.prog.use();
+
+		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
+
+		gl.drawArrays(gl.LINE_LOOP, 0, this._noPt);
+
+		this.prog.unUse();
+		gl.bindVertexArray(null);
+	}
+}
