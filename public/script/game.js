@@ -90,8 +90,30 @@ class Laser extends Vec {
 		0.0, 1.0
 	];
 
+	static _decay = 0.16;
+
+	static _peakFreq = 1200.0;
+	static _releaseFreq = 400.0;
+
 	constructor() {
 		super(Laser._pt);
+
+		let osc = audioCtx.createOscillator();
+		osc.frequency.value = Laser._peakFreq;
+		osc.type = "sawtooth";
+
+		osc.frequency.exponentialRampToValueAtTime(400.0, audioCtx.currentTime + Laser._decay);
+
+		let laserFilter = audioCtx.createBiquadFilter();
+		laserFilter.type = "lowpass";
+		laserFilter.frequency.value = 400.0;
+
+		osc.connect(laserFilter);
+		laserFilter.connect(audioCtx.destination);
+
+		osc.start();
+
+		osc.stop(audioCtx.currentTime + Laser._decay);
 	}
 
 	draw() {

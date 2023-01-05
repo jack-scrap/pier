@@ -48,13 +48,6 @@ var gameOver;
 
 var cursor;
 
-var laserFilter;
-
-const laserDecay = 0.16;
-
-const laserPeakFreq = 1200.0;
-const laserReleaseFreq = 400.0;
-
 var aste = [];
 var ufo = [];
 
@@ -225,19 +218,6 @@ document.addEventListener("keydown", function(e) {
 
 					scn.push(laser);
 
-					let osc = audioCtx.createOscillator();
-					osc.frequency.value = laserPeakFreq;
-					osc.type.value = "sawtooth";
-
-					osc.frequency.exponentialRampToValueAtTime(400.0, audioCtx.currentTime + laserDecay);
-
-					osc.connect(laserFilter);
-					laserFilter.connect(audioCtx.destination);
-
-					osc.start();
-
-					osc.stop(audioCtx.currentTime + laserDecay);
-
 					break;
 			}
 
@@ -363,10 +343,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	ship = new Ship();
 
 	scn.push(ship);
-
-	laserFilter = audioCtx.createBiquadFilter();
-	laserFilter.type = "lowpass";
-	laserFilter.frequency.value = 400.0;
 
 	/* Asteroids */
 	for (let i = 0; i < 3; i++) {
