@@ -161,16 +161,20 @@ class UFO extends Vec {
 		0.0, 1.6
 	];
 
+	_side;
+
 	constructor() {
 		let y = randFloat(-1.0, 1.0);
 
 		let side = randInt(0, 2);
 
 		super(UFO._pt, [side ? 1 : -1, y]);
+
+		this._side = side;
 	}
 
 	draw() {
-		mat4.translate(this.model, this.model, [0.01, 0.00, 0]);
+		mat4.translate(this.model, this.model, [(this._side ? -1 : 1) * 0.01, 0.00, 0]);
 
 		gl.bindVertexArray(this._mesh.vao);
 		this.prog.use();
