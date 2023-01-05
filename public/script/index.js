@@ -226,7 +226,7 @@ document.addEventListener("keydown", function(e) {
 
 					let osc = audioCtx.createOscillator();
 					osc.frequency.value = laserPeakFreq;
-					osc.type.value = 'sawtooth';
+					osc.type.value = "sawtooth";
 
 					osc.frequency.exponentialRampToValueAtTime(400.0, audioCtx.currentTime + laserDecay);
 
@@ -364,7 +364,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	scn.push(ship);
 
 	laserFilter = audioCtx.createBiquadFilter();
-	laserFilter.type = 'lowpass';
+	laserFilter.type = "lowpass";
 	laserFilter.frequency.value = 400.0;
 
 	/* Asteroids */
