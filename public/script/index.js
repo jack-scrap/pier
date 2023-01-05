@@ -386,14 +386,15 @@ document.addEventListener("DOMContentLoaded", function() {
 		scn.push(aste[i]);
 	}
 
-	/* UFOs */
-	let ufo = new UFO;
-
-	scn.push(ufo);
-
 	gameOver = new Str("game over");
 
 	function draw() {
+		let spawnUFO = randInt(0, 500);
+
+		if (!spawnUFO) {
+			scn.push(new UFO);
+		}
+
 		// Framebuffer
 		gl.disable(gl.DEPTH_TEST);
 
