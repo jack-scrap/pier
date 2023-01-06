@@ -90,10 +90,10 @@ class Laser extends Vec {
 		0.0, 1.0
 	];
 
-	static _decay = 0.16;
-
 	static _peakFreq = 1200.0;
 	static _releaseFreq = 400.0;
+
+	static _decay = 0.16;
 
 	constructor() {
 		super(Laser._pt);
