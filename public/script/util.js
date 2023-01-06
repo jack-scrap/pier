@@ -141,9 +141,9 @@ class Phys {
 				model[i] = Matrix.apply(poly[i]._pt, poly[i].model);
 			}
 
-			for (let v = 0; v < poly[0].n; v++) {
+			for (let v = 0; v < poly[0]._noPt; v++) {
 				let a = v;
-				let b = (v + 1) % poly[0].n;
+				let b = (v + 1) % poly[0]._noPt;
 
 				let axis = [
 					model[0][b * 2] - model[0][a * 2],
@@ -160,7 +160,7 @@ class Phys {
 					for (let i = 0; i < 2; i++) {
 						bound.push(i ? -Infinity : Infinity);
 					}
-					for (let i = 0; i < poly[p].n; i++) {
+					for (let i = 0; i < poly[p]._noPt; i++) {
 						let proj = (model[p][i * 2] * axis[0] + model[p][(i * 2) + 1] * axis[1]);
 
 						if (proj < bound[0]) {
