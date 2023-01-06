@@ -131,6 +131,10 @@ class Matrix {
 }
 
 class Phys {
+	static interAxis(u, v) {
+		return u[0] <= v[1] && u[1] >= v[0];
+	}
+
 	static sat(p, q) {
 		for (let s = 0; s < 2; s++) {
 			let poly = [
@@ -177,7 +181,7 @@ class Phys {
 					rng.push(bound);
 				}
 
-				if (!interAxis(rng[0], rng[1])) {
+				if (!Phys.interAxis(rng[0], rng[1])) {
 					return false;
 				}
 			}
