@@ -106,13 +106,13 @@ class Laser extends Vec {
 		osc.frequency.exponentialRampToValueAtTime(400.0, audioCtx.currentTime + Laser._decay);
 
 		// Effect
-		let laserFilter = audioCtx.createBiquadFilter();
-		laserFilter.type = "lowpass";
-		laserFilter.frequency.value = 400.0;
+		let filter = audioCtx.createBiquadFilter();
+		filter.type = "lowpass";
+		filter.frequency.value = 400.0;
 
 		// Route
-		osc.connect(laserFilter);
-		laserFilter.connect(audioCtx.destination);
+		osc.connect(filter);
+		filter.connect(audioCtx.destination);
 
 		// Schedule
 		osc.start();
