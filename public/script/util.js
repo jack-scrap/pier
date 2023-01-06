@@ -147,9 +147,9 @@ class Phys {
 				model[i] = Matrix.apply(poly[i]._pt, poly[i].model);
 			}
 
-			for (let v = 0; v < poly[0]._noPt; v++) {
-				let a = v;
-				let b = (v + 1) % poly[0]._noPt;
+			for (let p = 0; p < poly[0]._noPt; p++) {
+				let a = p;
+				let b = (p + 1) % poly[0]._noPt;
 
 				let axis = [
 					model[0][b * 2] - model[0][a * 2],
