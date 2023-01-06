@@ -125,6 +125,8 @@ class Matrix {
 		norm[3] = 1;
 
 		vec4.transformMat4(norm, norm, model);
+
+		return model;
 	}
 }
 
