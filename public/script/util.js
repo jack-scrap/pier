@@ -138,7 +138,7 @@ class Phys {
 
 			let model = [];
 			for (let i = 0; i < 2; i++) {
-				model[i] = apply(poly[i]._pt, poly[i].model);
+				model[i] = Matrix.apply(poly[i]._pt, poly[i].model);
 			}
 
 			for (let v = 0; v < poly[0].n; v++) {
