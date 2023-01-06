@@ -356,16 +356,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	gameOver = new Str("game over");
 
 	function draw() {
-		let spawnUFO = randInt(0, 500);
-
-		if (!spawnUFO) {
-			let inst = new UFO;
-
-			ufo.push(inst);
-
-			scn.push(inst);
-		}
-
 		// Framebuffer
 		gl.disable(gl.DEPTH_TEST);
 
@@ -391,6 +381,16 @@ document.addEventListener("DOMContentLoaded", function() {
 			case 1: // Game
 				scoreStr.draw();
 				lifeStr.draw();
+
+				let spawnUFO = randInt(0, 500);
+
+				if (!spawnUFO) {
+					let inst = new UFO;
+
+					ufo.push(inst);
+
+					scn.push(inst);
+				}
 
 				for (let vec of scn) {
 					vec.draw();
