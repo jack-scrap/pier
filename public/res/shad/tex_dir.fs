@@ -16,5 +16,5 @@ void main() {
 
 	float diff = max(dot(normFace, normalize(sun)), 0.0) * 0.1;
 
-	frag = vec4((1.0 - diff) * texture(sampler, _st));
+	frag = vec4(vec3((1.0 - diff) * texture(sampler, _st)), 1.0);
 }
