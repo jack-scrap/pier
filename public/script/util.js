@@ -181,7 +181,7 @@ class Phys {
 						bound.push(i ? -Infinity : Infinity);
 					}
 					for (let i = 0; i < poly[p]._noPt; i++) {
-						let proj = (model[p][i * 2] * axis[0] + model[p][(i * 2) + 1] * axis[1]);
+						let proj = model[p][i * 2] * axis[0] + model[p][(i * 2) + 1] * axis[1];
 
 						if (proj < bound[0]) {
 							bound[0] = proj;
