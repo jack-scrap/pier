@@ -212,6 +212,17 @@ class AsteLg extends Aste {
 	static _minSz = 1;
 	static _maxSz = 1.5;
 
+	destroy() {
+		super.destroy();
+
+		let child = [];
+		for (let i = 0; i < 3; i++) {
+			child.push(new AsteSm());
+		}
+
+		return child;
+	}
+
 	constructor() {
 		super(AsteLg._minSz, AsteLg._maxSz);
 	}
