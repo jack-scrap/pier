@@ -1,6 +1,7 @@
 class Fs {
 	static resPath = "/public/res";
 	static objPath = this.resPath + "/obj";
+	static texPath = this.resPath + "/tex";
 
 	static rd(fName) {
 		let req = new XMLHttpRequest();
@@ -75,6 +76,19 @@ class Ld {
 		}
 
 		return data;
+	}
+
+	static img(fName) {
+		return new Promise((res, rej) => {
+			const image = new Image();
+			image.onload = () => {
+				res(image);
+			}
+			image.onerror = (e) => {
+				rej(e);
+			}
+			image.src = Fs.texPath + "/" + fName;
+		});
 	}
 }
 
