@@ -315,6 +315,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 	cabinet.prog.use();
 
 	let texCabinet = gl.createTexture();
+
 	gl.bindTexture(gl.TEXTURE_2D, texCabinet);
 
 	let img = await Ld.img("cabinet.png");
