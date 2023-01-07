@@ -139,29 +139,26 @@ class Aste extends Vec {
 	static _minPt = 5;
 	static _maxPt = 7;
 
-	static _minSz = 1;
-	static _maxSz = 1.5;
-
 	static _rot = Math.PI * 2;
 
 	static _decayTime = 0.6;
 
-	constructor() {
-		const n = randInt(Aste._minPt, Aste._maxPt);
+	constructor(minSz, maxSz) {
+		const n = randInt(AsteLg._minPt, AsteLg._maxPt);
 
-		const inc = Aste._rot / n;
+		const inc = AsteLg._rot / n;
 
 		let pt = [];
 		for (let i = 0; i < n; i++) {
 			let angle = i * inc;
 
-			pt.push(Math.cos(angle) * randFloat(Aste._minSz, Aste._maxSz));
-			pt.push(Math.sin(angle) * randFloat(Aste._minSz, Aste._maxSz));
+			pt.push(Math.cos(angle) * randFloat(minSz, maxSz));
+			pt.push(Math.sin(angle) * randFloat(minSz, maxSz));
 		}
 
 		super(pt);
 
-		mat4.rotate(this.model, this.model, randFloat(0, Aste._rot), [0, 0, 1]);
+		mat4.rotate(this.model, this.model, randFloat(0, AsteLg._rot), [0, 0, 1]);
 
 		mat4.translate(this.model, this.model, [randFloat(0.5, 1), randFloat(0.5, 1), 0]);
 
@@ -190,10 +187,10 @@ class Aste extends Vec {
 		// Schedule
 		osc.start();
 
-		osc.frequency.exponentialRampToValueAtTime(1.0, audioCtx.currentTime + Aste._decayTime);
+		osc.frequency.exponentialRampToValueAtTime(1.0, audioCtx.currentTime + AsteLg._decayTime);
 		filter.frequency.exponentialRampToValueAtTime(1.0, audioCtx.currentTime + 1.5);
 
-		osc.stop(audioCtx.currentTime + Aste._decayTime);
+		osc.stop(audioCtx.currentTime + AsteLg._decayTime);
 	}
 
 	draw() {
@@ -208,6 +205,15 @@ class Aste extends Vec {
 
 		this.prog.unUse();
 		gl.bindVertexArray(null);
+	}
+}
+
+class AsteLg extends Aste {
+	static _minSz = 1;
+	static _maxSz = 1.5;
+
+	constructor() {
+		super(AsteLg._minSz, AsteLg._maxSz);
 	}
 }
 

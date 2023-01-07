@@ -366,7 +366,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	/* Asteroids */
 	for (let i = 0; i < 3; i++) {
-		aste.push(new Aste());
+		aste.push(new AsteLg());
 	}
 
 	for (let i = 0; i < aste.length; i++) {
