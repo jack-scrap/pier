@@ -51,6 +51,8 @@ var cursor;
 var aste = [];
 var ufo = [];
 
+var laser = [];
+
 function fitCanv() {
 	window.canv.width = window.innerWidth;
 	window.canv.height = window.innerHeight;
@@ -206,17 +208,19 @@ document.addEventListener("keydown", function(e) {
 					break;
 
 				case 13: // Enter
-					let laser = new Laser();
+					let inst = new Laser();
 
-					laser.model = mat4.clone(ship.model);
+					inst.model = mat4.clone(ship.model);
 
-					laser.prog.use();
+					inst.prog.use();
 
-					gl.uniformMatrix4fv(laser.uniModel, gl.FALSE, laser.model);
+					gl.uniformMatrix4fv(inst.uniModel, gl.FALSE, inst.model);
 
-					laser.prog.unUse();
+					inst.prog.unUse();
 
-					scn.push(laser);
+					laser.push(inst);
+
+					scn.push(inst);
 
 					break;
 			}
