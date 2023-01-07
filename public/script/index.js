@@ -303,8 +303,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 	let cbo = gl.COLOR_ATTACHMENT0;
 	gl.framebufferTexture2D(gl.FRAMEBUFFER, cbo, gl.TEXTURE_2D, texScr, 0);
 
-	gl.bindTexture(gl.TEXTURE_2D, texScr);
 	gl.activeTexture(gl.TEXTURE0);
+	gl.bindTexture(gl.TEXTURE_2D, texScr);
 
 	scr.prog.unUse();
 
