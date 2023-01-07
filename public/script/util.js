@@ -80,14 +80,14 @@ class Ld {
 
 	static img(fName) {
 		return new Promise((res, rej) => {
-			const image = new Image();
-			image.onload = () => {
-				res(image);
+			const img = new Image();
+			img.onload = () => {
+				res(img);
 			}
-			image.onerror = (e) => {
+			img.onerror = (e) => {
 				rej(e);
 			}
-			image.src = Fs.texPath + "/" + fName;
+			img.src = Fs.texPath + "/" + fName;
 		});
 	}
 }
