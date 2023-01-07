@@ -308,7 +308,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	scr.prog.unUse();
 
-	cabinet = new Obj("cabinet", "obj", "dir", [0, 0, 0], [0, theta, 0], [
+	cabinet = new Obj("cabinet", "obj", "tex_dir", [0, 0, 0], [0, theta, 0], [
 		scr
 	]);
 
