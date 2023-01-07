@@ -217,6 +217,15 @@ class AsteLg extends Aste {
 	}
 }
 
+class AsteSm extends Aste {
+	static _minSz = 0.5;
+	static _maxSz = 1.0;
+
+	constructor() {
+		super(AsteLg._minSz, AsteLg._maxSz);
+	}
+}
+
 class UFO extends Vec {
 	static _pt = [
 		0.0, 1.0,
