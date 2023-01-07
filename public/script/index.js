@@ -253,7 +253,7 @@ document.addEventListener("keyup", function(e) {
 
 window.addEventListener("resize", fitCanv);
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
 	/* Context */
 	window.canv = document.getElementById("disp");
 
@@ -288,8 +288,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	scr.prog.use();
 
 	// Texture
-	let tex = gl.createTexture();
-	gl.bindTexture(gl.TEXTURE_2D, tex);
+	let texScr = gl.createTexture();
+	gl.bindTexture(gl.TEXTURE_2D, texScr);
 
 	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, window.canv.width, window.canv.height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
 
@@ -301,9 +301,9 @@ document.addEventListener("DOMContentLoaded", function() {
 	gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
 
 	let cbo = gl.COLOR_ATTACHMENT0;
-	gl.framebufferTexture2D(gl.FRAMEBUFFER, cbo, gl.TEXTURE_2D, tex, 0);
+	gl.framebufferTexture2D(gl.FRAMEBUFFER, cbo, gl.TEXTURE_2D, texScr, 0);
 
-	gl.bindTexture(gl.TEXTURE_2D, tex);
+	gl.bindTexture(gl.TEXTURE_2D, texScr);
 	gl.activeTexture(gl.TEXTURE0);
 
 	scr.prog.unUse();
@@ -311,6 +311,21 @@ document.addEventListener("DOMContentLoaded", function() {
 	cabinet = new Obj("cabinet", "obj", "dir", [0, 0, 0], [0, theta, 0], [
 		scr
 	]);
+
+	cabinet.prog.use();
+
+	let texCabinet = gl.createTexture();
+	gl.bindTexture(gl.TEXTURE_2D, texCabinet);
+
+	let img = await Ld.img("cabinet.png");
+
+	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+
+	cabinet.prog.unUse();
 
 	// Menu
 	const title = new Str("tachyon", [0.0, lineHt]);
