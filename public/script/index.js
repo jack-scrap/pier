@@ -318,7 +318,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	gl.bindTexture(gl.TEXTURE_2D, cabinet.tex);
 
-	let img = await Ld.img("cabinet.png");
+	let img = await Ld.img("cabinet.bmp");
 
 	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
 
