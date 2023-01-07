@@ -33,6 +33,8 @@ class Obj {
 	_vbo;
 	_stbo;
 
+	tex;
+
 	uniModel;
 	uniView;
 	_uniProj;
@@ -158,6 +160,8 @@ class Obj {
 
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this._acc);
 		gl.uniformMatrix4fv(this.uniView, gl.FALSE, this.view);
+
+		gl.bindTexture(gl.TEXTURE_2D, this.tex);
 
 		gl.drawArrays(gl.TRIANGLES, 0, this._noIdc);
 

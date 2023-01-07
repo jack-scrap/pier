@@ -288,8 +288,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 	scr.prog.use();
 
 	// Texture
-	let texScr = gl.createTexture();
-	gl.bindTexture(gl.TEXTURE_2D, texScr);
+	scr.tex = gl.createTexture();
+	gl.bindTexture(gl.TEXTURE_2D, scr.tex);
 
 	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, window.canv.width, window.canv.height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
 
@@ -301,10 +301,10 @@ document.addEventListener("DOMContentLoaded", async function() {
 	gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
 
 	let cbo = gl.COLOR_ATTACHMENT0;
-	gl.framebufferTexture2D(gl.FRAMEBUFFER, cbo, gl.TEXTURE_2D, texScr, 0);
+	gl.framebufferTexture2D(gl.FRAMEBUFFER, cbo, gl.TEXTURE_2D, scr.tex, 0);
 
 	gl.activeTexture(gl.TEXTURE0);
-	gl.bindTexture(gl.TEXTURE_2D, texScr);
+	gl.bindTexture(gl.TEXTURE_2D, scr.tex);
 
 	scr.prog.unUse();
 
@@ -314,9 +314,9 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	cabinet.prog.use();
 
-	let texCabinet = gl.createTexture();
+	cabinet.tex = gl.createTexture();
 
-	gl.bindTexture(gl.TEXTURE_2D, texCabinet);
+	gl.bindTexture(gl.TEXTURE_2D, cabinet.tex);
 
 	let img = await Ld.img("cabinet.png");
 
