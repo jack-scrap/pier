@@ -14,7 +14,7 @@ class Vec {
 		this._pt = pt;
 		this._noPt = this._pt.length / 2;
 
-		this._mesh = new Mesh(pt);
+		this._mesh = new Mesh(this._pt);
 
 		this.prog = new Prog("vec", "green");
 
