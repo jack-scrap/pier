@@ -20,7 +20,7 @@ var theta = 0.3;
 
 const dragFac = 500;
 
-var id = new Float32Array(16);
+var id = mat4.create();
 
 const camMin = [scrLoc[0] + 1.2, scrLoc[1], scrLoc[2]];
 const camMax = [15, 8, 0];
@@ -105,7 +105,7 @@ document.addEventListener("keydown", function(e) {
 
 					o = Math.min(o, 1);
 
-					let model = new Float32Array(16);
+					let model = mat4.create();
 					mat4.identity(model);
 					mat4.translate(model, model, [-0.6, (o + 1) * -lineHt, 0]);
 
@@ -123,7 +123,7 @@ document.addEventListener("keydown", function(e) {
 
 					o = Math.max(o, 0);
 
-					let model = new Float32Array(16);
+					let model = mat4.create();
 					mat4.identity(model);
 					mat4.translate(model, model, [-0.6, (o + 1) * -lineHt, 0]);
 

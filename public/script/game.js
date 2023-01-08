@@ -19,7 +19,7 @@ class Vec {
 		this.prog = new Prog("vec", "green");
 
 		// Matrix
-		this.model = new Float32Array(16);
+		this.model = mat4.create();
 		mat4.identity(this.model);
 
 		mat4.translate(this.model, this.model, [loc[0], loc[1], 0]);

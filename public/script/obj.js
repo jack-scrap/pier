@@ -22,11 +22,11 @@ function idx(attr, idc, ln) {
 class Obj {
 	_noIdc;
 
-	model = new Float32Array(16);
-	_acc = new Float32Array(16);
+	model = mat4.create();
+	_acc = mat4.create();
 
-	view = new Float32Array(16);
-	_proj = new Float32Array(16);
+	view = mat4.create();
+	_proj = mat4.create();
 
 	_vao;
 
@@ -88,7 +88,7 @@ class Obj {
 		}
 
 		/* Matrix */
-		this.model = new Float32Array(16);
+		this.model = mat4.create();
 
 		mat4.identity(this.model);
 
@@ -101,11 +101,11 @@ class Obj {
 			mat4.rotate(this.model, this.model, rot[i], vec);
 		}
 
-		let id = new Float32Array(16);
+		let id = mat4.create();
 		mat4.identity(id);
 		this.accModel(id);
 
-		this.view = new Float32Array(16);
+		this.view = mat4.create();
 
 		mat4.lookAt(
 			this.view,
@@ -114,7 +114,7 @@ class Obj {
 			]
 		);
 
-		this._proj = new Float32Array(16);
+		this._proj = mat4.create();
 
 		mat4.perspective(this._proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
 
