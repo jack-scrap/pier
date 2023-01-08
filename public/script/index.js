@@ -208,7 +208,7 @@ document.addEventListener("keydown", function(e) {
 					break;
 
 				case 13: // Enter
-					let inst = new Laser();
+					let inst = new Laser;
 
 					inst.model = mat4.clone(ship.model);
 
