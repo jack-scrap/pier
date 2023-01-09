@@ -33,6 +33,8 @@ var camLoc = [camMin[0] + (camDelta[0] * camScale), camMin[1] + (camDelta[1] * c
 
 var ship;
 
+var scrBound;
+
 var scn = [];
 
 var score;
@@ -374,6 +376,16 @@ document.addEventListener("DOMContentLoaded", async function() {
 	}
 
 	gameOver = new Str("game over");
+
+	/* Screen bounds */
+	const ptScrBound = [
+		-1.0, -1.0,
+		1.0, -1.0,
+		1.0, 1.0,
+		-1.0, 1.0
+	];
+
+	scrBound = new Vec(ptScrBound);
 
 	function draw() {
 		// Framebuffer
