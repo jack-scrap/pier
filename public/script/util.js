@@ -43,11 +43,11 @@ class Ld {
 			}
 
 			if (tok[0] == this.id[attr]) {
-				let vtc = tok;
-				vtc.shift();
+				let pt = tok;
+				pt.shift();
 
 				for (let i = 0; i < this.sz[attr]; i++) {
-					data.push(vtc[i]);
+					data.push(pt[i]);
 				}
 			}
 		}
@@ -108,14 +108,14 @@ class HTTP {
 }
 
 class Geom {
-	static calcNorm(vtc, i) {
+	static calcNorm(pt, i) {
 		let startA = i * axes;
 		let startB = (i + 1) * axes;
 		let startC = (i + 2) * axes;
 
-		let a = vec3.fromValues(vtc[startA], vtc[startA + 1], vtc[startA + 2]);
-		let b = vec3.fromValues(vtc[startB], vtc[startB + 1], vtc[startB + 2]);
-		let c = vec3.fromValues(vtc[startC], vtc[startC + 1], vtc[startC + 2]);
+		let a = vec3.fromValues(pt[startA], pt[startA + 1], pt[startA + 2]);
+		let b = vec3.fromValues(pt[startB], pt[startB + 1], pt[startB + 2]);
+		let c = vec3.fromValues(pt[startC], pt[startC + 1], pt[startC + 2]);
 
 		let v = [
 			vec3.create(),
