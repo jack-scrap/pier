@@ -35,8 +35,6 @@ var ship;
 
 var scrBound;
 
-var scn = [];
-
 var score;
 var scoreStr;
 
@@ -222,8 +220,6 @@ document.addEventListener("keydown", function(e) {
 
 					laser.push(inst);
 
-					scn.push(inst);
-
 					break;
 			}
 
@@ -364,15 +360,9 @@ document.addEventListener("DOMContentLoaded", async function() {
 	/* Ship */
 	ship = new Ship;
 
-	scn.push(ship);
-
 	/* Asteroids */
 	for (let i = 0; i < 3; i++) {
 		aste.push(new AsteLg());
-	}
-
-	for (let i = 0; i < aste.length; i++) {
-		scn.push(aste[i]);
 	}
 
 	gameOver = new Str("game over");
@@ -420,13 +410,21 @@ document.addEventListener("DOMContentLoaded", async function() {
 					let inst = new UFO;
 
 					ufo.push(inst);
-
-					scn.push(inst);
 				}
 
-				for (let vec of scn) {
+				for (let vec of aste) {
 					vec.draw();
 				}
+
+				for (let vec of ufo) {
+					vec.draw();
+				}
+
+				for (let vec of laser) {
+					vec.draw();
+				}
+
+				ship.draw();
 
 				break;
 
