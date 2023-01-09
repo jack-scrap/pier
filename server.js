@@ -4,11 +4,11 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const highScore = require("./high_score");
 
+const port = 3000;
+
 const app = express();
 
 let router = express.Router();
-
-const port = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({
