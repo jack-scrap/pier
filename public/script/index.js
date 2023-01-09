@@ -360,7 +360,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 	}
 
 	/* Ship */
-	ship = new Ship();
+	ship = new Ship;
 
 	scn.push(ship);
 
