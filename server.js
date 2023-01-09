@@ -6,6 +6,8 @@ const highScore = require("./high_score");
 
 const app = express();
 
+let router = express.Router();
+
 const port = 3000;
 
 app.use(express.json());
@@ -13,6 +15,12 @@ app.use(express.urlencoded({
 	extended: true
 }));
 app.use(express.text());
+
+router.get("/", (req, res) => {
+	res.sendFile(path.join(__dirname, "/public/view/index.html"));
+});
+
+app.use("/", router);
 
 app.set("views", path.join(__dirname, "/public/view"));
 
