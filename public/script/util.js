@@ -156,12 +156,14 @@ class Phys {
 				s ? p : q
 			];
 
+			// Transform
 			let model = [];
 			for (let i = 0; i < 2; i++) {
 				model[i] = Matrix.apply(poly[i]._pt, poly[i].model);
 			}
 
 			for (let p = 0; p < poly[0]._noPt; p++) {
+				// Generate line segment
 				let a = p;
 				let b = (p + 1) % poly[0]._noPt;
 
@@ -169,11 +171,14 @@ class Phys {
 					model[0][b * 2] - model[0][a * 2],
 					model[0][(b * 2) + 1] - model[0][(a * 2) + 1]
 				];
+
+				// Project
 				let d = axis[0] * axis[0] + axis[1] * axis[1]
 				for (let i = 0; i < 2; i++) {
 					axis[i] /= d;
 				}
 
+				// Test overlap
 				let rng = [];
 				for (let p = 0; p < 2; p++) {
 					let bound = [];
