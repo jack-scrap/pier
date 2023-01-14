@@ -207,7 +207,7 @@ document.addEventListener("keydown", function(e) {
 
 					break;
 
-				case 13: // Enter
+				case 13: { // Enter
 					let inst = new Laser;
 
 					inst.model = mat4.clone(ship.model);
@@ -221,6 +221,7 @@ document.addEventListener("keydown", function(e) {
 					laser.push(inst);
 
 					break;
+				}
 			}
 
 			break;
@@ -400,7 +401,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 				break;
 
-			case 1: // Game
+			case 1: { // Game
 				scoreStr.draw();
 				lifeStr.draw();
 
@@ -427,6 +428,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 				ship.draw();
 
 				break;
+			}
 
 			case 2: // Scoreboard
 				for (let line of scoreBuff) {
