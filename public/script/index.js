@@ -20,8 +20,6 @@ var theta = 0.3;
 
 const dragFac = 500;
 
-var id = mat4.create();
-
 const camMin = [scrLoc[0] + 1.2, scrLoc[1], scrLoc[2]];
 const camMax = [15, 8, 0];
 
@@ -76,10 +74,10 @@ document.addEventListener("mousemove", function(e) {
 
 		mouseDeltaX = mouseCurrX - mouseStartX;
 
-		mat4.identity(id);
-		mat4.rotate(cabinet.model, id, theta + (mouseDeltaX / dragFac), [0, 1, 0]);
+		mat4.identity(cabinet.model);
+		mat4.rotate(cabinet.model, cabinet.model, theta + (mouseDeltaX / dragFac), [0, 1, 0]);
 
-		cabinet.accModel(id);
+		cabinet.accModel(cabinet.model);
 	}
 });
 
@@ -282,8 +280,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 	};
 
 	window.audioCtx = new window.AudioContext(audioOpt) || window.webkitAudioContext(audioOpt);
-
-	mat4.identity(id);
 
 	/* Screen */
 	scr = new Obj("scr", "scr", "tex");
