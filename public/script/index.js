@@ -4,9 +4,22 @@ const scrLoc = [-0.5846, 2.7, 0];
 
 const lineHt = 0.2;
 
+const cursorPt = [
+	0.0, 0.0,
+	-1.0, 1.0,
+	-1.0, -1.0
+];
+
 const tachyonPt = [
 	0.0, 0.0,
 	0.0, 1.0
+];
+
+const scrBoundPt = [
+	-1.0, -1.0,
+	1.0, -1.0,
+	1.0, 1.0,
+	-1.0, 1.0
 ];
 
 var o = 0;
@@ -352,12 +365,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 		new Str("scoreboard", [0.0, 2 * -lineHt])
 	];
 
-	const cursorPt = [
-		0.0, 0.0,
-		-1.0, 1.0,
-		-1.0, -1.0
-	];
-
 	cursor = new Vec(cursorPt, [-0.6, (o + 1) * -lineHt]);
 
 	// Scoreboard
@@ -382,13 +389,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 	gameOver = new Str("game over");
 
 	/* Screen bounds */
-	const scrBoundPt = [
-		-1.0, -1.0,
-		1.0, -1.0,
-		1.0, 1.0,
-		-1.0, 1.0
-	];
-
 	scrBound = new Vec(scrBoundPt);
 
 	function draw() {
