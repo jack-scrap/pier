@@ -142,38 +142,44 @@ document.addEventListener("keydown", function(e) {
 				}
 
 				case 13: // Enter
-					score = 0;
-					scoreStr = new Str(score.toString(), [-0.8, 0.8]);
-
-					tachyon = new Vec(tachyonPt, [0.0, 0.8]);
-
-					life = 3;
-					lifeStr = new Str(life.toString(), [0.8, 0.8]);
-
 					m = o + 1;
-					
-					if (m == 2) {
-						HTTP.getSync("/high_score", (res, err) => {
-							const deser = JSON.parse(res);
 
-							scoreBoard = {};
-							for (let obj of deser) {
-								scoreBoard[obj.player] = obj.score;
-							}
+					switch (m) {
+						case 1: // Game
+							score = 0;
+							scoreStr = new Str(score.toString(), [-0.8, 0.8]);
 
-							scoreBuff = [];
+							tachyon = new Vec(tachyonPt, [0.0, 0.8]);
 
-							const key = Object.keys(scoreBoard);
-							for (let i = 0; i < 3; i++) {
-								if (i < key.length) {
-									let k = key[i];
+							life = 3;
+							lifeStr = new Str(life.toString(), [0.8, 0.8]);
 
-									scoreBuff.push(new Str(`${k} ${scoreBoard[k]}`, [0.0, i * -lineHt]));
+							break;
+
+						case 2: // Scoreboard
+							HTTP.getSync("/high_score", (res, err) => {
+								const deser = JSON.parse(res);
+
+								scoreBoard = {};
+								for (let obj of deser) {
+									scoreBoard[obj.player] = obj.score;
 								}
-							}
-						});
-					}
 
+								scoreBuff = [];
+
+								const key = Object.keys(scoreBoard);
+								for (let i = 0; i < 3; i++) {
+									if (i < key.length) {
+										let k = key[i];
+
+										scoreBuff.push(new Str(`${k} ${scoreBoard[k]}`, [0.0, i * -lineHt]));
+									}
+								}
+							});
+
+							break;
+					}
+					
 					break;
 			}
 
