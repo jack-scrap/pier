@@ -382,14 +382,14 @@ document.addEventListener("DOMContentLoaded", async function() {
 	gameOver = new Str("game over");
 
 	/* Screen bounds */
-	const ptScrBound = [
+	const scrBoundPt = [
 		-1.0, -1.0,
 		1.0, -1.0,
 		1.0, 1.0,
 		-1.0, 1.0
 	];
 
-	scrBound = new Vec(ptScrBound);
+	scrBound = new Vec(scrBoundPt);
 
 	function draw() {
 		// Framebuffer
