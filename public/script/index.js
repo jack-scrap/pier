@@ -420,12 +420,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 					tachyon.draw();
 				}
 
-				let spawnUFO = randInt(0, 500);
-
-				if (!spawnUFO) {
-					let inst = new UFO;
-
-					ufo.push(inst);
+				if (!randInt(0, 500)) {
+					ufo.push(new UFO);
 				}
 
 				for (let vec of aste) {
