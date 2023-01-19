@@ -4,6 +4,11 @@ const scrLoc = [-0.5846, 2.7, 0];
 
 const lineHt = 0.2;
 
+const tachyonPt = [
+	0.0, 0.0,
+	0.0, 1.0
+];
+
 var o = 0;
 var m = 0;
 
@@ -38,6 +43,8 @@ var scoreStr;
 
 var life;
 var lifeStr;
+
+var tachyon;
 
 var scoreBoard = {};
 var scoreBuff = [];
@@ -137,6 +144,8 @@ document.addEventListener("keydown", function(e) {
 				case 13: // Enter
 					score = 0;
 					scoreStr = new Str(score.toString(), [-0.8, 0.8]);
+
+					tachyon = new Vec(tachyonPt, [0.0, 0.8]);
 
 					life = 3;
 					lifeStr = new Str(life.toString(), [0.8, 0.8]);
@@ -400,6 +409,10 @@ document.addEventListener("DOMContentLoaded", async function() {
 			case 1: { // Game
 				scoreStr.draw();
 				lifeStr.draw();
+
+				if (score >= 10) {
+					tachyon.draw();
+				}
 
 				let spawnUFO = randInt(0, 500);
 
