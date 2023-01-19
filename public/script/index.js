@@ -462,6 +462,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 		cabinet.draw();
 
 		requestAnimationFrame(draw);
-	};
+	}
 	requestAnimationFrame(draw);
 });
