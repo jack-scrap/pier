@@ -188,13 +188,8 @@ class Phys {
 					for (let i = 0; i < poly[p]._noPt; i++) {
 						let proj = model[p][i * 2] * axis[0] + model[p][(i * 2) + 1] * axis[1];
 
-						if (proj < bound[0]) {
-							bound[0] = proj;
-						}
-
-						if (proj > bound[1]) {
-							bound[1] = proj;
-						}
+						proj = Math.max(proj, bound[0]);
+						proj = Math.min(proj, bound[1]);
 					}
 
 					rng.push(bound);
