@@ -120,7 +120,6 @@ document.addEventListener("keydown", function(e) {
 			switch (e.keyCode) {
 				case 40: { // Down
 					o++;
-
 					o = Math.min(o, 1);
 
 					let model = mat4.create();
@@ -138,7 +137,6 @@ document.addEventListener("keydown", function(e) {
 
 				case 38: { // Up
 					o--;
-
 					o = Math.max(o, 0);
 
 					let model = mat4.create();
