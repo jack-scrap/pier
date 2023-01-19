@@ -281,7 +281,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	if (!gl) {
 		console.log("WebGL not supported, falling back on experimental-webgl");
-		gl = window.canv.getContext("experimental-webgl");
+		gl = canv.getContext("experimental-webgl");
 	}
 
 	if (!gl) {
