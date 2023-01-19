@@ -352,13 +352,13 @@ document.addEventListener("DOMContentLoaded", async function() {
 		new Str("scoreboard", [0.0, 2 * -lineHt])
 	];
 
-	const cursorVtc = [
+	const cursorPt = [
 		0.0, 0.0,
 		-1.0, 1.0,
 		-1.0, -1.0
 	];
 
-	cursor = new Vec(cursorVtc, [-0.6, (o + 1) * -lineHt]);
+	cursor = new Vec(cursorPt, [-0.6, (o + 1) * -lineHt]);
 
 	// Scoreboard
 	scoreBuff = [];
