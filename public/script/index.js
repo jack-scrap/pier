@@ -215,17 +215,19 @@ document.addEventListener("keydown", function(e) {
 					break;
 
 				case 13: { // Enter
-					let inst = new Laser;
+					if (!e.repeat) {
+						let inst = new Laser;
 
-					inst.model = mat4.clone(ship.model);
+						inst.model = mat4.clone(ship.model);
 
-					inst.prog.use();
+						inst.prog.use();
 
-					gl.uniformMatrix4fv(inst.uniModel, gl.FALSE, inst.model);
+						gl.uniformMatrix4fv(inst.uniModel, gl.FALSE, inst.model);
 
-					inst.prog.unUse();
+						inst.prog.unUse();
 
-					laser.push(inst);
+						laser.push(inst);
+					}
 
 					break;
 				}
