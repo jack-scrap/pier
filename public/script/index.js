@@ -476,7 +476,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 				}
 
 				break;
-		};
+		}
 
 		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 
