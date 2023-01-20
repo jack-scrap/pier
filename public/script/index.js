@@ -293,7 +293,7 @@ document.addEventListener("keyup", function(e) {
 	switch (m) {
 		case 1: // Game
 			switch (e.keyCode) {
-				case 38: // Up
+				case 87: // w
 					e.preventDefault();
 
 					ship.speed = Ship.speedDefault;
