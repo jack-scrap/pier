@@ -141,6 +141,8 @@ class Tachyon extends Vec {
 		0.0, 30.0
 	];
 
+	tachyon = false;
+
 	constructor(model) {
 		super(Tachyon._pt);
 		
