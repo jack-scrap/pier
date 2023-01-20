@@ -141,12 +141,17 @@ class Tachyon extends Vec {
 		0.0, 30.0
 	];
 
-	constructor() {
+	constructor(model) {
 		super(Tachyon._pt);
+		
+		this._parentModel = model;
+
+		this.model = mat4.clone(this._parentModel);
 	}
 
 	draw() {
-		mat4.translate(this.model, this.model, [0, 0.1, 0]);
+		this.model = mat4.clone(this._parentModel);
+		mat4.translate(this.model, this.model, [0.0, 0.1, 0.0]);
 
 		gl.bindVertexArray(this._mesh.vao);
 		this.prog.use();

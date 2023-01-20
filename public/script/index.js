@@ -253,7 +253,7 @@ document.addEventListener("keydown", function(e) {
 				case 32: { // Spacebar
 					if (!e.repeat) {
 						if (score >= 10) {
-							let inst = new Tachyon;
+							let inst = new Tachyon(ship.model);
 
 							inst.model = mat4.clone(ship.model);
 
