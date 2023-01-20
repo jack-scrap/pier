@@ -264,6 +264,10 @@ document.addEventListener("keydown", function(e) {
 							inst.prog.unUse();
 
 							tachyon.push(inst);
+
+							setTimeout(() => {
+								tachyon.splice(tachyon.length - 1, 1);
+							}, 1000);
 						}
 					}
 
