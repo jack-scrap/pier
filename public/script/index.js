@@ -198,7 +198,7 @@ document.addEventListener("keydown", function(e) {
 
 		case 1: // Game
 			switch (e.keyCode) {
-				case 37: // Left
+				case 65: // a
 					e.preventDefault();
 
 					mat4.rotate(ship.model, ship.model, 0.1, [0, 0, 1]);
@@ -211,7 +211,7 @@ document.addEventListener("keydown", function(e) {
 
 					break;
 
-				case 39: // Right
+				case 68: // d
 					e.preventDefault();
 
 					mat4.rotate(ship.model, ship.model, -0.1, [0, 0, 1]);
@@ -224,7 +224,7 @@ document.addEventListener("keydown", function(e) {
 
 					break;
 
-				case 38: // Up
+				case 87: // w
 					e.preventDefault();
 
 					ship.speed = Ship.speedFast;
