@@ -57,7 +57,7 @@ var scoreStr;
 var life;
 var lifeStr;
 
-var tachyon;
+var tachyonVec;
 
 var scoreBoard = {};
 var scoreBuff = [];
@@ -70,6 +70,7 @@ var aste = [];
 var ufo = [];
 
 var laser = [];
+var tachyon = [];
 
 function fitCanv() {
 	window.canv.width = window.innerWidth;
@@ -160,7 +161,7 @@ document.addEventListener("keydown", function(e) {
 							score = 0;
 							scoreStr = new Str(score.toString(), [-0.8, 0.8]);
 
-							tachyon = new Vec(tachyonPt, [0.0, 0.8]);
+							tachyonVec = new Vec(tachyonPt, [0.0, 0.8]);
 
 							life = 3;
 							lifeStr = new Str(life.toString(), [0.8, 0.8]);
@@ -244,6 +245,26 @@ document.addEventListener("keydown", function(e) {
 						inst.prog.unUse();
 
 						laser.push(inst);
+					}
+
+					break;
+				}
+
+				case 32: { // Spacebar
+					if (!e.repeat) {
+						if (score >= 10) {
+							let inst = new Tachyon;
+
+							inst.model = mat4.clone(ship.model);
+
+							inst.prog.use();
+
+							gl.uniformMatrix4fv(inst.uniModel, gl.FALSE, inst.model);
+
+							inst.prog.unUse();
+
+							tachyon.push(inst);
+						}
 					}
 
 					break;
@@ -417,7 +438,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 				lifeStr.draw();
 
 				if (score >= 10) {
-					tachyon.draw();
+					tachyonVec.draw();
 				}
 
 				if (!randInt(0, 500)) {
@@ -433,6 +454,10 @@ document.addEventListener("DOMContentLoaded", async function() {
 				}
 
 				for (let vec of laser) {
+					vec.draw();
+				}
+
+				for (let vec of tachyon) {
 					vec.draw();
 				}
 

@@ -135,6 +135,31 @@ class Laser extends Vec {
 	}
 }
 
+class Tachyon extends Vec {
+	static _pt = [
+		0.0, 0.0,
+		0.0, 30.0
+	];
+
+	constructor() {
+		super(Tachyon._pt);
+	}
+
+	draw() {
+		mat4.translate(this.model, this.model, [0, 0.1, 0]);
+
+		gl.bindVertexArray(this._mesh.vao);
+		this.prog.use();
+
+		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
+
+		gl.drawArrays(gl.LINES, 0, this._noPt);
+
+		this.prog.unUse();
+		gl.bindVertexArray(null);
+	}
+}
+
 class Aste extends Vec {
 	static _minPt = 5;
 	static _maxPt = 7;
