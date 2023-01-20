@@ -141,6 +141,11 @@ class Tachyon extends Vec {
 		0.0, 30.0
 	];
 
+	static _carrierFreq = 200.0;
+	static _modFreq = 8.0;
+
+	static _filterFreq = 400.0;
+
 	tachyon = false;
 
 	constructor(model) {
@@ -149,6 +154,32 @@ class Tachyon extends Vec {
 		this._parentModel = model;
 
 		this.model = mat4.clone(this._parentModel);
+
+		// Source
+		let carrier = audioCtx.createOscillator();
+		carrier.type = "sawtooth";
+		carrier.frequency.value = Tachyon._carrierFreq;
+
+		let mod = audioCtx.createOscillator();
+		mod.type = "triangle";
+		mod.frequency.value = Tachyon._modFreq;
+
+		// Effect
+		let filter = audioCtx.createBiquadFilter();
+		filter.type = "lowpass";
+		filter.frequency.value = Tachyon._filterFreq;
+
+		// Route
+		carrier.connect(filter);
+		mod.connect(filter);
+		filter.connect(audioCtx.destination);
+
+		// Schedule
+		carrier.start();
+		mod.start();
+
+		carrier.stop(audioCtx.currentTime + 1.0);
+		mod.stop(audioCtx.currentTime + 1.0);
 	}
 
 	draw() {
