@@ -1,4 +1,4 @@
-var glyph = JSON.parse(Fs.rd(Fs.resPath + "/glyph.json"));
+const glyph = JSON.parse(Fs.rd(Fs.resPath + "/glyph.json"));
 
 class Char extends Vec {
 	static asciiToAlphaNo(c) {
