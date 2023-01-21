@@ -25,6 +25,8 @@ const scrBoundPt = [
 var o = 0;
 var m = 0;
 
+var s = 0;
+
 var cabinet;
 var scr;
 
@@ -279,6 +281,18 @@ document.addEventListener("keydown", function(e) {
 
 			case 2:
 				switch (e.keyCode) {
+					case 40: // Down
+						s++;
+						s = Math.min(s, Object.keys(scoreBoard).length);
+
+						break;
+
+					case 38: // Up
+						s--;
+						s = Math.max(s, 0);
+
+						break;
+
 					case 27: // Escape
 						m = 0;
 
