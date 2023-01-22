@@ -136,8 +136,8 @@ class Geom {
 class Matrix {
 	static apply(pt, model) {
 		let norm = vec4.clone(pt);
-		norm[2] = 0;
-		norm[3] = 1;
+		norm[2] = 0.0;
+		norm[3] = 1.0;
 
 		vec4.transformMat4(norm, norm, model);
 
