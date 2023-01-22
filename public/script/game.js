@@ -205,10 +205,10 @@ class Aste extends Vec {
 
 		let pt = [];
 		for (let i = 0; i < n; i++) {
-			let angle = i * inc;
+			let ang = i * inc;
 
-			pt.push(Math.cos(angle) * randFloat(minSz, maxSz));
-			pt.push(Math.sin(angle) * randFloat(minSz, maxSz));
+			pt.push(Math.cos(ang) * randFloat(minSz, maxSz));
+			pt.push(Math.sin(ang) * randFloat(minSz, maxSz));
 		}
 
 		super(pt);
