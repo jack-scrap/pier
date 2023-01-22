@@ -22,7 +22,7 @@ class Char extends Vec {
 	}
 
 	draw() {
-		gl.bindVertexArray(this._mesh.vao);
+		gl.bindVertexArray(this.vao);
 		gl.useProgram(this.prog.id);
 
 		gl.drawArrays(gl.LINES, 0, this._pt.length);

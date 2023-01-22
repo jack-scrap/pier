@@ -1,9 +1,4 @@
-class Vec {
-	_pt;
-	_noPt;
-
-	_mesh;
-
+class Vec extends Mesh {
 	model;
 
 	prog;
@@ -11,10 +6,7 @@ class Vec {
 	uniModel;
 
 	constructor(pt, loc = [0.0, 0.0], rot = 0.0) {
-		this._pt = pt;
-		this._noPt = this._pt.length / 2;
-
-		this._mesh = new Mesh(this._pt);
+		super(pt);
 
 		this.prog = new Prog("vec", "green");
 
@@ -26,7 +18,7 @@ class Vec {
 
 		mat4.rotate(this.model, this.model, rot, [0, 0, 1]);
 
-		gl.bindVertexArray(this._mesh.vao);
+		gl.bindVertexArray(this.vao);
 		this.prog.use();
 
 		// Attributes
@@ -43,7 +35,7 @@ class Vec {
 	}
 
 	draw() {
-		gl.bindVertexArray(this._mesh.vao);
+		gl.bindVertexArray(this.vao);
 		this.prog.use();
 
 		gl.drawArrays(gl.LINE_LOOP, 0, this._noPt);
@@ -72,7 +64,7 @@ class Ship extends Vec {
 	draw() {
 		mat4.translate(this.model, this.model, [0, this.speed, 0]);
 
-		gl.bindVertexArray(this._mesh.vao);
+		gl.bindVertexArray(this.vao);
 		this.prog.use();
 
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
@@ -123,7 +115,7 @@ class Laser extends Vec {
 	draw() {
 		mat4.translate(this.model, this.model, [0, 0.1, 0]);
 
-		gl.bindVertexArray(this._mesh.vao);
+		gl.bindVertexArray(this.vao);
 		this.prog.use();
 
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
@@ -186,7 +178,7 @@ class Tachyon extends Vec {
 		this.model = mat4.clone(this._parentModel);
 		mat4.translate(this.model, this.model, [0.0, 0.1, 0.0]);
 
-		gl.bindVertexArray(this._mesh.vao);
+		gl.bindVertexArray(this.vao);
 		this.prog.use();
 
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
@@ -259,7 +251,7 @@ class Aste extends Vec {
 	draw() {
 		mat4.translate(this.model, this.model, [0, 0.01, 0]);
 
-		gl.bindVertexArray(this._mesh.vao);
+		gl.bindVertexArray(this.vao);
 		this.prog.use();
 
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
@@ -357,7 +349,7 @@ class UFO extends Vec {
 	draw() {
 		mat4.translate(this.model, this.model, [(this._side ? -1 : 1) * UFO._speed, 0.00, 0]);
 
-		gl.bindVertexArray(this._mesh.vao);
+		gl.bindVertexArray(this.vao);
 		this.prog.use();
 
 		gl.uniformMatrix4fv(this.uniModel, gl.FALSE, this.model);
