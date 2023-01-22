@@ -159,7 +159,7 @@ class Phys {
 			// Transform
 			let model = [];
 			for (let i = 0; i < 2; i++) {
-				model[i] = Matrix.apply(poly[i]._pt, poly[i].model);
+				model[i] = Matrix.apply(poly[i].pt, poly[i].model);
 			}
 
 			for (let p = 0; p < poly[0]._noPt; p++) {

@@ -46,7 +46,7 @@ class Vec extends Mesh {
 }
 
 class Ship extends Vec {
-	static _pt = [
+	static pt = [
 		-0.6, -1.0,
 		0.6, -1.0,
 		0.0, 1.0
@@ -58,7 +58,7 @@ class Ship extends Vec {
 	speed = Ship.speedDefault;
 
 	constructor() {
-		super(Ship._pt);
+		super(Ship.pt);
 	}
 
 	draw() {
@@ -77,7 +77,7 @@ class Ship extends Vec {
 }
 
 class Laser extends Vec {
-	static _pt = [
+	static pt = [
 		0.0, 0.0,
 		0.0, 1.0
 	];
@@ -88,7 +88,7 @@ class Laser extends Vec {
 	static _decay = 0.16;
 
 	constructor() {
-		super(Laser._pt);
+		super(Laser.pt);
 
 		// Source
 		let osc = audioCtx.createOscillator();
@@ -128,7 +128,7 @@ class Laser extends Vec {
 }
 
 class Tachyon extends Vec {
-	static _pt = [
+	static pt = [
 		0.0, 0.0,
 		0.0, 30.0
 	];
@@ -141,7 +141,7 @@ class Tachyon extends Vec {
 	tachyon = false;
 
 	constructor(model) {
-		super(Tachyon._pt);
+		super(Tachyon.pt);
 		
 		this._parentModel = model;
 
@@ -293,7 +293,7 @@ class AsteSm extends Aste {
 }
 
 class UFO extends Vec {
-	static _pt = [
+	static pt = [
 		0.0, 1.0,
 		-2.0, 0.0,
 		0.0, -1.0,
@@ -315,7 +315,7 @@ class UFO extends Vec {
 
 		let side = randInt(0, 2);
 
-		super(UFO._pt, [side ? 1 : -1, y]);
+		super(UFO.pt, [side ? 1 : -1, y]);
 
 		this._side = side;
 
