@@ -194,14 +194,12 @@ class Aste extends Vec {
 	static _minPt = 5;
 	static _maxPt = 7;
 
-	static _rot = Math.PI * 2;
-
 	static _decayTime = 0.6;
 
 	constructor(minSz, maxSz) {
 		const n = randInt(AsteLg._minPt, AsteLg._maxPt);
 
-		const inc = AsteLg._rot / n;
+		const inc = fullRot / n;
 
 		let pt = [];
 		for (let i = 0; i < n; i++) {
@@ -213,7 +211,7 @@ class Aste extends Vec {
 
 		super(pt);
 
-		mat4.rotate(this.model, this.model, randFloat(0, AsteLg._rot), [0, 0, 1]);
+		mat4.rotate(this.model, this.model, randFloat(0, rot), [0, 0, 1]);
 
 		mat4.translate(this.model, this.model, [randFloat(0.5, 1), randFloat(0.5, 1), 0]);
 
