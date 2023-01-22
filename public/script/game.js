@@ -46,7 +46,7 @@ class Vec extends Mesh {
 }
 
 class Ship extends Vec {
-	static pt = [
+	static _pt = [
 		-0.6, -1.0,
 		0.6, -1.0,
 		0.0, 1.0
@@ -58,7 +58,7 @@ class Ship extends Vec {
 	speed = Ship.speedDefault;
 
 	constructor() {
-		super(Ship.pt);
+		super(Ship._pt);
 	}
 
 	draw() {
