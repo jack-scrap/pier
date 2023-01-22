@@ -135,7 +135,7 @@ class Geom {
 
 class Matrix {
 	static apply(vtx, model) {
-		var norm = vec4.clone(vtx);
+		let norm = vec4.clone(vtx);
 		norm[3] = 1;
 
 		vec4.transformMat4(norm, norm, model);
