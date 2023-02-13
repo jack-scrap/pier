@@ -104,7 +104,8 @@ class Laser extends Vec {
 
 		// Route
 		osc.connect(filter);
-		filter.connect(audioCtx.destination);
+		filter.connect(vol);
+		vol.connect(audioCtx.destination);
 
 		// Schedule
 		osc.start();
@@ -164,7 +165,8 @@ class Tachyon extends Vec {
 		// Route
 		carrier.connect(filter);
 		mod.connect(filter);
-		filter.connect(audioCtx.destination);
+		filter.connect(vol);
+		vol.connect(audioCtx.destination);
 
 		// Schedule
 		carrier.start();
@@ -235,7 +237,8 @@ class Aste extends Vec {
 
 		// Route
 		osc.connect(filter);
-		filter.connect(audioCtx.destination);
+		filter.connect(vol);
+		vol.connect(audioCtx.destination);
 
 		// Schedule
 		osc.start();
@@ -332,7 +335,8 @@ class UFO extends Vec {
 		// Route
 		this._lfo.connect(this._lfoGain);
 		this._lfoGain.connect(this._carrier.frequency);
-		this._carrier.connect(audioCtx.destination);
+		this._carrier.connect(vol);
+		vol.connect(audioCtx.destination);
 
 		// Schedule
 		this._carrier.start();

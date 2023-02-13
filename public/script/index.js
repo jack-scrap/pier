@@ -74,6 +74,8 @@ var ufo = [];
 var laser = [];
 var tachyon = [];
 
+var vol;
+
 function fitCanv() {
 	window.canv.width = window.innerWidth;
 	window.canv.height = window.innerHeight;
@@ -347,6 +349,9 @@ document.addEventListener("DOMContentLoaded", async function() {
 	};
 
 	window.audioCtx = new window.AudioContext(audioOpt) || window.webkitAudioContext(audioOpt);
+
+	vol = audioCtx.createGain();
+	vol.gain = 0.2;
 
 	/* Screen */
 	scr = new Obj("scr", "scr", "tex");
