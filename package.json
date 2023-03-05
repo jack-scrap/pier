@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "public/script/index.js",
   "scripts": {
-    "build": "sass --update scss:public/style",
+		"build": "sass --update scss:public/style",
     "start": "http-server .",
     "dev": "nodemon server.js"
   },
