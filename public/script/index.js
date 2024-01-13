@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 	mat4.identity(world);
 	mat4.rotate(world, world, 0, [0, 1, 0]);
 
-	let buoy = new Obj("buoy", "obj", "buoy");
+	let buoy = new Obj("buoy", "buoy", "buoy");
 
 	let plane = new Obj("plane", "wave", "solid");
 
