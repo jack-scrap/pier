@@ -1,5 +1,7 @@
 const camLoc = [-10, 10, -10];
 
+const amp = 0.4;
+
 function fitCanv() {
 	window.canv.width = window.innerWidth;
 	window.canv.height = window.innerHeight;
@@ -36,12 +38,16 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	let uniT = gl.getUniformLocation(plane.prog.id, "t");
 
+	let uniAmp = gl.getUniformLocation(plane.prog.id, "amp");
+
+	gl.uniform1f(uniAmp, amp);
+
 	plane.prog.unUse();
 
 	let t = 0;
 	function draw() {
 		mat4.identity(buoy.model);
-		mat4.translate(buoy.model, buoy.model, [0, Math.sin(t / 100), 0]);
+		mat4.translate(buoy.model, buoy.model, [0, Math.sin(t / 100) * amp, 0]);
 
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
