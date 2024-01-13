@@ -195,59 +195,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 		gl.clearColor(0, 0.06, 0, 1.0);
 		gl.clear(gl.COLOR_BUFFER_BIT);
 
-		switch (m) {
-			case 0: // Menu
-				title.draw();
-
-				for (let line of opt) {
-					line.draw();
-				}
-
-				cursor.draw();
-
-				break;
-
-			case 1: { // Game
-				scoreStr.draw();
-				lifeStr.draw();
-
-				if (ship.tachyon) {
-					tachyonVec.draw();
-				}
-
-				if (!randInt(0, 500)) {
-					ufo.push(new UFO);
-				}
-
-				for (let vec of aste) {
-					vec.draw();
-				}
-
-				for (let vec of ufo) {
-					vec.draw();
-				}
-
-				for (let vec of laser) {
-					vec.draw();
-				}
-
-				for (let vec of tachyon) {
-					vec.draw();
-				}
-
-				ship.draw();
-
-				break;
-			}
-
-			case 2: // Scoreboard
-				for (let line of scoreBuff) {
-					line.draw();
-				}
-
-				break;
-		}
-
 		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 
 		// Cabinet
