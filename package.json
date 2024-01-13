@@ -1,5 +1,5 @@
 {
-	"name": "tachyon",
+	"name": "buoy",
 	"version": "0.0.1",
 	"main": "public/script/index.js",
 	"scripts": {
