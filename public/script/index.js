@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	gl.enable(gl.DEPTH_TEST);
 
-	gl.clearColor(1, 0, 0, 1);
+	gl.clearColor(0, 0.4, 1, 1);
 
 	const pt = [
 		0.0, 0.0,
