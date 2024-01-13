@@ -46,12 +46,12 @@ class Obj {
 		this._vbo = gl.createBuffer();
 		gl.bindBuffer(gl.ARRAY_BUFFER, this._vbo);
 
-		let ptUnIdxed = Ld.attr(nameObj, 0);
+		let vtcUnIdxed = Ld.attr(nameObj, 0);
 		let idcVtc = Ld.idc(nameObj, 0);
 
-		let pt = idx(ptUnIdxed, idcVtc, 3);
+		let vtc = idx(vtcUnIdxed, idcVtc, 3);
 
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pt), gl.STATIC_DRAW);
+		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vtc), gl.STATIC_DRAW);
 
 		this._noIdc = idcVtc.length;
 
