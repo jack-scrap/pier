@@ -40,8 +40,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 	let model = mat4.create();
 	mat4.identity(model);
 
-	let vec = [0, 1, 0];
-
 	let view = mat4.create();
 	mat4.identity(view);
 
