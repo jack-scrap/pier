@@ -92,21 +92,6 @@ class Ld {
 	}
 }
 
-class HTTP {
-	static getSync(url, callback) {
-		let req = new XMLHttpRequest();
-		req.onreadystatechange = () => {
-			if (req.readyState == 4 && req.status == 200) { // OK
-				callback(req.responseText);
-			}
-		}
-
-		req.open("GET", url, false);
-
-		req.send(null);
-	}
-}
-
 class Geom {
 	static calcNorm(pt, i) {
 		let startA = i * axes;
