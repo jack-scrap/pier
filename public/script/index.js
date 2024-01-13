@@ -49,8 +49,6 @@ var camScale = 1;
 
 var camLoc = [camMin[0] + (camDelta[0] * camScale), camMin[1] + (camDelta[1] * camScale), camMin[2] + (camDelta[2] * camScale)];
 
-var ship;
-
 var scrBound;
 
 var score;
@@ -68,7 +66,6 @@ var gameOver;
 
 var cursor;
 
-var aste = [];
 var ufo = [];
 
 var laser = [];
@@ -169,14 +166,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 			scoreBuff.push(new Str(k, [0.0, i * -lineHt]));
 		}
-	}
-
-	/* Ship */
-	ship = new Ship;
-
-	/* Asteroids */
-	for (let i = 0; i < 3; i++) {
-		aste.push(new AsteLg);
 	}
 
 	gameOver = new Str("game over");
