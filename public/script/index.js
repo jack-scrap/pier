@@ -1,3 +1,5 @@
+const camLoc = [-5, 5, -5];
+
 function fitCanv() {
 	window.canv.width = window.innerWidth;
 	window.canv.height = window.innerHeight;

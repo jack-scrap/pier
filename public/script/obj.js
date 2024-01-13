@@ -70,9 +70,7 @@ class Obj {
 
 		this.view = mat4.create();
 
-		mat4.lookAt(this.view, [
-			-5, 5, -5
-		], [
+		mat4.lookAt(this.view, camLoc, [
 			0, 0, 0
 		], [
 			0, 1, 0
