@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	gl.clearColor(0, 0.4, 1, 1);
 
+	gl.cullFace(gl.BACK);
+
 	let buoy = new Obj("buoy", "obj", "buoy");
 
 	let plane = new Obj("plane", "wave", "solid");
