@@ -57,7 +57,6 @@ class Obj {
 
 		/* Matrix */
 		this.model = mat4.create();
-
 		mat4.identity(this.model);
 
 		mat4.translate(this.model, this.model, loc);
