@@ -17,10 +17,10 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	gl.clearColor(0, 0.4, 1, 1);
 
-	const pt = [
-		-1.0, -1.0,
-		0.0, 1.0,
-		1.0, -1.0
+	const vtc = [
+		-1.0, -1.0, 0.0,
+		0.0, 1.0, 0.0,
+		1.0, -1.0, 0.0
 	];
 
 	let vao = gl.createVertexArray();
@@ -28,14 +28,14 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	let vbo = gl.createBuffer();
 	gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
-	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pt), gl.STATIC_DRAW);
+	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vtc), gl.STATIC_DRAW);
 
 	let prog = new Prog("scr", "solid");
 
 	prog.use();
 
 	let attrPos = gl.getAttribLocation(prog.id, "pos");
-	gl.vertexAttribPointer(attrPos, 2, gl.FLOAT, gl.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
+	gl.vertexAttribPointer(attrPos, 3, gl.FLOAT, gl.FALSE, 3 * Float32Array.BYTES_PER_ELEMENT, 0);
 	gl.enableVertexAttribArray(attrPos);
 
 	let model = mat4.create();
