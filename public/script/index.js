@@ -32,6 +32,9 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	let t = 0;
 	function draw() {
+		mat4.identity(plane.model);
+		mat4.translate(plane.model, plane.model, [0, Math.sin(t / 100), 0]);
+
 		mat4.identity(buoy.model);
 		mat4.translate(buoy.model, buoy.model, [0, Math.sin(t / 100), 0]);
 
