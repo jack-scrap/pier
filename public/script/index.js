@@ -18,9 +18,9 @@ document.addEventListener("DOMContentLoaded", async function() {
 	gl.clearColor(0, 0.4, 1, 1);
 
 	const pt = [
-		0.0, 0.0,
-		0.5, 1.0,
-		1.0, 0.0
+		-1.0, -1.0,
+		0.0, 1.0,
+		1.0, -1.0
 	];
 
 	let vao = gl.createVertexArray();
