@@ -185,18 +185,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 	scrBound = new Vec(scrBoundPt);
 
 	function draw() {
-		// Framebuffer
-		gl.disable(gl.DEPTH_TEST);
-
-		gl.disable(gl.CULL_FACE);
-
-		gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
-
-		gl.clearColor(0, 0.06, 0, 1.0);
-		gl.clear(gl.COLOR_BUFFER_BIT);
-
-		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-
 		// Cabinet
 		gl.enable(gl.DEPTH_TEST);
 
