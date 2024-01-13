@@ -46,8 +46,18 @@ document.addEventListener("DOMContentLoaded", async function() {
 	let view = mat4.create();
 	mat4.identity(view);
 
+	mat4.lookAt(view, [
+		-5, 5, -5
+	], [
+		0, 0, 0
+	], [
+		0, 1, 0
+	]);
+
 	let proj = mat4.create();
 	mat4.identity(proj);
+
+	mat4.perspective(proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
 
 	let uniModel = gl.getUniformLocation(prog.id, "model");
 	let uniView = gl.getUniformLocation(prog.id, "view");
