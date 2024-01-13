@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	let buoy = new Obj("buoy", "obj", "buoy");
 
+	let plane = new Obj("plane", "obj", "solid");
+
 	let t = 0;
 	function draw() {
 		mat4.identity(buoy.model);
@@ -35,6 +37,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
+		plane.draw();
 		buoy.draw();
 
 		requestAnimationFrame(draw);
