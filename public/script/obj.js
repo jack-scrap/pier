@@ -68,9 +68,6 @@ class Obj {
 			mat4.rotate(this.model, this.model, rot[i], vec);
 		}
 
-		let id = mat4.create();
-		mat4.identity(id);
-
 		this.view = mat4.create();
 
 		mat4.lookAt(this.view, [
