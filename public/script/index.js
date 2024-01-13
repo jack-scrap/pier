@@ -38,13 +38,36 @@ document.addEventListener("DOMContentLoaded", async function() {
 	gl.vertexAttribPointer(attrPos, 2, gl.FLOAT, gl.FALSE, 2 * Float32Array.BYTES_PER_ELEMENT, 0);
 	gl.enableVertexAttribArray(attrPos);
 
+	let model = mat4.create();
+	mat4.identity(model);
+
+	let vec = [0, 1, 0];
+
+	let view = mat4.create();
+	mat4.identity(view);
+
+	let proj = mat4.create();
+	mat4.identity(proj);
+
+	let uniModel = gl.getUniformLocation(prog.id, "model");
+	let uniView = gl.getUniformLocation(prog.id, "view");
+	let uniProj = gl.getUniformLocation(prog.id, "proj");
+
+	gl.uniformMatrix4fv(uniModel, gl.FALSE, model);
+	gl.uniformMatrix4fv(uniView, gl.FALSE, view);
+	gl.uniformMatrix4fv(uniProj, gl.FALSE, proj);
+
 	prog.unUse();
 
 	function draw() {
+		mat4.rotate(model, model, 0.1, vec);
+
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
 		gl.bindVertexArray(vao);
 		prog.use();
+
+		gl.uniformMatrix4fv(uniModel, gl.FALSE, model);
 
 		gl.drawArrays(gl.TRIANGLES, 0, 3);
 
