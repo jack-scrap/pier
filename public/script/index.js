@@ -17,11 +17,10 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	gl.clearColor(0, 0.4, 1, 1);
 
-	const vtc = [
-		-1.0, -1.0, 0.0,
-		0.0, 1.0, 0.0,
-		1.0, -1.0, 0.0
-	];
+	let vtcUnIdxed = Ld.attr("buoy", 0);
+	let idcVtc = Ld.idc("buoy", 0);
+
+	let vtc = idx(vtcUnIdxed, idcVtc, 3);
 
 	let vao = gl.createVertexArray();
 	gl.bindVertexArray(vao);
@@ -81,7 +80,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 		gl.uniformMatrix4fv(uniModel, gl.FALSE, model);
 
-		gl.drawArrays(gl.TRIANGLES, 0, 3);
+		gl.drawArrays(gl.TRIANGLES, 0, vtc.length / 3);
 
 		prog.unUse();
 		gl.bindVertexArray(null);
