@@ -73,12 +73,13 @@ class Obj {
 
 		this.view = mat4.create();
 
-		mat4.lookAt(
-			this.view,
-			[-5, 5, -5], [0, 0, 0], [
-				0, 1, 0
-			]
-		);
+		mat4.lookAt(this.view, [
+			-5, 5, -5
+		], [
+			0, 0, 0
+		], [
+			0, 1, 0
+		]);
 
 		this._proj = mat4.create();
 
