@@ -2,8 +2,8 @@
 
 precision mediump float;
 
-in vec2 pos;
+out vec4 frag;
 
 void main() {
-  gl_Position = vec4(vec3(pos, 0.0), 1.0);
+	frag = vec4(vec3(1.0), 1.0);
 }

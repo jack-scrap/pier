@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 	gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
 	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pt), gl.STATIC_DRAW);
 
-	let prog = new Prog("vec", "green");
+	let prog = new Prog("scr", "solid");
 
 	prog.use();
 

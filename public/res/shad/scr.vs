@@ -2,17 +2,8 @@
 
 precision mediump float;
 
-in vec3 pos;
-in vec2 st;
-
-out vec2 _st;
-
-uniform mat4 model;
-uniform mat4 view;
-uniform mat4 proj;
+in vec2 pos;
 
 void main() {
-	gl_Position = proj * view * model * vec4(pos, 1.0);
-
-	_st = st;
+  gl_Position = vec4(vec3(pos, 0.0), 1.0);
 }
