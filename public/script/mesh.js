@@ -1,21 +1,21 @@
 class Mesh {
-	pt;
-	_noPt;
+	vtc;
+	_noVtc;
 
 	vao;
 
 	_vbo;
 
-	constructor(pt) {
-		this.pt = pt;
-		this._noPt = this.pt.length / 2;
+	constructor(vtc) {
+		this.vtc = vtc;
+		this._noVtc = this.vtc.length / 3;
 
 		this.vao = gl.createVertexArray();
 		gl.bindVertexArray(this.vao);
 
 		this._vbo = gl.createBuffer();
 		gl.bindBuffer(gl.ARRAY_BUFFER, this._vbo);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.pt), gl.STATIC_DRAW);
+		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.vtc), gl.STATIC_DRAW);
 
 		gl.bindVertexArray(null);
 	}
