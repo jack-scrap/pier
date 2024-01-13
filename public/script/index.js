@@ -1,6 +1,13 @@
+function fitCanv() {
+	window.canv.width = window.innerWidth;
+	window.canv.height = window.innerHeight;
+}
+
 document.addEventListener("DOMContentLoaded", async function() {
 	/* Context */
 	window.canv = document.getElementById("disp");
+
+	fitCanv();
 
 	window.gl = window.canv.getContext("webgl2");
 
