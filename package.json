@@ -14,5 +14,8 @@
 		"sass": "^1.57.1"
 	},
 	"author": "JackHasaKeyboard",
-	"license": "MIT"
+	"license": "MIT",
+	"devDependencies": {
+		"nodemon": "^3.0.2"
+	}
 }
