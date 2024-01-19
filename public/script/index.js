@@ -1,15 +1,5 @@
 const camLoc = [-10, 10, -10];
 
-var drag;
-
-var mouseStartX;
-var mouseCurrX;
-var mouseDeltaX;
-
-var theta = 0.0;
-
-const dragFac = 500;
-
 var world;
 
 const amp = 0.4;
@@ -18,29 +8,6 @@ function fitCanv() {
 	window.canv.width = window.innerWidth;
 	window.canv.height = window.innerHeight;
 }
-
-document.addEventListener("mousedown", function(e) {
-	drag = true;
-
-	mouseStartX = e.clientX;
-});
-
-document.addEventListener("mouseup", function() {
-	drag = false;
-
-	theta += mouseDeltaX / dragFac;
-});
-
-document.addEventListener("mousemove", function(e) {
-	if (drag) {
-		mouseCurrX = e.clientX;
-
-		mouseDeltaX = mouseCurrX - mouseStartX;
-
-		mat4.identity(world);
-		mat4.rotate(world, world, theta + (mouseDeltaX / dragFac), [0, 1, 0]);
-	}
-});
 
 document.addEventListener("DOMContentLoaded", async function() {
 	/* Context */
