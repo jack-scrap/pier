@@ -69,28 +69,28 @@ document.addEventListener("DOMContentLoaded", async function() {
 	mat4.identity(world);
 	mat4.rotate(world, world, 0, [0, 1, 0]);
 
-	let buoy = new Obj("buoy", "buoy", "buoy");
+	let plank = new Obj("plank", "plank", "wood");
 
-	buoy.prog.use();
+	plank.prog.use();
 
-	let uniWorldBuoy = gl.getUniformLocation(buoy.prog.id, "world");
+	let uniWorldPlank = gl.getUniformLocation(plank.prog.id, "world");
 
-	buoy.prog.unUse();
+	plank.prog.unUse();
 
 	let t = 0;
 	function draw() {
-		mat4.identity(buoy.model);
-		mat4.translate(buoy.model, buoy.model, [0, Math.sin(t / 100) * amp, 0]);
+		mat4.identity(plank.model);
+		mat4.translate(plank.model, plank.model, [0, Math.sin(t / 100) * amp, 0]);
 
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-		buoy.prog.use();
+		plank.prog.use();
 
-		gl.uniformMatrix4fv(uniWorldBuoy, gl.FALSE, world);
+		gl.uniformMatrix4fv(uniWorldPlank, gl.FALSE, world);
 
-		buoy.prog.unUse();
+		plank.prog.unUse();
 
-		buoy.draw();
+		plank.draw();
 
 		requestAnimationFrame(draw);
 
