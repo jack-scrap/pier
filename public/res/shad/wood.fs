@@ -19,7 +19,7 @@ bool hex(vec2 loc, float rad) {
 
 	float slice = pi * 2.0 / float(6);
 
-	return bool(step(rad, cos(floor(0.5 + angle / slice) * slice - angle) * length(loc)));
+	return !bool(step(rad, cos(floor(0.5 + angle / slice) * slice - angle) * length(loc)));
 }
 
 void main() {
@@ -27,7 +27,7 @@ void main() {
 
 	const int n = 7;
 	for (int i = 0; i < n; i++) {
-		if (!hex(_pos.xy, float(n - i))) {
+		if (hex(_pos.xy, float(n - i))) {
 			if (bool(mod(float(i), 2.0))) {
 				frag = vec4(saturated / 255.0, 1.0);
 			} else {
