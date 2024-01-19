@@ -39,7 +39,7 @@ class Obj {
 
 	_szVtx = 3;
 
-	constructor(nameObj, nameVtx, nameFrag, loc = [0, 0, 0], rot = [0, 0, 0], child = []) {
+	constructor(nameObj, nameVtx, nameFrag, loc = [0, 0, 0]) {
 		this._vao = gl.createVertexArray();
 		gl.bindVertexArray(this._vao);
 
@@ -60,13 +60,6 @@ class Obj {
 		mat4.identity(this.model);
 
 		mat4.translate(this.model, this.model, loc);
-
-		for (let i = 0; i < 3; i++) {
-			let vec = [0, 0, 0];
-			vec[i] = 1;
-
-			mat4.rotate(this.model, this.model, rot[i], vec);
-		}
 
 		this.view = mat4.create();
 
