@@ -50,9 +50,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	plane.prog.unUse();
 
-	let plank = new Obj("plank", "plank", "wood");
-
-	mat4.translate(plank.model, plank.model, [0, 2, 0]);
+	let plank = new Obj("plank", "plank", "wood", [0, 2, 0]);
 
 	plank.prog.use();
 
@@ -60,9 +58,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	plank.prog.unUse();
 
-	let plank1 = new Obj("plank", "plank", "wood");
-
-	mat4.translate(plank1.model, plank1.model, [0, 2, 2.2]);
+	let plank1 = new Obj("plank", "plank", "wood", [0, 2, 2.2]);
 
 	plank1.prog.use();
 
