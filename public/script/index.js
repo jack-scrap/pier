@@ -70,6 +70,14 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	plank1.prog.unUse();
 
+	let support = new Obj("support", "plank", "wood");
+
+	support.prog.use();
+
+	let uniWorldSupport = gl.getUniformLocation(support.prog.id, "world");
+
+	support.prog.unUse();
+
 	let t = 0;
 	function draw() {
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -80,6 +88,12 @@ document.addEventListener("DOMContentLoaded", async function() {
 		gl.uniformMatrix4fv(uniWorld, gl.FALSE, world);
 
 		plane.prog.unUse();
+
+		support.prog.use();
+
+		gl.uniformMatrix4fv(uniWorldSupport, gl.FALSE, world);
+
+		support.prog.unUse();
 
 		plank.prog.use();
 
@@ -94,6 +108,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 		plank1.prog.unUse();
 
 		plane.draw();
+
+		support.draw();
 
 		plank.draw();
 		plank1.draw();
