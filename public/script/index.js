@@ -52,6 +52,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	let plank = new Obj("plank", "plank", "wood");
 
+	mat4.translate(plank.model, plank.model, [0, 2, 0]);
+
 	plank.prog.use();
 
 	let uniWorldPlank = gl.getUniformLocation(plank.prog.id, "world");
