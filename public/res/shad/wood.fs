@@ -7,7 +7,7 @@ in vec2 _pos;
 out vec4 frag;
 
 bool circ(float rad, vec2 loc) {
-	return bool(step(rad, distance(loc, vec2(0.5))));
+	return bool(step(rad, distance(loc, vec2(0.0))));
 }
 
 void main() {
