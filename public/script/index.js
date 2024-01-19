@@ -36,6 +36,20 @@ document.addEventListener("DOMContentLoaded", async function() {
 	mat4.identity(world);
 	mat4.rotate(world, world, 0, [0, 1, 0]);
 
+	let plane = new Obj("plane", "wave", "solid");
+
+	plane.prog.use();
+
+	let uniT = gl.getUniformLocation(plane.prog.id, "t");
+
+	let uniAmp = gl.getUniformLocation(plane.prog.id, "amp");
+
+	gl.uniform1f(uniAmp, amp);
+
+	let uniWorld = gl.getUniformLocation(plane.prog.id, "world");
+
+	plane.prog.unUse();
+
 	let plank = new Obj("plank", "plank", "wood");
 
 	plank.prog.use();
@@ -48,11 +62,20 @@ document.addEventListener("DOMContentLoaded", async function() {
 	function draw() {
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
+		plane.prog.use();
+
+		gl.uniform1i(uniT, t);
+		gl.uniformMatrix4fv(uniWorld, gl.FALSE, world);
+
+		plane.prog.unUse();
+
 		plank.prog.use();
 
 		gl.uniformMatrix4fv(uniWorldPlank, gl.FALSE, world);
 
 		plank.prog.unUse();
+
+		plane.draw();
 
 		plank.draw();
 
