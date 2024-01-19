@@ -71,20 +71,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	let buoy = new Obj("buoy", "buoy", "buoy");
 
-	let plane = new Obj("plane", "wave", "solid");
-
-	plane.prog.use();
-
-	let uniT = gl.getUniformLocation(plane.prog.id, "t");
-
-	let uniAmp = gl.getUniformLocation(plane.prog.id, "amp");
-
-	gl.uniform1f(uniAmp, amp);
-
-	let uniWorld = gl.getUniformLocation(plane.prog.id, "world");
-
-	plane.prog.unUse();
-
 	buoy.prog.use();
 
 	let uniWorldBuoy = gl.getUniformLocation(buoy.prog.id, "world");
@@ -98,20 +84,12 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-		plane.prog.use();
-
-		gl.uniform1i(uniT, t);
-		gl.uniformMatrix4fv(uniWorld, gl.FALSE, world);
-
-		plane.prog.unUse();
-
 		buoy.prog.use();
 
 		gl.uniformMatrix4fv(uniWorldBuoy, gl.FALSE, world);
 
 		buoy.prog.unUse();
 
-		plane.draw();
 		buoy.draw();
 
 		requestAnimationFrame(draw);
