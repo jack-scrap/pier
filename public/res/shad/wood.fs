@@ -19,5 +19,16 @@ bool hex(vec2 loc, float rad) {
 }
 
 void main() {
-	frag = vec4(vec3((hex(_pos.xy, 1.0) ? vec3(225, 195, 167) : vec3(225, 170, 119)) / vec3(255.0)), 1.0);
+	frag = vec4(vec3(225, 195, 167) / vec3(255.0), 1.0);
+
+	const int n = 7;
+	for (int i = 0; i < n; i++) {
+		if (!hex(_pos.xy, float(n - i))) {
+			if (bool(mod(float(i), 2.0))) {
+				frag = vec4(vec3(225, 195, 167) / vec3(255.0), 1.0);
+			} else {
+				frag = vec4(vec3(225, 170, 119) / vec3(255.0), 1.0);
+			}
+		}
+	}
 }
