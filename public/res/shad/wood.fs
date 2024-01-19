@@ -11,5 +11,5 @@ bool circ(float rad, vec2 loc) {
 }
 
 void main() {
-	frag = vec4(vec3(circ(0.1, _pos)), 1.0);
+	frag = vec4((circ(1.0, _pos) ? vec3(225, 195, 167) : vec3(0.0)) / 255.0, 1.0);
 }
