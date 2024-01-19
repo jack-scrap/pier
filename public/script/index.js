@@ -60,6 +60,16 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	plank.prog.unUse();
 
+	let plank1 = new Obj("plank", "plank", "wood");
+
+	mat4.translate(plank1.model, plank1.model, [0, 2, 2.2]);
+
+	plank1.prog.use();
+
+	let uniWorldPlank1 = gl.getUniformLocation(plank1.prog.id, "world");
+
+	plank1.prog.unUse();
+
 	let t = 0;
 	function draw() {
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -77,9 +87,16 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 		plank.prog.unUse();
 
+		plank1.prog.use();
+
+		gl.uniformMatrix4fv(uniWorldPlank1, gl.FALSE, world);
+
+		plank1.prog.unUse();
+
 		plane.draw();
 
 		plank.draw();
+		plank1.draw();
 
 		requestAnimationFrame(draw);
 
