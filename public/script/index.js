@@ -79,9 +79,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	let t = 0;
 	function draw() {
-		mat4.identity(plank.model);
-		mat4.translate(plank.model, plank.model, [0, Math.sin(t / 100) * amp, 0]);
-
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
 		plank.prog.use();
