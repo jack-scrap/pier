@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	plank1.prog.unUse();
 
-	let support = new Obj("support", "plank", "wood");
+	let support = new Obj("support", "plank", "wood", [4, 0, 0]);
 
 	support.prog.use();
 
