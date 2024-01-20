@@ -66,8 +66,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 		plane.prog.unUse();
 
-		for (let i = 0; i < obj.length; i++) {
-			obj[i].draw();
+		for (let inst of obj) {
+			inst.draw();
 		}
 
 		requestAnimationFrame(draw);
