@@ -49,14 +49,14 @@ document.addEventListener("DOMContentLoaded", async function() {
 	const stride = 2.2;
 
 	for (let j = 0; j < 10; j++) {
-		let plank = new Obj("plank", "wood", "wood", [j * stride, 2, 0]);
+		let plank = new Obj("plank", "wood", "wood", [j * -stride, 2, 0]);
 
 		mat4.rotate(plank.model, plank.model, Math.PI / 2, [0, 1, 0]);
 
 		obj.push(plank);
 
 		for (let i = 0; i < 2; i++) {
-			obj.push(new Obj("support", "wood", "wood", [j * stride, 0, (i ? 1 : -1) * 4]));
+			obj.push(new Obj("support", "wood", "wood", [j * -stride, 0, (i ? 1 : -1) * 4]));
 		}
 	}
 
