@@ -1,7 +1,5 @@
 const camLoc = [-10, 10, -10];
 
-var world;
-
 const amp = 0.4;
 
 function fitCanv() {
@@ -32,10 +30,6 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	gl.cullFace(gl.BACK);
 
-	world = mat4.create();
-	mat4.identity(world);
-	mat4.rotate(world, world, 0, [0, 1, 0]);
-
 	let plane = new Obj("plane", "wave", "solid");
 
 	plane.prog.use();
@@ -46,31 +40,14 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	gl.uniform1f(uniAmp, amp);
 
-	let uniWorld = gl.getUniformLocation(plane.prog.id, "world");
-
 	plane.prog.unUse();
 
-	let uni = [];
 	let plank = [];
 	for (let i = 0; i < 3; i++) {
-		let obj = new Obj("plank", "plank", "wood", [0, 2, i * 2.2]);
-
-		obj.prog.use();
-
-		uni.push(gl.getUniformLocation(obj.prog.id, "world"));
-
-		obj.prog.unUse();
-
-		plank.push(obj);
+		plank.push(new Obj("plank", "plank", "wood", [0, 2, i * 2.2]));
 	}
 
 	let support = new Obj("support", "plank", "wood", [4, 0, 0]);
-
-	support.prog.use();
-
-	let uniWorldSupport = gl.getUniformLocation(support.prog.id, "world");
-
-	support.prog.unUse();
 
 	let t = 0;
 	function draw() {
@@ -79,23 +56,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 		plane.prog.use();
 
 		gl.uniform1i(uniT, t);
-		gl.uniformMatrix4fv(uniWorld, gl.FALSE, world);
 
 		plane.prog.unUse();
-
-		support.prog.use();
-
-		gl.uniformMatrix4fv(uniWorldSupport, gl.FALSE, world);
-
-		support.prog.unUse();
-
-		for (let i = 0; i < plank.length; i++) {
-			plank[i].prog.use();
-
-			gl.uniformMatrix4fv(uni[i], gl.FALSE, world);
-
-			plank[i].prog.unUse();
-		}
 
 		plane.draw();
 
