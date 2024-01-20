@@ -50,7 +50,9 @@ document.addEventListener("DOMContentLoaded", async function() {
 		obj.push(new Obj("plank", "wood", "wood", [0, 2, i * 2.2]));
 	}
 
-	obj.push(new Obj("support", "wood", "wood", [4, 0, 0]));
+	for (let i = 0; i < 2; i++) {
+		obj.push(new Obj("support", "wood", "wood", [(i ? 1 : -1) * 4, 0, 0]));
+	}
 
 	let t = 0;
 	function draw() {
