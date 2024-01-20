@@ -50,21 +50,19 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	plane.prog.unUse();
 
-	let plank = new Obj("plank", "plank", "wood", [0, 2, 0]);
+	let uni = [];
+	let plank = [];
+	for (let i = 0; i < 3; i++) {
+		let obj = new Obj("plank", "plank", "wood", [0, 2, i * 2.2]);
 
-	plank.prog.use();
+		obj.prog.use();
 
-	let uniWorldPlank = gl.getUniformLocation(plank.prog.id, "world");
+		uni.push(gl.getUniformLocation(obj.prog.id, "world"));
 
-	plank.prog.unUse();
+		obj.prog.unUse();
 
-	let plank1 = new Obj("plank", "plank", "wood", [0, 2, 2.2]);
-
-	plank1.prog.use();
-
-	let uniWorldPlank1 = gl.getUniformLocation(plank1.prog.id, "world");
-
-	plank1.prog.unUse();
+		plank.push(obj);
+	}
 
 	let support = new Obj("support", "plank", "wood", [4, 0, 0]);
 
@@ -91,24 +89,21 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 		support.prog.unUse();
 
-		plank.prog.use();
+		for (let i = 0; i < plank.length; i++) {
+			plank[i].prog.use();
 
-		gl.uniformMatrix4fv(uniWorldPlank, gl.FALSE, world);
+			gl.uniformMatrix4fv(uni[i], gl.FALSE, world);
 
-		plank.prog.unUse();
-
-		plank1.prog.use();
-
-		gl.uniformMatrix4fv(uniWorldPlank1, gl.FALSE, world);
-
-		plank1.prog.unUse();
+			plank[i].prog.unUse();
+		}
 
 		plane.draw();
 
 		support.draw();
 
-		plank.draw();
-		plank1.draw();
+		for (let i = 0; i < plank.length; i++) {
+			plank[i].draw();
+		}
 
 		requestAnimationFrame(draw);
 
