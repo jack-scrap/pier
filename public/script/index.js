@@ -46,12 +46,14 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	obj.push(plane);
 
-	for (let i = 0; i < 3; i++) {
-		obj.push(new Obj("plank", "wood", "wood", [0, 2, i * 2.2]));
-	}
+	const stride = 2.2;
 
-	for (let i = 0; i < 2; i++) {
-		obj.push(new Obj("support", "wood", "wood", [(i ? 1 : -1) * 4, 0, 0]));
+	for (let j = 0; j < 3; j++) {
+		obj.push(new Obj("plank", "wood", "wood", [0, 2, j * stride]));
+
+		for (let i = 0; i < 2; i++) {
+			obj.push(new Obj("support", "wood", "wood", [(i ? 1 : -1) * 4, 0, j * stride]));
+		}
 	}
 
 	let t = 0;
