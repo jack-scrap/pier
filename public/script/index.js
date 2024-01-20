@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	const stride = 2.2;
 
-	for (let j = 0; j < 3; j++) {
+	for (let j = 0; j < 10; j++) {
 		obj.push(new Obj("plank", "wood", "wood", [0, 2, j * stride]));
 
 		for (let i = 0; i < 2; i++) {
