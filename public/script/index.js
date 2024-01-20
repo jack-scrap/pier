@@ -47,10 +47,10 @@ document.addEventListener("DOMContentLoaded", async function() {
 	obj.push(plane);
 
 	for (let i = 0; i < 3; i++) {
-		obj.push(new Obj("plank", "plank", "wood", [0, 2, i * 2.2]));
+		obj.push(new Obj("plank", "wood", "wood", [0, 2, i * 2.2]));
 	}
 
-	obj.push(new Obj("support", "plank", "wood", [4, 0, 0]));
+	obj.push(new Obj("support", "wood", "wood", [4, 0, 0]));
 
 	let t = 0;
 	function draw() {
