@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 	gl.clearColor(1, 1, 1, 1);
 
+	gl.enable(gl.CULL_FACE);
+
 	gl.cullFace(gl.BACK);
 
 	let obj = [];
