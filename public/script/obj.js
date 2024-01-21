@@ -71,7 +71,7 @@ class Obj {
 
 		this._proj = mat4.create();
 
-		mat4.perspective(this._proj, (1 / 4) * Math.PI, canv.clientWidth / canv.clientHeight, 0.1, 1000.0);
+		mat4.ortho(this._proj, -(gl.canvas.clientWidth / 2), gl.canvas.clientWidth / 2, -(gl.canvas.clientHeight / 2), gl.canvas.clientHeight / 2, -100.0, 100.0);
 
 		/* Shader */
 		this.prog = new Prog(nameVtx, nameFrag);
