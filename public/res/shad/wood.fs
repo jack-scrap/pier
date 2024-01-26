@@ -26,7 +26,7 @@ bool hex(vec2 loc, float rad) {
 void main() {
 	frag = vec4(col[int(true)] / 255.0, 1.0);
 
-	const int n = 7;
+	const int n = 20;
 	for (int i = 0; i < n; i++) {
 		if (hex(_pos.xy, float(n - i))) {
 			frag = vec4(col[int(bool(mod(float(i), 2.0)))] / 255.0, 1.0);
