@@ -6,6 +6,8 @@ in vec2 _pos;
 
 out vec4 frag;
 
+uniform vec2 offset;
+
 const float pi = 3.141593;
 
 const vec3 col[2] = vec3[2](
@@ -14,6 +16,8 @@ const vec3 col[2] = vec3[2](
 );
 
 bool hex(vec2 loc, float rad) {
+	loc = loc + offset;
+
 	loc = loc * 2.0 - 1.0;
 
 	float angle = atan(loc.x, loc.y);

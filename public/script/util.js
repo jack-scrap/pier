@@ -91,3 +91,7 @@ class Ld {
 		});
 	}
 }
+
+function rand(floor, roof) {
+	return Math.random() * (roof - floor) + floor;
+}

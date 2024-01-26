@@ -53,6 +53,16 @@ document.addEventListener("DOMContentLoaded", async function() {
 	for (let j = 0; j < 10; j++) {
 		let plank = new Obj("plank", "wood", "wood", [j * -stride, 2, 0]);
 
+		plank.prog.use();
+
+		let uniOffset = gl.getUniformLocation(plank.prog.id, "offset");
+
+		let loc = vec2.fromValues(rand(-4, 4), rand(-1, 1));
+
+		gl.uniform2fv(uniOffset, loc);
+
+		plank.prog.unUse();
+
 		mat4.rotate(plank.model, plank.model, Math.PI / 2, [0, 1, 0]);
 
 		obj.push(plank);
