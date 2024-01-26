@@ -68,10 +68,11 @@ class Obj {
 		], [
 			0, 1, 0
 		]);
+		mat4.scale(this.view, this.view, [50, 50, 50]);
 
 		this._proj = mat4.create();
 
-		mat4.ortho(this._proj, -(gl.canvas.clientWidth / 2), gl.canvas.clientWidth / 2, -(gl.canvas.clientHeight / 2), gl.canvas.clientHeight / 2, -100.0, 100.0);
+		mat4.ortho(this._proj, -(gl.canvas.clientWidth / 2), gl.canvas.clientWidth / 2, -(gl.canvas.clientHeight / 2), gl.canvas.clientHeight / 2, 0.1, 100000.0);
 
 		/* Shader */
 		this.prog = new Prog(nameVtx, nameFrag);

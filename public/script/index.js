@@ -1,4 +1,4 @@
-const camLoc = [-10, 10, -10];
+const camLoc = [-1000, 1000, -1000];
 
 const amp = 0.4;
 
