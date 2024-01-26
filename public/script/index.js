@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 	const stride = 2.2;
 
 	for (let j = 0; j < 10; j++) {
-		let x = j * -stride;
+		let x = -(6 + j * stride);
 
 		let plank = new Obj("plank", "wood", "wood", [x, 2, 0]);
 
