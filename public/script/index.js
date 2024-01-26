@@ -51,7 +51,9 @@ document.addEventListener("DOMContentLoaded", async function() {
 	const stride = 2.2;
 
 	for (let j = 0; j < 10; j++) {
-		let plank = new Obj("plank", "wood", "wood", [j * -stride, 2, 0]);
+		let x = j * -stride;
+
+		let plank = new Obj("plank", "wood", "wood", [x, 2, 0]);
 
 		plank.prog.use();
 
@@ -68,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 		obj.push(plank);
 
 		for (let i = 0; i < 2; i++) {
-			obj.push(new Obj("support", "wood", "wood", [j * -stride, 0, (i ? 1 : -1) * 4]));
+			obj.push(new Obj("support", "wood", "wood", [x, 0, (i ? 1 : -1) * 4]));
 		}
 	}
 
